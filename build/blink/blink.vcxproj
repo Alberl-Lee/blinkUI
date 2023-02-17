@@ -79,7 +79,7 @@
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(SolutionDir)..\out\Windows_$(Configuration)_$(Platform)\;$(SolutionDir)..\third_party\ffmpeg\lib\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Userenv.lib;Setupapi.lib;PowrProf.lib;Version.lib;Msimg32.lib;Imm32.lib;Dbghelp.lib;v8_7_5.lib;skia.lib;winmm.lib;Ws2_32.lib;Usp10.lib;Shlwapi.lib;wininet.lib;GDIPlus.lib;Crypt32.lib;Wldap32.lib;libxml.lib;zlib.lib;ots.lib;chromium.lib;libcurl.lib;libpng.lib;openssl.lib;harfbuzz.lib;angle.lib;version.lib;libjpeg.lib;nodejs.lib;DbgHelp.lib;ffmpeg.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Userenv.lib;Setupapi.lib;PowrProf.lib;Version.lib;Msimg32.lib;Imm32.lib;Dbghelp.lib;v8_7_5.lib;skia.lib;winmm.lib;Ws2_32.lib;Usp10.lib;Shlwapi.lib;wininet.lib;GDIPlus.lib;Crypt32.lib;Wldap32.lib;libxml.lib;zlib.lib;ots.lib;chromium.lib;libcurl.lib;libpng.lib;openssl.lib;harfbuzz.lib;version.lib;libjpeg.lib;nodejs.lib;DbgHelp.lib;ffmpeg.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)..\out\Windows_$(Configuration)_$(Platform)\miniblink$(TargetExt)</OutputFile>
       <ImportLibrary>
       </ImportLibrary>
