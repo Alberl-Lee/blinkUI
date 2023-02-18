@@ -113,12 +113,6 @@
     <ClCompile Include="..\..\quickjs-vs\libregexp.c">
       <Filter>src\quickjs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\wkexe\vip\wkexe_linux.cpp">
-      <Filter>src\vip</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\wkexe\vip\wkexe_linux_exp.cpp">
-      <Filter>src\vip</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\wkexe\vip\ReadMe.txt">
