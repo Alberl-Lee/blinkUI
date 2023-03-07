@@ -333,10 +333,10 @@ public:
     {
         return false;
     }
-    std::unique_ptr<WebMediaPlayer> createWebMediaPlayer(
-        HTMLMediaElement&,
-        const WebMediaPlayerSource&,
-        WebMediaPlayerClient*) override;
+    //std::unique_ptr<WebMediaPlayer> createWebMediaPlayer(
+    //    HTMLMediaElement&,
+    //    const WebMediaPlayerSource&,
+    //    WebMediaPlayerClient*) override;
     WebRemotePlaybackClient* createWebRemotePlaybackClient(
         HTMLMediaElement&) override;
 
@@ -358,7 +358,7 @@ public:
     void willReleaseScriptContext(v8::Local<v8::Context>, int worldId) override { }
     bool allowScriptExtensions() override { return false; }
 
-    WebCookieJar* cookieJar() const override { return 0; }
+    //WebCookieJar* cookieJar() const override { return 0; }
 
     std::unique_ptr<WebServiceWorkerProvider> createServiceWorkerProvider()
         override;

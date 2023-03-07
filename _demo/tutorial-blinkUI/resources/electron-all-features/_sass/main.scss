@@ -1,0 +1,893 @@
+@charset "utf-8";
+
+// $primary: red;
+// $background: $white-ter;
+// $background: black;
+
+// 在import之前改变primary等颜色，这样 is-primary的css颜色就会变成red
+@import "../thirdparty/bulma/bulma.sass";
+
+// Customization
+
+// You can easily customize Bulma with your own variables.
+// Just uncomment the following block to see the result.
+
+/*
+// 1. Import the initial variables
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+
+// 2. Set your own initial variables
+// Update the blue shade, used for links
+$blue: #06bcef;
+// Add pink and its invert
+$pink: #ff8080;
+$pink-invert: #fff;
+// Update the sans-serif font family
+$family-sans-serif: "Helvetica", "Arial", sans-serif;
+
+// 3. Set the derived variables
+// Use the new pink as the primary color
+$primary: $pink;
+$primary-invert: $pink-invert;
+
+// 4. Import the rest of Bulma
+*/
+
+// html {
+//   background-color: $blue;
+// }
+
+.dragImg {
+  -webkit-user-drag: element;
+}
+
+.no-select {
+  -webkit-user-select: none; // 不允许选择文字
+}
+
+.dragable {
+  // -webkit-app-region: drag !important;
+  -webkit-app-region: drag;
+}
+
+.no-dragable {
+  -webkit-app-region: no-drag;
+}
+
+// 下面这种不太通用，比如progress、edit等其他控件忘记加进来，就无法响应了，得把所有需要响应的控件都加进来。而且如果后面有人新增控件类型，就会被坑，都不知道为什么不能响应
+a,
+button,
+.button {
+  -webkit-app-region: no-drag; // 按钮区域不允许拖拽，否则无法点击
+}
+
+// // 可以反着来，规定所有的元素都是no-drag;  然后指定某些元素可以拖拽，就可以了
+// * {
+//   -webkit-app-region: no-drag; // 按钮区域不允许拖拽，否则无法点击
+// }
+
+// // div不做限制，会导致滚动条也无法点击
+// // 可以用css或js设置，只有没有子元素的div才可拖拽。 或者指定某个大的div，让它可拖拽
+// p,
+// div {
+//   -webkit-app-region: drag;
+// }
+
+// -webkit-app-region问题点：
+// 1 即使在client区域，右键也是显示系统的菜单，而不是自己的右键菜单
+// 2 drag区域无法响应鼠标事件，哪怕是document都不能收到鼠标事件，应该是全部传给windows窗口了？ 可能得截获native窗口的右键消息进行处理、先试试主进程里能不能收到右键消息
+
+// html {
+//   // overflow-x: auto,
+//   // overflow-y: auto; // 自动隐藏垂直滚动条 ，加!important 可以设置为高优先级，比其他的设置优先
+//   // overflow: hidden; // 强制隐藏滚动条
+// }
+
+html,
+body {
+  // height: 100%;
+  overflow: hidden; // 强制隐藏滚动条
+}
+
+.tabScroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  // overflow:scroll;
+  // height: auto;
+  // height: 150px; // 可以用jQuery算一下实际高度
+  // height: 100%;
+}
+
+// 滚动条出现页面不跳动
+.wrap {
+  margin-left: calc(100vw - 100%);
+}
+
+// 自定义滚动条样式
+// 整体
+::-webkit-scrollbar {
+  width: 16px; // 垂直滚动条的宽度
+  height: 10px; // 水平滚动条的高度
+  // background-color: blue;
+}
+// 轨道背景
+::-webkit-scrollbar-track {
+  background-color: #c1c1c1;
+}
+
+// 两端按钮
+// ::-webkit-scrollbar-button {
+// background-color: red;
+// }
+// // 轨道未被滑块覆盖的部分
+// ::-webkit-scrollbar-track-piece {
+//   background-color: yellow;
+// }
+// 滑块
+::-webkit-scrollbar-thumb {
+  background-color: #858585;
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+// // 只修改水平滚动条
+// ::-webkit-scrollbar-thumb:horizontal {
+//   background-color: lightseagreen;
+// }
+::-webkit-scrollbar-thumb:hover {
+  background-color: #333333;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #222222;
+}
+// // 垂直滚动条和水平滚动条交汇的部分
+// ::-webkit-scrollbar-corner {
+//   background-color: lightcoral;
+// }
+// // 拖动调整元素大小的十字箭头控件
+// ::-webkit-resizer {
+//   background-color: lightcoral;
+// }
+
+.backgroundIndex {
+  z-index: -1;
+  // position : relative;
+}
+
+.backgroundFullHeight {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+// *{        /* CSS Reset */
+//   margin : 0;
+//   padding : 0;
+// }
+
+.foreground {
+  // position : relative;
+  // z-index: 100;
+}
+
+.bulma-arrow-mixin {
+  @include arrow(black);
+}
+
+.bulma-delete-mixin {
+  @include delete;
+}
+
+$my-color: red;
+.bulma-hamburger-mixin {
+  @include hamburger(2.5rem);
+  // background-color: $my-color;
+}
+
+.bulma-control-mixin {
+  @include control;
+  background: deeppink;
+  color: white;
+
+  &.is-small {
+    @include control-small;
+  }
+
+  &.is-medium {
+    @include control-medium;
+  }
+
+  &.is-large {
+    @include control-large;
+  }
+}
+
+.bulma-button-mixin {
+  @extend .button;
+
+  background: #dbdbdb;
+  // background: transparent;
+  // background-color: transparent;
+
+  color: white;
+  // background-color: white;
+  border-color: #dbdbdb;
+  // border: none;
+  border-radius: 10px;
+
+  &.is-light {
+    background: transparent;
+    border: none;
+
+    &:focus,
+    &.is-focused {
+      &:not(:active) {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &:focus,
+  &.is-focused {
+    // border-color: red;
+    // color: red;
+    // border: none;
+    // border-color: transparent;
+
+    &:not(:active) {
+      box-shadow: $button-focus-box-shadow-size bulmaRgba(yellow, 0.25);
+      // box-shadow: none;
+    }
+  }
+
+  &:active,
+  &.is-active {
+    border-color: green;
+    color: green;
+  }
+}
+
+.bulma-placeholder-mixin {
+  @include placeholder {
+    color: lightblue;
+  }
+}
+
+.bulma-reset-mixin {
+  @include reset;
+}
+
+// 垂直水平居中
+.bulma-center-mixin {
+  @include center($width: 30);
+}
+
+.inline {
+  display: inline !important;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  pointer-events: auto; // 禁止鼠标穿透。 设为none就是鼠标穿透
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.absoluteFull {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+// 文字水平居中
+.textCenter {
+  text-align: center !important;
+}
+
+// 垂直水平居中 子元素
+.childToCenter {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+// 垂直居中 子元素
+.childToVCenter {
+  display: flex !important;
+  align-items: center !important;
+}
+
+// 垂直居中 子元素，非flex布局
+.vCenter {
+  vertical-align: middle !important;
+}
+
+.vCenterRadio {
+  vertical-align: middle !important;
+  margin-top: -2px;
+  margin-bottom: 1px;
+}
+
+.blk-checkradio[type="checkbox"],
+.blk-checkradio[type="radio"] {
+  outline: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  position: absolute;
+  // opacity: 0;
+}
+
+// 文字超出后边省略号
+.textOverFlow {
+  word-break: normal;
+  width: auto;
+  display: block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 文字超出后边省略号，多行文本
+.autoBreak {
+  /* 
+  自动变成多行文本，并且超出后变成省略号 
+  纯汉字有效，部分英文数字也行，英文太多就不对了
+  */
+  width: 100%;
+  /* height: 100%; */
+  text-overflow: ellipsis;
+  /* background: greenyellow; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  /*-webkit-line-clamp用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：
+  display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。
+  -webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。*/
+}
+
+.red {
+  color: #faddde;
+  border: solid 1px #980c10;
+  background: #d81b21;
+  // filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+}
+
+.red:hover {
+  background: #b61318;
+  // filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#c9151b', endColorstr='#a11115');
+}
+
+.red:active {
+  color: #de898c;
+  // filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
+}
+
+.tab-content {
+  display: none;
+}
+
+// 纯CSS实现的Tabs，但是逻辑稍微复杂了点，步骤也多，不方便复用
+#tabFrame input[name="tabRadio"],
+#tabContent [class^="tabContent_"] {
+  display: none;
+}
+
+#tab_1:checked ~ #tabContent .tabContent_1,
+#tab_2:checked ~ #tabContent .tabContent_2 {
+  display: block;
+}
+
+#tab_1:checked ~ .tabTitle #tabTitle_1,
+#tab_2:checked ~ .tabTitle #tabTitle_2 {
+  background: #dbdbdb;
+}
+
+.tabTitle label {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #b1b1b1;
+  float: left;
+
+  line-height: 40px;
+  width: 70px;
+  height: 40px;
+}
+
+.tabTitle label:hover {
+  background: #e8e8e8;
+}
+
+.marginTopSmall {
+  margin-top: 10px;
+}
+
+.marginTopMid {
+  margin-top: 20px;
+}
+
+.marginTopLarge {
+  margin-top: 30px;
+}
+
+.marginLeftSmall {
+  margin-left: 20px;
+}
+
+.marginLeftMid {
+  margin-left: 40px;
+}
+
+.marginLeftLarge {
+  margin-left: 60px;
+}
+
+.marginRightSmall {
+  margin-right: 10px;
+}
+
+.marginRightMid {
+  margin-right: 20px;
+}
+
+.marginRightLarge {
+  margin-right: 30px;
+}
+
+/* 三角形 */
+.tri {
+  width: 0px;
+  height: 0px;
+  /* background-color: #FF0000; */
+  background-color: transparent;
+  border: 20px solid rgb(85, 160, 27);
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  cursor: pointer;
+}
+
+.tri2 {
+  width: 0px;
+  height: 0px;
+  margin: 20px auto;
+  border: 40px solid transparent;
+  border-bottom-color: rgb(85, 160, 27);
+  cursor: pointer;
+}
+
+.triangle {
+  fill: rgb(85, 160, 27);
+  stroke: rgb(85, 160, 27);
+  stroke-width: 50;
+}
+
+.blk-large-btn-square {
+  height: 128px;
+  width: 128px;
+}
+
+.blk-48x48 {
+  height: 48px;
+  width: 48px;
+}
+
+.border {
+  border: 1px solid;
+}
+
+.button2 {
+  background-color: yellow;
+  border-color: red;
+  border-width: 3px;
+  color: green;
+  cursor: pointer;
+  justify-content: center;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.button2:hover,
+.button2.is-hovered {
+  border-color: #b5b5b5;
+  color: #363636;
+}
+
+.button2:focus,
+.button2.is-focused {
+  border-color: #485fc7;
+  color: #363636;
+}
+
+.button2:focus:not(:active),
+.button2.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(72, 95, 199, 0.25);
+}
+
+.button2:active,
+.button2.is-active {
+  border-color: #4a4a4a;
+  color: #363636;
+}
+
+.button2.is-light {
+  background-color: whitesmoke;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.button2.is-light:hover,
+.button2.is-light.is-hovered {
+  background-color: #eeeeee;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.button2.is-light:focus,
+.button2.is-light.is-focused {
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.button2.is-light:focus:not(:active),
+.button2.is-light.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+}
+
+.button2.is-light:active,
+.button2.is-light.is-active {
+  background-color: #e8e8e8;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.button-no-background {
+  @extend .button;
+
+  background: transparent;
+  border: none;
+  border-radius: 0px;
+
+  &:focus,
+  &.is-focused {
+    &:not(:active) {
+      box-shadow: none;
+    }
+  }
+
+  &.is-not-hovered {
+    background: transparent;
+    color: $button-color;
+  }
+
+  &.is-light {
+    // 覆盖.button的is-light设置，把背景变透明
+    background: transparent;
+    border: none;
+
+    // focus，但not :active时，不要阴影
+    &:focus,
+    &.is-focused {
+      &:not(:active) {
+        box-shadow: none;
+      }
+    }
+
+    // 覆盖.button的hover设置
+    &:hover {
+      background: transparent;
+      color: $button-color;
+    }
+
+    // class不包含nohover时的:hover状态，也就是默认状态。 class如果加了nohover，就会变成上面那个状态
+    &:not(.nohover):hover {
+      background-color: $button-background-color;
+      color: $button-hover-color;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.blk-no-background {
+  @extend .button-no-background;
+  @extend .is-light;
+}
+
+.blk-btn-min,
+.blk-btn-max,
+.blk-btn-close {
+  @extend .blk-no-background;
+}
+
+.blk-btn-restore {
+  @extend .blk-no-background;
+  @extend .hidden;
+}
+
+.grad-gray {
+  // background-image: linear-gradient(#dbdbdb,#7a7a7a);
+  // background-image: linear-gradient(whitesmoke, silver); // silver #c0c0c0
+  background-image: linear-gradient(whitesmoke, #b5b5b5);
+}
+
+/* tooltip样式 */
+[tooltip] {
+  position: relative;
+}
+
+[tooltip]::after {
+  display: none;
+  content: attr(tooltip);
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 8px 15px;
+  max-width: 200px;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+[tooltip]::before {
+  display: none;
+  content: "";
+  position: absolute;
+  border: 5px solid transparent;
+  border-bottom-width: 0;
+  z-index: 100;
+}
+
+[tooltip]:hover::after {
+  display: block;
+}
+
+[tooltip]:hover::before {
+  display: block;
+}
+
+/* 气泡主题 */
+.tooltip-theme-dark,
+[tooltip]::after {
+  color: #fff;
+  background-color: #313131;
+}
+
+.tooltip-theme-light,
+[tooltip][effect="light"]::after {
+  color: #313131;
+  background-color: #fff;
+  border: 1px solid #313131;
+}
+
+/* 气泡位置 */
+/*----上----*/
+.tooltip-placement-top,
+[tooltip]:not([placement])::after,
+[tooltip][placement=""]::after,
+[tooltip][placement="top"]::after {
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.tooltip-placement-top-right,
+[tooltip][placement="top-right"]::after {
+  bottom: calc(100% + 10px);
+  left: 100%;
+  transform: translate(-100%, 0);
+}
+
+.tooltip-placement-top-left,
+[tooltip][placement="top-left"]::after {
+  bottom: calc(100% + 10px);
+  left: 0;
+  transform: translate(0, 0);
+}
+
+/*----右----*/
+.tooltip-placement-right,
+[tooltip][placement="right"]::after {
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.tooltip-placement-right-top,
+[tooltip][placement="right-top"]::after {
+  left: calc(100% + 10px);
+  top: 0;
+  transform: translate(0, 0);
+}
+
+.tooltip-placement-right-bottom,
+[tooltip][placement="right-bottom"]::after {
+  left: calc(100% + 10px);
+  top: 100%;
+  transform: translate(0, -100%);
+}
+
+/*----下----*/
+.tooltip-placement-bottom,
+[tooltip][placement="bottom"]::after {
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.tooltip-placement-bottom-right,
+[tooltip][placement="bottom-right"]::after {
+  top: calc(100% + 10px);
+  left: 100%;
+  transform: translate(-100%, 0);
+}
+
+.tooltip-placement-bottom-left,
+[tooltip][placement="bottom-left"]::after {
+  top: calc(100% + 10px);
+  left: 0;
+  transform: translate(0, 0);
+}
+
+/*----左----*/
+.tooltip-placement-left,
+[tooltip][placement="left"]::after {
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.tooltip-placement-left-top,
+[tooltip][placement="left-top"]::after {
+  right: calc(100% + 10px);
+  top: 0;
+  transform: translate(0, 0);
+}
+
+.tooltip-placement-left-bottom,
+[tooltip][placement="left-bottom"]::after {
+  right: calc(100% + 10px);
+  top: 100%;
+  transform: translate(0, -100%);
+}
+
+/* 三角形主题 */
+.triangle-theme-dark,
+[tooltip]::before {
+  border-top-color: #313131;
+}
+
+.triangle-theme-light,
+[tooltip][effect="light"]::before {
+  border-top-color: #313131;
+}
+
+/* 三角形位置 */
+/*----上----*/
+.triangle-placement-top,
+[tooltip]:not([placement])::before,
+[tooltip][placement=""]::before,
+[tooltip][placement="top"]::before {
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.triangle-placement-top-left,
+[tooltip][placement="top-left"]::before {
+  bottom: calc(100% + 5px);
+  left: 10px;
+}
+
+.triangle-placement-top-right,
+[tooltip][placement="top-right"]::before {
+  bottom: calc(100% + 5px);
+  right: 10px;
+}
+
+/*----右----*/
+.triangle-placement-right,
+[tooltip][placement="right"]::before,
+.triangle-placement-right-top,
+[tooltip][placement="right-top"]::before,
+.triangle-placement-right-bottom,
+[tooltip][placement="right-bottom"]::before {
+  left: calc(100% + 3px);
+  top: 50%;
+  transform: translate(0, -50%) rotateZ(90deg);
+}
+
+.triangle-placement-right-top,
+[tooltip][placement="right-top"]::before {
+  top: 10px;
+}
+
+.triangle-placement-right-bottom,
+[tooltip][placement="right-bottom"]::before {
+  bottom: 10px;
+  top: auto;
+  transform: translate(0, 0) rotateZ(90deg);
+}
+
+/*----下----*/
+.triangle-placement-bottom,
+[tooltip][placement="bottom"]::before,
+.triangle-placement-bottom-left,
+[tooltip][placement="bottom-left"]::before,
+.triangle-placement-bottom-right,
+[tooltip][placement="bottom-right"]::before {
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translate(-50%, 0) rotateZ(180deg);
+}
+
+.triangle-placement-bottom-left,
+[tooltip][placement="bottom-left"]::before {
+  transform: translate(0, 0) rotateZ(180deg);
+  left: 10px;
+}
+
+.triangle-placement-bottom-right,
+[tooltip][placement="bottom-right"]::before {
+  right: 10px;
+  left: auto;
+}
+
+/*----左----*/
+.triangle-placement-left,
+[tooltip][placement="left"]::before,
+.triangle-placement-left-top,
+[tooltip][placement="left-top"]::before,
+.triangle-placement-left-bottom,
+[tooltip][placement="left-bottom"]::before {
+  right: calc(100% + 3px);
+  top: 50%;
+  transform: translate(0, -50%) rotateZ(270deg);
+}
+
+.triangle-placement-left-top,
+[tooltip][placement="left-top"]::before {
+  top: 10px;
+}
+
+.triangle-placement-left-bottom,
+[tooltip][placement="left-bottom"]::before {
+  bottom: 10px;
+  top: auto;
+  transform: translate(0, 0) rotateZ(270deg);
+}
+
+/* Change all text and icon colors in the player. */
+.vjs-matrix.video-js {
+  color: #00ff00;
+}
+
+/* Change the border of the big play button. */
+.vjs-matrix .vjs-big-play-button {
+  border-color: #00ff00;
+}
+
+/* Change the color of various "bars". */
+.vjs-matrix .vjs-volume-level,
+.vjs-matrix .vjs-play-progress,
+.vjs-matrix .vjs-slider-bar {
+  background: #00ff00;
+}

@@ -35,7 +35,7 @@
 #include "cc/scheduler/begin_frame_tracker.h"
 #include "cc/scheduler/commit_earlyout_reason.h"
 #include "cc/scheduler/draw_result.h"
-#include "cc/scheduler/video_frame_controller.h"
+//#include "cc/scheduler/video_frame_controller.h"
 #include "cc/tiles/decoded_image_tracker.h"
 #include "cc/tiles/image_decode_cache.h"
 #include "cc/tiles/tile_manager.h"
@@ -136,7 +136,7 @@ class CC_EXPORT LayerTreeHostImpl
       public CompositorFrameSinkClient,
       public BrowserControlsOffsetManagerClient,
       public ScrollbarAnimationControllerClient,
-      public VideoFrameControllerClient,
+      //public VideoFrameControllerClient,
       public LayerTreeMutatorClient,
       public MutatorHostClient,
       public base::SupportsWeakPtr<LayerTreeHostImpl> {
@@ -357,8 +357,8 @@ public:
     void DidChangeScrollbarVisibility() override;
 
     // VideoBeginFrameSource implementation.
-    void AddVideoFrameController(VideoFrameController* controller) override;
-    void RemoveVideoFrameController(VideoFrameController* controller) override;
+    //void AddVideoFrameController(VideoFrameController* controller) override;
+    //void RemoveVideoFrameController(VideoFrameController* controller) override;
 
     // CompositorFrameSinkClient implementation.
     void SetBeginFrameSource(BeginFrameSource* source) override;
@@ -805,7 +805,7 @@ private:
     gfx::Rect viewport_damage_rect_;
 
     std::unique_ptr<MutatorHost> mutator_host_;
-    std::set<VideoFrameController*> video_frame_controllers_;
+    //std::set<VideoFrameController*> video_frame_controllers_;
 
     // Map from scroll layer ID to scrollbar animation controller.
     // There is one animation controller per pair of overlay scrollbars.

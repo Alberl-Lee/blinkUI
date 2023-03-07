@@ -1,0 +1,94 @@
+.video-js .vjs-time-tooltip {
+  top: -3.9em;
+}
+.video-js .vjs-control:focus,
+.video-js .vjs-control:focus:before,
+.video-js .vjs-control:hover:before {
+  text-shadow: 0 0 0em #fff;
+}
+.vjs-menu li.vjs-menu-item:focus,
+.vjs-menu li.vjs-menu-item:hover {
+  outline: none;
+}
+.video-js.vjs-fullscreen {
+  font-size: 18px;
+}
+.video-js button {
+  outline: none;
+}
+.video-js .vjs-controls-disabled .vjs-big-play-button {
+  display: none !important;
+}
+.vjs-paused.vjs-has-started.video-js .vjs-big-play-button,
+.video-js.vjs-ended .vjs-big-play-button,
+.video-js.vjs-paused .vjs-big-play-button {
+  display: block;
+}
+.video-js .vjs-load-progress div,
+.vjs-seeking .vjs-big-play-button,
+.vjs-waiting .vjs-big-play-button {
+  display: none !important;
+}
+.video-js.vjs-ended .vjs-big-play-button {
+  display: block !important;
+}
+.video-js .vjs-big-play-button {
+  top: 50%;
+  left: 50%;
+  margin-left: -1em;
+  margin-top: -1em;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  border: none;
+  border-radius: 50%;
+  font-size: 3.5em;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  -webkit-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  -moz-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  -ms-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  -o-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+}
+.video-js .vjs-big-play-button {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 12em;
+  border-radius: 0%;
+  height: 1em !important;
+  line-height: 1em !important;
+  margin-top: -0.5em !important;
+}
+.video-js:hover .vjs-big-play-button,
+.video-js .vjs-big-play-button:focus,
+.video-js .vjs-big-play-button:active {
+  background-color: rgba(0, 0, 0, 0);
+}
+/* .video-js .vjs-remaining-time {
+  display: none;
+} */
+/* vjs-duration的div布局，跟之前版本不一样，所以位置变了 估计得自己加button或控件进来 
+不过另一个皮肤，改变了位置，看看怎么搞的
+改变了vjs-big-play-button位置，是用position: absolute;
+vjs-duration的位置，不会挤压进度条，所以会重叠，这种只能改videojs.css库
+所以还是自己做控件算了
+*/
+.video-js .vjs-duration {
+  display: block;
+  /* left: 0em; */
+  right: 50px;
+  /* bottom: 30px; */
+  position: absolute;
+  height: 44px;
+  /* > div {
+    line-height: 44px;
+    height: 44px;
+  } */
+}
+.video-js .vjs-current-time {
+  display: block;
+  left: 0;
+}
+.vjs-live .vjs-time-control {
+  display: none;
+}

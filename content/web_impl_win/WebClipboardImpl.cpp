@@ -27,7 +27,7 @@
 #include "skia/ext/platform_canvas.h"
 #include "skia/ext/bitmap_platform_device_win.h"
 #include "wtf/text/WTFStringUtil.h"
-#include "wtf/PassOwnPtr.h"
+//#include "wtf/PassOwnPtr.h"
 #include "wtf/OwnPtr.h"
 #include "net/FileSystem.h"
 #include <windows.h>
@@ -453,36 +453,37 @@ static void skBitmapToBitmap(const SkBitmap& bitmap, Vector<unsigned char>* resu
     bmi.bmiHeader.biCompression = BI_RGB;
     bmi.bmiHeader.biBitCount = 32;
 
-    WTF::PassOwnPtr<SkImageEncoder> encoder = WTF::adoptPtr(CreateARGBImageEncoder());
-    SkData* encodedData = encoder->encodeData(bitmap, 1);
-    if (!encodedData)
-        return;
+    return;
+    //WTF::PassOwnPtr<SkImageEncoder> encoder = WTF::adoptPtr(CreateARGBImageEncoder());
+    //SkData* encodedData = encoder->encodeData(bitmap, 1);
+    //if (!encodedData)
+    //    return;
 
-    SkAutoTUnref<SkData> skAutoUnrefData(encodedData);
+    //SkAutoTUnref<SkData> skAutoUnrefData(encodedData);
 
-    const int bytesPerRow = bitmap.width() * 1 * 4;
-    size_t imageDataSize = bytesPerRow * bitmap.height() * 1;
-    if (imageDataSize > encodedData->size())
-        imageDataSize = encodedData->size();
+  /*  const int bytesPerRow = bitmap.width() * 1 * 4;
+	size_t imageDataSize = bytesPerRow * bitmap.height() * 1;
+	if (imageDataSize > encodedData->size())
+		imageDataSize = encodedData->size();
 
-    BITMAPFILEHEADER fileHeader = {
-        0x4d42,
-        sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + imageDataSize,
-        0,
-        0,
-        sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER),
-    };
+	BITMAPFILEHEADER fileHeader = {
+		0x4d42,
+		sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + imageDataSize,
+		0,
+		0,
+		sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER),
+	};
 
-    result->resize(sizeof(fileHeader) + sizeof(bmi.bmiHeader) + imageDataSize);
+	result->resize(sizeof(fileHeader) + sizeof(bmi.bmiHeader) + imageDataSize);
 
-    int pos = 0;
-    memcpy(result->data() + pos, &fileHeader, sizeof(BITMAPFILEHEADER));
-    pos += sizeof(BITMAPFILEHEADER);
+	int pos = 0;
+	memcpy(result->data() + pos, &fileHeader, sizeof(BITMAPFILEHEADER));
+	pos += sizeof(BITMAPFILEHEADER);
 
-    memcpy(result->data() + pos, &bmi.bmiHeader, sizeof(BITMAPINFOHEADER));
-    pos += sizeof(BITMAPINFOHEADER);
+	memcpy(result->data() + pos, &bmi.bmiHeader, sizeof(BITMAPINFOHEADER));
+	pos += sizeof(BITMAPINFOHEADER);
 
-    memcpy(result->data() + pos, encodedData->data(), imageDataSize);
+	memcpy(result->data() + pos, encodedData->data(), imageDataSize);*/
 }
 
 blink::WebBlobInfo WebClipboardImpl::readImage(Buffer buffer)

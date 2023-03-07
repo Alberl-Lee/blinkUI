@@ -1701,8 +1701,8 @@ void LayerTreeHostImpl::DidDrawAllLayers(const FrameData& frame)
     for (size_t i = 0; i < frame.will_draw_layers.size(); ++i)
         frame.will_draw_layers[i]->DidDraw(resource_provider_.get());
 
-    for (auto* it : video_frame_controllers_)
-        it->DidDrawFrame();
+    //for (auto* it : video_frame_controllers_)
+    //    it->DidDrawFrame();
 }
 
 int LayerTreeHostImpl::RequestedMSAASampleCount() const
@@ -1852,8 +1852,8 @@ void LayerTreeHostImpl::WillBeginImplFrame(const BeginFrameArgs& args)
 
     Animate();
 
-    for (auto* it : video_frame_controllers_)
-        it->OnBeginFrame(args);
+    //for (auto* it : video_frame_controllers_)
+    //    it->OnBeginFrame(args);
 }
 
 void LayerTreeHostImpl::DidFinishImplFrame()
@@ -3559,24 +3559,24 @@ ScrollbarSet LayerTreeHostImpl::ScrollbarsFor(int scroll_layer_id) const
     return active_tree_->ScrollbarsFor(scroll_layer_id);
 }
 
-void LayerTreeHostImpl::AddVideoFrameController(
-    VideoFrameController* controller)
-{
-    bool was_empty = video_frame_controllers_.empty();
-    video_frame_controllers_.insert(controller);
-    if (current_begin_frame_tracker_.DangerousMethodHasStarted() && !current_begin_frame_tracker_.DangerousMethodHasFinished())
-        controller->OnBeginFrame(current_begin_frame_tracker_.Current());
-    if (was_empty)
-        client_->SetVideoNeedsBeginFrames(true);
-}
+//void LayerTreeHostImpl::AddVideoFrameController(
+//    VideoFrameController* controller)
+//{
+//    bool was_empty = video_frame_controllers_.empty();
+//    video_frame_controllers_.insert(controller);
+//    if (current_begin_frame_tracker_.DangerousMethodHasStarted() && !current_begin_frame_tracker_.DangerousMethodHasFinished())
+//        controller->OnBeginFrame(current_begin_frame_tracker_.Current());
+//    if (was_empty)
+//        client_->SetVideoNeedsBeginFrames(true);
+//}
 
-void LayerTreeHostImpl::RemoveVideoFrameController(
-    VideoFrameController* controller)
-{
-    video_frame_controllers_.erase(controller);
-    if (video_frame_controllers_.empty())
-        client_->SetVideoNeedsBeginFrames(false);
-}
+//void LayerTreeHostImpl::RemoveVideoFrameController(
+//    VideoFrameController* controller)
+//{
+//    video_frame_controllers_.erase(controller);
+//    if (video_frame_controllers_.empty())
+//        client_->SetVideoNeedsBeginFrames(false);
+//}
 
 void LayerTreeHostImpl::SetTreePriority(TreePriority priority)
 {

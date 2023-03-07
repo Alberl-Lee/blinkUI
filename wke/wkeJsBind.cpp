@@ -17,7 +17,7 @@
 #include "content/browser/WebFrameClientImpl.h"
 #include "content/browser/WebPage.h"
 #include "content/web_impl_win/WebThreadImpl.h"
-#include "wke/wke.h"
+#include "wke/wkedefine.h"
 #include "wke/wkeJsBind.h"
 #include "wke/wkeWebView.h"
 #include "wke/wkeUtil.h"

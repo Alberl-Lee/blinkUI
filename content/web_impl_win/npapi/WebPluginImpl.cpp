@@ -1234,60 +1234,61 @@ NPError WebPluginImpl::getValueForURL(NPNURLVariable variable, const char* url, 
     //LOG(Plugins, "WebPluginImpl::getValueForURL(%s)", prettyNameForNPNURLVariable(variable).data());
 
     NPError result = NPERR_NO_ERROR;
-
-    switch (variable) {
-    case NPNURLVCookie: {
-        KURL u(m_parentFrame->document()->baseURL(), url);
-        if (u.isValid()) {
-            LocalFrame* frame = parentFrame();
-            if (frame) {
-                const CString cookieStr(m_wkeWebview->getCookieJar()->cookies(u, WebURL()).utf8().c_str());
-                if (!cookieStr.isNull()) {
-                    const int size = cookieStr.length();
-                    *value = static_cast<char*>(NPN_MemAlloc(size+1));
-                    if (*value) {
-                        memset(*value, 0, size+1);
-                        memcpy(*value, cookieStr.data(), size+1);
-                        if (len)
-                            *len = size;
-                    } else
-                        result = NPERR_OUT_OF_MEMORY_ERROR;
-                }
-            }
-        } else
-            result = NPERR_INVALID_URL;
-        break;
-    }
-    case NPNURLVProxy: {
-        KURL u(m_parentFrame->document()->baseURL(), url);
-        if (u.isValid()) {
-//             Frame* frame = getFrame(parentFrame(), m_element);
-//             const FrameLoader* frameLoader = frame ? &frame->loader() : 0;
-//             const NetworkingContext* context = frameLoader ? frameLoader->networkingContext() : 0;
-//             const CString proxyStr = toString(proxyServersForURL(u, context)).utf8();
-//             if (!proxyStr.isNull()) {
-//                 const int size = proxyStr.length();
-//                 *value = static_cast<char*>(NPN_MemAlloc(size+1));
-//                 if (*value) {
-//                     memset(*value, 0, size+1);
-//                     memcpy(*value, proxyStr.data(), size+1);
-//                     if (len)
-//                         *len = size;
-//                 } else
-//                     result = NPERR_OUT_OF_MEMORY_ERROR;
-//             }
-            DebugBreak();
-        } else
-            result = NPERR_INVALID_URL;
-        break;
-    }
-    default:
-        result = NPERR_GENERIC_ERROR;
-        //LOG(Plugins, "WebPluginImpl::getValueForURL: %s", prettyNameForNPNURLVariable(variable).data());
-        break;
-    }
-
     return result;
+
+    //switch (variable) {
+//    case NPNURLVCookie: {
+//        KURL u(m_parentFrame->document()->baseURL(), url);
+//        if (u.isValid()) {
+//            LocalFrame* frame = parentFrame();
+//            if (frame) {
+//                const CString cookieStr(m_wkeWebview->getCookieJar()->cookies(u, WebURL()).utf8().c_str());
+//                if (!cookieStr.isNull()) {
+//                    const int size = cookieStr.length();
+//                    *value = static_cast<char*>(NPN_MemAlloc(size+1));
+//                    if (*value) {
+//                        memset(*value, 0, size+1);
+//                        memcpy(*value, cookieStr.data(), size+1);
+//                        if (len)
+//                            *len = size;
+//                    } else
+//                        result = NPERR_OUT_OF_MEMORY_ERROR;
+//                }
+//            }
+//        } else
+//            result = NPERR_INVALID_URL;
+//        break;
+//    }
+//    case NPNURLVProxy: {
+//        KURL u(m_parentFrame->document()->baseURL(), url);
+//        if (u.isValid()) {
+////             Frame* frame = getFrame(parentFrame(), m_element);
+////             const FrameLoader* frameLoader = frame ? &frame->loader() : 0;
+////             const NetworkingContext* context = frameLoader ? frameLoader->networkingContext() : 0;
+////             const CString proxyStr = toString(proxyServersForURL(u, context)).utf8();
+////             if (!proxyStr.isNull()) {
+////                 const int size = proxyStr.length();
+////                 *value = static_cast<char*>(NPN_MemAlloc(size+1));
+////                 if (*value) {
+////                     memset(*value, 0, size+1);
+////                     memcpy(*value, proxyStr.data(), size+1);
+////                     if (len)
+////                         *len = size;
+////                 } else
+////                     result = NPERR_OUT_OF_MEMORY_ERROR;
+////             }
+//            DebugBreak();
+//        } else
+//            result = NPERR_INVALID_URL;
+//        break;
+//    }
+    //default:
+    //    result = NPERR_GENERIC_ERROR;
+    //    //LOG(Plugins, "WebPluginImpl::getValueForURL: %s", prettyNameForNPNURLVariable(variable).data());
+    //    break;
+    //}
+
+    //return result;
 }
 
 
@@ -1298,16 +1299,16 @@ NPError WebPluginImpl::setValueForURL(NPNURLVariable variable, const char* url, 
     NPError result = NPERR_NO_ERROR;
 
     switch (variable) {
-    case NPNURLVCookie: {
-        KURL u(m_parentFrame->document()->baseURL(), url);
-        if (u.isValid()) {
-            const String cookieStr = String::fromUTF8(value, len);
-            if (!cookieStr.isEmpty())
-                m_wkeWebview->getCookieJar()->setCookie(u, WebURL(), cookieStr);
-        } else
-            result = NPERR_INVALID_URL;
-        break;
-    }
+    //case NPNURLVCookie: {
+    //    KURL u(m_parentFrame->document()->baseURL(), url);
+    //    if (u.isValid()) {
+    //        const String cookieStr = String::fromUTF8(value, len);
+    //        if (!cookieStr.isEmpty())
+    //            m_wkeWebview->getCookieJar()->setCookie(u, WebURL(), cookieStr);
+    //    } else
+    //        result = NPERR_INVALID_URL;
+    //    break;
+    //}
     case NPNURLVProxy:
         //LOG(Plugins, "WebPluginImpl::setValueForURL(%s): Plugins are NOT allowed to set proxy information.", prettyNameForNPNURLVariable(variable).data());
         result = NPERR_GENERIC_ERROR;

@@ -36,7 +36,7 @@
 #include "platform/SharedBuffer.h"
 #include "platform/fonts/FontCache.h"
 #include "platform/fonts/FontPlatformData.h"
-#include "platform/fonts/WebFontDecoder.h"
+//#include "platform/fonts/WebFontDecoder.h"
 #include "third_party/skia/include/core/SkStream.h"
 #include "third_party/skia/include/core/SkTypeface.h"
 #include "wtf/PtrUtil.h"
@@ -62,18 +62,21 @@ FontPlatformData FontCustomPlatformData::fontPlatformData(float size, bool bold,
 std::unique_ptr<FontCustomPlatformData> FontCustomPlatformData::create(SharedBuffer* buffer, String& otsParseMessage)
 {
     DCHECK(buffer);
-    WebFontDecoder decoder;
-    RefPtr<SkTypeface> typeface = decoder.decode(buffer);
-    if (!typeface) {
-        otsParseMessage = decoder.getErrorString();
-        return nullptr;
-    }
-    return WTF::wrapUnique(new FontCustomPlatformData(typeface.release()));
+    return nullptr;
+
+    //WebFontDecoder decoder;
+    //RefPtr<SkTypeface> typeface = decoder.decode(buffer);
+    //if (!typeface) {
+    //    otsParseMessage = decoder.getErrorString();
+    //    return nullptr;
+    //}
+    //return WTF::wrapUnique(new FontCustomPlatformData(typeface.release()));
 }
 
 bool FontCustomPlatformData::supportsFormat(const String& format)
 {
-    return equalIgnoringCase(format, "truetype") || equalIgnoringCase(format, "opentype") || WebFontDecoder::supportsFormat(format);
+    //return equalIgnoringCase(format, "truetype") || equalIgnoringCase(format, "opentype") || WebFontDecoder::supportsFormat(format);
+    return equalIgnoringCase(format, "truetype") || equalIgnoringCase(format, "opentype");
 }
 
 } // namespace blink

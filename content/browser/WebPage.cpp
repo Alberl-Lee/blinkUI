@@ -521,32 +521,32 @@ void WebPage::goToOffset(int offset)
         m_pageImpl->navigateBackForwardSoon(offset);
 }
 
-void WebPage::goToIndex(int index)
-{
-    if (m_pageImpl)
-        m_pageImpl->navigateToIndex(index);
-}
+//void WebPage::goToIndex(int index)
+//{
+    //if (m_pageImpl)
+    //    m_pageImpl->navigateToIndex(index);
+//}
 
-int WebPage::getNavigateIndex() const
-{
-    if (m_pageImpl)
-        return m_pageImpl->getNavigateIndex();
-    return 0;
-}
+//int WebPage::getNavigateIndex() const
+//{
+    //if (m_pageImpl)
+    //    return m_pageImpl->getNavigateIndex();
+//    return 0;
+//}
 
-void WebPage::didCommitProvisionalLoad(blink::WebLocalFrame* frame, const blink::WebHistoryItem& history, 
-    blink::WebHistoryCommitType type, bool isSameDocument)
-{
-    if (m_pageImpl)
-        m_pageImpl->didCommitProvisionalLoad(frame, history, type, isSameDocument);
-}
+//void WebPage::didCommitProvisionalLoad(blink::WebLocalFrame* frame, const blink::WebHistoryItem& history, 
+//    blink::WebHistoryCommitType type, bool isSameDocument)
+//{
+    //if (m_pageImpl)
+    //    m_pageImpl->didCommitProvisionalLoad(frame, history, type, isSameDocument);
+//}
 
-blink::WebHistoryItem WebPage::historyItemForNewChildFrame(blink::WebFrame* frame)
-{
-    if (m_pageImpl)
-        return m_pageImpl->historyItemForNewChildFrame(frame);
-    return blink::WebHistoryItem();
-}
+//blink::WebHistoryItem WebPage::historyItemForNewChildFrame(blink::WebFrame* frame)
+//{
+//    //if (m_pageImpl)
+//    //    return m_pageImpl->historyItemForNewChildFrame(frame);
+//    return blink::WebHistoryItem();
+//}
 
 void WebPage::setTransparent(bool transparent)
 {
@@ -567,31 +567,12 @@ blink::WebScreenInfo WebPage::screenInfo()
     return blink::WebScreenInfo();
 }
 
-net::WebCookieJarImpl* WebPage::getCookieJar()
-{
-    if (m_pageImpl)
-        return m_pageImpl->getCookieJar();
-    return nullptr;    
-}
-
-PassRefPtr<net::PageNetExtraData> WebPage::getPageNetExtraData()
-{
-    if (m_pageImpl)
-        return m_pageImpl->m_pageNetExtraData;
-    return nullptr;
-}
-
-void WebPage::setCookieJarFullPath(const char* path)
-{
-    if (m_pageImpl)
-        return m_pageImpl->setCookieJarFullPath(path);
-}
-
-void WebPage::setLocalStorageFullPath(const char* path)
-{
-    if (m_pageImpl)
-        return m_pageImpl->setLocalStorageFullPath(path);
-}
+//PassRefPtr<net::PageNetExtraData> WebPage::getPageNetExtraData()
+//{
+    //if (m_pageImpl)
+    //    return m_pageImpl->m_pageNetExtraData;
+//    return nullptr;
+//}
 
 WebPage* WebPage::getSelfForCurrentContext()
 {

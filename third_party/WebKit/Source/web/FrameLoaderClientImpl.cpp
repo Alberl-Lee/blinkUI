@@ -631,14 +631,15 @@ bool FrameLoaderClientImpl::navigateBackForward(int offset) const
     WebViewImpl* webview = m_webFrame->viewImpl();
     if (!webview->client())
         return false;
+    return false;
 
-    DCHECK(offset);
-    if (offset > webview->client()->historyForwardListCount())
-        return false;
-    if (offset < -webview->client()->historyBackListCount())
-        return false;
-    webview->client()->navigateBackForwardSoon(offset);
-    return true;
+    //DCHECK(offset);
+    //if (offset > webview->client()->historyForwardListCount())
+    //    return false;
+    //if (offset < -webview->client()->historyBackListCount())
+    //    return false;
+    //webview->client()->navigateBackForwardSoon(offset);
+    //return true;
 }
 
 void FrameLoaderClientImpl::didAccessInitialDocument()
@@ -801,21 +802,22 @@ Widget* FrameLoaderClientImpl::createPlugin(HTMLPlugInElement* element,
     return container;
 }
 
-std::unique_ptr<WebMediaPlayer> FrameLoaderClientImpl::createWebMediaPlayer(
-    HTMLMediaElement& htmlMediaElement,
-    const WebMediaPlayerSource& source,
-    WebMediaPlayerClient* client)
-{
-    WebLocalFrameImpl* webFrame = WebLocalFrameImpl::fromFrame(htmlMediaElement.document().frame());
-
-    if (!webFrame || !webFrame->client())
-        return nullptr;
-
-    WebString sinkId(HTMLMediaElementAudioOutputDevice::sinkId(htmlMediaElement));
-//     HTMLMediaElementEncryptedMedia& encryptedMedia = HTMLMediaElementEncryptedMedia::from(htmlMediaElement);
-//     return WTF::wrapUnique(webFrame->client()->createMediaPlayer(source, client, &encryptedMedia, encryptedMedia.contentDecryptionModule(), sinkId));
-    return WTF::wrapUnique(webFrame->client()->createMediaPlayer(source, client, nullptr, nullptr, sinkId));
-}
+//std::unique_ptr<WebMediaPlayer> FrameLoaderClientImpl::createWebMediaPlayer(
+//    HTMLMediaElement& htmlMediaElement,
+//    const WebMediaPlayerSource& source,
+//    WebMediaPlayerClient* client)
+//{
+//    WebLocalFrameImpl* webFrame = WebLocalFrameImpl::fromFrame(htmlMediaElement.document().frame());
+//
+//    if (!webFrame || !webFrame->client())
+//        return nullptr;
+//    return nullptr;
+//
+//    //WebString sinkId(HTMLMediaElementAudioOutputDevice::sinkId(htmlMediaElement));
+////     HTMLMediaElementEncryptedMedia& encryptedMedia = HTMLMediaElementEncryptedMedia::from(htmlMediaElement);
+////     return WTF::wrapUnique(webFrame->client()->createMediaPlayer(source, client, &encryptedMedia, encryptedMedia.contentDecryptionModule(), sinkId));
+//    //return WTF::wrapUnique(webFrame->client()->createMediaPlayer(source, client, nullptr, nullptr, sinkId));
+//}
 
 WebRemotePlaybackClient* FrameLoaderClientImpl::createWebRemotePlaybackClient(HTMLMediaElement& htmlMediaElement)
 {
@@ -862,13 +864,6 @@ ObjectContentType FrameLoaderClientImpl::getObjectContentType(
         return ObjectContentFrame;
 
     return ObjectContentNone;
-}
-
-WebCookieJar* FrameLoaderClientImpl::cookieJar() const
-{
-    if (!m_webFrame->client())
-        return 0;
-    return m_webFrame->client()->cookieJar();
 }
 
 void FrameLoaderClientImpl::frameFocused() const

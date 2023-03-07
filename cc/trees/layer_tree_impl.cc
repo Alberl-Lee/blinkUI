@@ -2170,11 +2170,11 @@ bool LayerTreeImpl::SmoothnessTakesPriority() const
     return layer_tree_host_impl_->GetTreePriority() == SMOOTHNESS_TAKES_PRIORITY;
 }
 
-VideoFrameControllerClient* LayerTreeImpl::GetVideoFrameControllerClient()
-    const
-{
-    return layer_tree_host_impl_;
-}
+//VideoFrameControllerClient* LayerTreeImpl::GetVideoFrameControllerClient()
+//    const
+//{
+//    return layer_tree_host_impl_;
+//}
 
 void LayerTreeImpl::SetPendingPageScaleAnimation(
     std::unique_ptr<PendingPageScaleAnimation> pending_animation)

@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'" /> -->
+
+    <!-- 第三方CSS -->
+    <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="thirdparty/fontawesome/css/all.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" /> -->
+    <!-- <link rel="stylesheet" href="thirdparty/bulma/css/bulma.css" /> -->
+    <!-- 已经用了bulma.scss，就不用css了 -->
+
+    <link rel="stylesheet" href="thirdparty/bulma-extensions/bulma-extensions.css" />
+    <link rel="stylesheet" href="thirdparty/bulma-extensions/bulma-collapsible.min.css" />
+    <link rel="stylesheet" href="thirdparty/bulma-extensions/bulma-badge.css" />
+    <link rel="stylesheet" href="thirdparty/bulma-extensions/bulma-tooltip.css" />
+    <link rel="stylesheet" href="thirdparty/bulma-extensions/bulma-tagsinput.css" />
+    <link rel="stylesheet" href="thirdparty/animate.css" />
+    <link href="thirdparty/video-js/video-js.min.css" rel="stylesheet" />
+    <!-- <link href="thirdparty/video-js/videojs-iplayer-theme.css" rel="stylesheet" /> -->
+    <!-- <link href="thirdparty/video-js/videojs-sublime-skin.css" rel="stylesheet" /> -->
+
+    <!-- 本项目CSS -->
+    <link href="dist/css/main.css" rel="stylesheet" />
+    <!-- <link href="dist/css/videojs-theme-iplayer.css" rel="stylesheet" /> -->
+    <link href="_sass/videojs-theme-v7.css" rel="stylesheet" />
+    <!-- <link href="dist/css/videojs-theme-XMP.css" rel="stylesheet" /> -->
+
+    <!-- 第三方js -->
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script src="thirdparty/jquery/jquery.js"></script>
+    <script src="thirdparty/jquery-ui/jquery-ui.js"></script>
+
+    <script src="thirdparty/bulma-extensions/bulma-extensions.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script> -->
+    <!-- <script src="thirdparty/bulma-extensions/bulma-collapsible.min.js"></script> -->
+    <!-- <script src="thirdparty/bulma-extensions/bulma-tagsinput.js"></script> -->
+    <script src="thirdparty/echarts/echarts.js"></script>
+    <script src="thirdparty/echarts/map/js/china.js"></script>
+    <script src="thirdparty/echarts/chart/echarts-wordcloud.js"></script>
+    <script src="thirdparty/hideshow.js"></script>
+    <script src="thirdparty/video-js/video.min.js"></script>
+
+    <script>
+      if (window.module) module = window.module;
+    </script>
+
+    <!-- 本项目js -->
+    <!-- <script type="module" src="./echartsDemo.js"></script> -->
+    <script src="./echartsDemo.js"></script>
+    <!-- <title>Electron demo - by 中国Alberl</title> -->
+  </head>
+  <body>
+    <!-- <div class="backgroundFullHeight dragable has-background-white-ter		"></div> -->
+    <!-- <div class="dragCustom has-background-grey-lighter backgroundIndex"> -->
+
+    <div class="level is-mobile dragable grad-gray blk-titlebar">
+      <div class="level-left ml-2">
+        <img class="mr-1" height="24" width="24" src="assets/electron.png" />
+        <p>Electron demo - by 中国Alberl</p>
+      </div>
+      <div class="level-right">
+        <!-- <button class="button-no-background is-light">
+              <div>
+                <i class="fa-solid fa-minus"></i>
+              </div>
+            </button> -->
+        <button class="blk-btn-min" tooltip="min最小化" placement="bottom">
+          <div>
+            <i class="fa-solid fa-minus"></i>
+          </div>
+        </button>
+        <button class="blk-btn-restore" tooltip="restore还原" placement="bottom-right">
+          <div>
+            <i class="fa-regular fa-window-restore"></i>
+          </div>
+        </button>
+        <button class="blk-btn-max" tooltip="max最大化" placement="bottom-right">
+          <div>
+            <i class="fa-regular fa-window-maximize"></i>
+          </div>
+        </button>
+        <button class="blk-btn-close" title="close关闭">
+          <div>
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div test="show hide test" class="is-hidden">
+      <button type="button" id="toggle_visiblity">Hide / Show div</button>
+      <div id="test_hidden">
+        <h3>This div will fire hidden shown events.</h3>
+      </div>
+    </div>
+
+    <div class="tabs is-centered is-boxed mb-0">
+      <ul>
+        <li class="is-active">
+          <a>
+            <img height="24" width="24" src="assets/electron.png" />
+            <span>&nbsp;Control</span>
+          </a>
+        </li>
+        <li id="tabAnimate">
+          <a>
+            <!-- icon动画 fa-spin是旋转动画-->
+            <i class="fa-brands fa-github fa-lg fa-spin"></i>
+            <span> &nbsp;Animate </span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <span class="icon is-small">
+              <i class="fas fa-film" aria-hidden="true"></i>
+            </span>
+            <span>SVG</span>
+          </a>
+        </li>
+
+        <li><a> 3D </a></li>
+        <li><a> Chart </a></li>
+        <li><a> Table </a></li>
+        <li id="tabTabs"><a> Tabs </a></li>
+        <li><a> System </a></li>
+        <li><a> Layout </a></li>
+
+        <li>
+          <a>
+            <span class="icon"><i class="fas fa-music fa-lg" aria-hidden="true"></i></span>
+            <i class="fas fa-film"></i>
+            <span>&nbsp;Media & Webpage</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <!-- <div class="tab-content is-block" style="height: 150px; border: 1px solid">Control Content</div> -->
+      <div class="tab-content p-2 tabScroll is-block dragCustom">
+        <!-- level 子元素水平间隔对齐，子元素加上 level-item后，会强制子元素水平排列，不换行 -->
+        <!-- 窗口调小时，就会变成垂直布局，加上is-mobile就一直保持水平布局 -->
+        <div class="buttons dragCustom2">
+          <button class="button is-primary is-outlined">outlined</button>
+          <button class="button is-primary">Primary</button>
+          <button class="button is-success">Success</button>
+          <button class="button is-warning">Warning</button>
+          <button class="button is-danger">Danger</button>
+          <button class="button is-link">Link</button>
+          <button class="button is-info">Info</button>
+          <button class="button is-light">Light</button>
+          <!-- <button class="button2 is-light">Light</button> -->
+          <button class="button-no-background is-light is-focused">Light</button>
+          <button class="bulma-button-mixin is-small">Custom</button>
+          <button class="mr-2">button</button>
+          <button class="mr-2 windows-button">windows</button>
+          <button class="button is-small" draggable="true">bluma</button>
+          <button class="bulma-hamburger-mixin">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <div class="block">
+          <button class="button is-success is-loading">Button</button>
+          <button class="button is-success">
+            <span title="Badge top right" class="badge is-danger">8</span>
+            Red dot
+          </button>
+          <button class="button is-success is-rounded">Round</button>
+
+          <button class="button" style="width: 60px; height: 60px; border-radius: 50%; background-color: hsl(141, 53%, 53%)">circle<br />按钮</button>
+          <!-- <button class="tri marginLeftSmall">tri</button> -->
+          <!-- <span class="cursor-pointer" style="font-size: 2em; color: rgb(85, 160, 27)">
+            <i class="fa-solid fa-caret-right fa-2x"></i>
+          </span> -->
+          <svg width="50" height="50" viewBox="-50 -50 300 300">
+            <!-- <polygon class="triangle" stroke-linejoin="round" points="100,0 0,200 200,200"/> -->
+            <polygon class="cursor-pointer triangle" stroke-linejoin="round" points="0,0 0,200 100,100" />
+          </svg>
+
+          <span class="pointer-events-none">
+            <img class="cursor-pointer" width="35" src="assets/tri.png" />
+          </span>
+
+          <button class="button is-text">Text</button>
+          <button class="button is-ghost">Ghost</button>
+          <a>link</a>
+          <button class="button">
+            <span class="icon is-small">
+              <i class="fas fa-underline"></i>
+            </span>
+          </button>
+          <button class="button">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>GitHub</span>
+          </button>
+          <span class="icon-text cursor-pointer">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+            <span>Home</span>
+          </span>
+
+          <div class="field is-grouped is-grouped-multiline mt-3">
+            <!-- control包起来会自动留间隙 -->
+            <div class="control">
+              <span class="tag is-warning">tag</span>
+            </div>
+            <div class="control">
+              <div class="tags has-addons">
+                <span class="tag is-dark">npm</span>
+                <span class="tag is-success">0.9.4</span>
+              </div>
+            </div>
+            <div class="control">
+              <div class="tags has-addons">
+                <span class="tag is-success">Success</span>
+                <a class="tag is-delete"></a>
+              </div>
+            </div>
+            <span class="tag is-success mr-3">
+              Success
+              <button class="delete is-small"></button>
+            </span>
+
+            <button class="bulma-delete-mixin mr-3"></button>
+            <button class="delete is-medium"></button>
+          </div>
+        </div>
+
+        <div class="notification is-primary mt-6">
+          <p class="title">Click following buttons :</p>
+        </div>
+        <div class="buttons">
+          <span class="tag is-success mr-3">
+            delete me
+            <button class="delete is-small"></button>
+          </span>
+          <button data-target="modal-js-example" class="button is-primary js-modal-trigger">trigger Modal</button>
+          <div id="modal-js-example" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <div class="box">
+                <p>Modal JS example</p>
+                <!-- Your content -->
+              </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
+
+          <button class="button is-primary" data-tooltip="Tooltip&nbsp;Text">Tooltip</button>
+          <button class="button is-primary has-tooltip-multiline" data-tooltip="Tooltip with a long Text. So we use has-tooltip-multiline modifier to force multiline display.">
+            Multiline Tooltip
+          </button>
+          <button class="button is-primary">【Right click】the window</button>
+
+          <a href="https://bulma.io/documentation/elements/button/" target="_blank">open webpage</a>
+        </div>
+        <hr />
+
+        <div class="box level is-mobile is-vcentered">
+          <div class="level-left is-large">
+            <div class="level-item">
+              <div class="field">
+                <input id="switchRoundedDefault" type="checkbox" name="switchRoundedDefault" class="switch is-rounded" checked="checked" />
+                <label for="switchRoundedDefault">Switch </label>
+              </div>
+            </div>
+            <div class="level-item ml-6">progress</div>
+            <div class="level-item">
+              <progress class="progress is-success" style="width: 150px" value="22" max="100">progress</progress>
+            </div>
+          </div>
+
+          <div class="level-right">
+            <div class="level-item">
+              <form oninput="sliderRadiusText.value=parseInt(sliderRadius.value)">
+                <label>slider:</label>
+                <input id="sliderRadius" type="range" min="0" max="1000" step="10" value="150" />
+                <output id="sliderRadiusText" class="outputClear">150</output>
+              </form>
+            </div>
+            <div class="level-item">
+              <input class="slider is-circle is-success" step="1" min="0" max="100" value="50" type="range" />
+            </div>
+          </div>
+        </div>
+
+        <div class="level">
+          <div class="level-item">
+            <div class="control">
+              <div class="field">
+                <label class="label">Tags</label>
+                <div class="control">
+                  <input class="input" type="text" data-type="tags" placeholder="Choose Tags" value="One,Two" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="level-item">
+            <div class="panel-block">
+              <p class="control has-icons-left">
+                <input class="input is-primary" type="text" placeholder="Search" />
+                <span class="icon is-left">
+                  <i class="fas fa-search cursor-pointer" aria-hidden="true"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="level-item">
+            <input class="input" type="text" placeholder="Text input" />
+          </div>
+
+          <div class="level-item">
+            <input type="number" step="1" min="0" max="93" value="0" style="width: 50px" />
+          </div>
+
+          <div class="level-item">
+            <input type="text" value="Edit" />
+          </div>
+        </div>
+
+        <div class="level">
+          <div class="level-item">
+            <div class="mr-6 control">
+              <label>&nbsp;&nbsp;dropdown :</label>
+              <select>
+                <option value="1">111</option>
+                <option value="2">222</option>
+                <option value="3">333</option>
+              </select>
+            </div>
+
+            <div class="mr-6 select">
+              <select>
+                <option>Select dropdown</option>
+                <option>With options</option>
+              </select>
+            </div>
+
+            <!-- is-hoverable  is-active-->
+            <div class="mr-6 dropdown">
+              <div class="dropdown-trigger">
+                <button id="btnDropdown" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                  <span>dropdown</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div id="dropdown-menu" class="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a href="#" class="dropdown-item"> Dropdown item </a>
+                  <a class="dropdown-item"> Other dropdown item </a>
+                  <a href="#" class="dropdown-item is-active"> Active dropdown item </a>
+                  <a href="#" class="dropdown-item"> Other dropdown item </a>
+                  <hr class="dropdown-divider" />
+                  <a href="#" class="dropdown-item"> With a divider </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="level-item">
+            <div class="field">
+              <label class="label">Message</label>
+              <div class="control">
+                <textarea class="textarea" placeholder="Textarea"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="level-item">
+            <textarea rows="7" cols="30">
+              我是一个
+              多行文本框</textarea
+            >
+          </div>
+
+          <div id="global-menu" class="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item"> Dropdown item </a>
+              <a class="dropdown-item"> Other dropdown item </a>
+              <a href="#" class="dropdown-item is-active"> Active dropdown item </a>
+              <a href="#" class="dropdown-item"> Other dropdown item </a>
+              <hr class="dropdown-divider" />
+              <a href="#" class="dropdown-item"> With a divider </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="level is-mobile">
+          <div class="level-item">
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;radio :&nbsp; </label>
+            <input type="radio" name="tabRadioTest" checked="checked" />
+            <input type="radio" name="tabRadioTest" />
+          </div>
+          <div class="level-item">
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;radio2 :&nbsp; </label>
+            <label class="radio">
+              <input class="vCenterRadio" type="radio" name="answer" checked="checked" />
+              YES
+            </label>
+
+            <label class="radio">
+              <input class="vCenterRadio" type="radio" name="answer" />
+              NO
+            </label>
+          </div>
+          <div class="level-item">
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;radio3 : </label>
+            <input class="is-checkradio is-small" id="exampleRadioInline1" type="radio" name="exampleRadioInline" checked="checked" />
+            <label for="exampleRadioInline1">Option 1</label>
+
+            <input class="is-checkradio is-small" id="exampleRadioInline2" type="radio" name="exampleRadioInline" />
+            <label for="exampleRadioInline2">Option 2</label>
+          </div>
+
+          <div class="level-item">
+            <input class="is-checkradio" id="exampleCheckbox" type="checkbox" name="exampleCheckbox" checked="checked" />
+            <label for="exampleCheckbox">Check me</label>
+
+            <input class="is-checkradio" id="exampleCheckbox2" type="checkbox" name="exampleCheckbox" />
+            <label for="exampleCheckbox2">Check</label>
+          </div>
+          <div class="level-item">
+            <label>checkbox :&nbsp; </label>
+            <input type="checkbox" checked="checked" />
+            <input type="checkbox" />
+          </div>
+          <div class="level-item">
+            <input type="checkbox" checked="checked" class="checkbox" />
+            <input type="checkbox" class="checkbox" />
+            <label> checkbox2 </label>
+          </div>
+        </div>
+
+        <div class="level is-mobile">
+          <!-- Left side -->
+          <div class="level-left">
+            <div class="level-item">
+              <span>SVG : &nbsp;</span>
+              <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+                <path
+                  fill-rule="evenodd"
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </div>
+            <div class="level-item">
+              <svg width="50" height="50">
+                <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1" fill="hsl(204, 86%, 53%)" />
+                抱歉，您的浏览器不支持嵌入式 SVG。
+              </svg>
+
+              <!-- <object>影响右键菜单的弹出，而且会显示在容器的最左边，而不是按顺序排列
+                而 <img>没有这些问题 -->
+              <!-- <object width="50" height="50" data="assets\svg\monarch-by-Gordon_Johnson_USA.svg" type="image/svg+xml"></object> -->
+              <img width="128" height="128" src="assets\svg\monarch-by-Gordon_Johnson_USA.svg" />
+            </div>
+          </div>
+
+          <!-- Right side -->
+          <div class="level-right">
+            <div class="level-item">
+              <div class="container">
+                <span class="fas fa-camera" style="--fa-li-width: 4em"></span>
+                <span style="font-size: 2em; color: Dodgerblue">
+                  <i class="fa-solid fa-camera"></i>
+                </span>
+                <!-- 各种icon组合 -->
+                <span class="icon is-large">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-camera fa-stack-1x"></i>
+                    <i class="fas fa-ban fa-stack-2x has-text-danger"></i>
+                  </span>
+                </span>
+
+                <i class="fa-solid fa-caret-down"></i>
+                <i class="fa-solid fa-caret-right"></i>
+              </div>
+            </div>
+            <div class="level-item">
+              <div class="container mr-2">
+                <span class="bulma-arrow-mixin"></span>
+              </div>
+            </div>
+            <div class="level-item">
+              <img height="64" width="64" src="assets/electron.png" />
+            </div>
+            <div class="level-item">
+              <div class="box">
+                <!-- has-text-centered 让内容垂直水平居中 -->
+                <div class="has-text-centered container">
+                  <img height="64" width="64" src="assets/electron.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card block">
+          <header class="card-header">
+            <p class="card-header-title">Component</p>
+            <a href="#collapsible-card" data-action="collapse" class="card-header-icon" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </a>
+          </header>
+          <div id="collapsible-card" class="is-collapsible is-active">
+            <div class="card-content">
+              <div class="content">
+                this is a card <br />
+                has button
+              </div>
+            </div>
+            <a class="panel-block is-active">
+              <span class="panel-icon">
+                <i class="fas fa-book" aria-hidden="true"></i>
+              </span>
+              bulma
+            </a>
+            <a class="panel-block">
+              <span class="panel-icon">
+                <i class="fas fa-book" aria-hidden="true"></i>
+              </span>
+              electron
+            </a>
+            <a class="panel-block"> github </a>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Save</a>
+              <a href="#" class="card-footer-item">Edit</a>
+              <a href="#" class="card-footer-item">Delete</a>
+            </footer>
+          </div>
+        </div>
+      </div>
+
+      <!-- 加上tabScroll后，动画就不能动到tab-content的区域外 -->
+      <div class="tab-content has-text-centered">
+        <div class="level is-mobile mb-6">
+          <h1 class="animate__bounce animate__slower animate__animated animate__infinite">animate</h1>
+          <button class="button is-small animate__bounce animate__animated animate__repeat-3 animate__delay-2s" style="--animate-duration: 10s">animate</button>
+          <button class="button is-small animate__rubberBand animate__animated animate__infinite">animate</button>
+        </div>
+
+        <!-- is-variable is-8按钮间隔8个宽度 -->
+        <div class="columns is-multiline is-mobile is-variable is-8">
+          <div class="column">
+            <button class="button is-small animate__fadeIn animate__slower animate__delay-3s animate__animated animate__infinite">animate</button>
+          </div>
+          <div class="column">
+            <button class="button is-small animate__fadeInLeft animate__slower animate__animated animate__infinite">animate</button>
+          </div>
+
+          <div class="column">
+            <button class="button is-small animate__flip animate__animated animate__infinite">animate</button>
+          </div>
+
+          <div class="column">
+            <button class="button is-small is-focused animate__backInDown animate__animated animate__infinite">animate</button>
+          </div>
+        </div>
+
+        <div class="columns is-mobile">
+          <div class="column">
+            <button class="button is-small animate__rotateIn animate__animated animate__infinite">animate</button>
+          </div>
+          <div class="column" style="overflow: hidden; height: 220px">
+            <!-- animate__hinge效果会导致全局滚动条一直出现和关闭，需要设置一直不出现滚动条，或者js控制  overflow: hidden、 auto 切换
+              或者直接把本元素设置为overflow: hidden; 但是这样的话，元素就不能掉到窗口的底部，掉到本元素的底部就会消失，所以设置一下高度 height: 220px，方便观察效果 -->
+            <button class="button is-small is-focused animate__hinge animate__animated animate__infinite">animate</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="notification is-primary">
+          <p class="title">They are not image files, They are SVG files</p>
+        </div>
+
+        <div class="columns is-mobile is-primary">
+          <div class="column">
+            <img src="assets\svg\tiger.svg" />
+          </div>
+          <div class="column">
+            <img src="assets\svg\monarch-by-Gordon_Johnson_USA.svg" />
+            <!-- <a href="assets\svg\monarch-by-Gordon_Johnson_USA.svg">查看完整SVG文件</a> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="level is-mobile">
+          <!-- Left side -->
+          <div class="level-left">
+            <div class="level-item">
+              <div class="container">
+                <div id="three3dCube" style="border: 1px solid"></div>
+              </div>
+            </div>
+            <!-- Right side -->
+            <div class="level-right">
+              <div class="level-item">
+                <div class="container">
+                  <div class="level is-mobile">
+                    <div class="hero-body notification is-primary">
+                      <p class="subtitle">暂不支持3D</p>
+                    </div>
+                    <div id="three3dTigerUI"></div>
+                  </div>
+                  <div id="three3dTiger"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content tabScroll">
+        <div class="notification is-primary">
+          <p class="subtitle">【miniblink的bug，charts等几十秒才会加载出来】</p>
+        </div>
+        <div class="level is-mobile">
+          <div>
+            <div id="chartPie" style="height: 350px; width: 400px"></div>
+            <div id="chartPressure" style="height: 350px; width: 350px"></div>
+          </div>
+
+          <div id="chartWordCloud" class="pr-6" style="height: 780px; width: 700px"></div>
+        </div>
+
+        <div class="notification is-primary">
+          <p class="subtitle">Drag or scroll the map【滚动或拖动地图试试看】</p>
+        </div>
+        <div id="chartChinaMap" style="height: 550px; width: 700px; padding: 10px; background: #333333"></div>
+      </div>
+
+      <div class="tab-content">
+        <div class="columns is-mobile">
+          <div class="column">
+            <table class="table is-bordered is-striped is-narrow is-hoverable">
+              <thead>
+                <tr>
+                  <th>One</th>
+                  <th>Two</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Three</td>
+                  <td>Four</td>
+                </tr>
+                <tr>
+                  <td>Five</td>
+                  <td>Six</td>
+                </tr>
+                <tr>
+                  <td>Seven</td>
+                  <td>Eight</td>
+                </tr>
+                <tr>
+                  <td>Nine</td>
+                  <td>Ten</td>
+                </tr>
+                <tr>
+                  <td>Eleven</td>
+                  <td>Twelve</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="column">
+            <table class="table is-hoverable">
+              <thead>
+                <tr>
+                  <th>One</th>
+                  <th>Two</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Three</td>
+                  <td>Four</td>
+                </tr>
+                <tr>
+                  <td>Five</td>
+                  <td>Six</td>
+                </tr>
+                <tr>
+                  <td>Seven</td>
+                  <td>Eight</td>
+                </tr>
+                <tr>
+                  <td>Nine</td>
+                  <td>Ten</td>
+                </tr>
+                <tr>
+                  <td>Eleven</td>
+                  <td>Twelve</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="column">
+            <table class="table is-bordered has-text-centered">
+              <colgroup>
+                <col span="2" style="background-color: #0075ff" />
+                <col style="background-color: gray" />
+              </colgroup>
+              <tr>
+                <th>Grid1</th>
+                <th>Grid2</th>
+                <th>Grid3</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>hello Bulma</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Bulma CSS</td>
+                <td>2</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="columns">
+          <table class="table">
+            <thead>
+              <tr>
+                <th><abbr title="Position">Pos</abbr></th>
+                <th>Team</th>
+                <th><abbr title="Played">Pld</abbr></th>
+                <th><abbr title="Won">W</abbr></th>
+                <th><abbr title="Drawn">D</abbr></th>
+                <th><abbr title="Lost">L</abbr></th>
+                <th><abbr title="Goals for">GF</abbr></th>
+                <th><abbr title="Goals against">GA</abbr></th>
+                <th><abbr title="Goal difference">GD</abbr></th>
+                <th><abbr title="Points">Pts</abbr></th>
+                <th>Qualification or relegation</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th><abbr title="Position">Pos</abbr></th>
+                <th>Team</th>
+                <th><abbr title="Played">Pld</abbr></th>
+                <th><abbr title="Won">W</abbr></th>
+                <th><abbr title="Drawn">D</abbr></th>
+                <th><abbr title="Lost">L</abbr></th>
+                <th><abbr title="Goals for">GF</abbr></th>
+                <th><abbr title="Goals against">GA</abbr></th>
+                <th><abbr title="Goal difference">GD</abbr></th>
+                <th><abbr title="Points">Pts</abbr></th>
+                <th>Qualification or relegation</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                <th>1</th>
+                <td><a title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong></td>
+                <td>38</td>
+                <td>23</td>
+                <td>12</td>
+                <td>3</td>
+                <td>68</td>
+                <td>36</td>
+                <td>+32</td>
+                <td>81</td>
+                <td>
+                  Qualification for the
+                  <a title="2016–17 UEFA Champions League">Champions League group stage</a>
+                </td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <td><a title="Arsenal F.C.">Arsenal</a></td>
+                <td>38</td>
+                <td>20</td>
+                <td>11</td>
+                <td>7</td>
+                <td>65</td>
+                <td>36</td>
+                <td>+29</td>
+                <td>71</td>
+                <td>
+                  Qualification for the
+                  <a title="2016–17 UEFA Champions League">Champions League group stage</a>
+                </td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <td><a title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
+                <td>38</td>
+                <td>19</td>
+                <td>13</td>
+                <td>6</td>
+                <td>69</td>
+                <td>35</td>
+                <td>+34</td>
+                <td>70</td>
+                <td>
+                  Qualification for the
+                  <a title="2016–17 UEFA Champions League">Champions League group stage</a>
+                </td>
+              </tr>
+              <tr class="is-selected">
+                <th>4</th>
+                <td><a title="Manchester City F.C.">Manchester City</a></td>
+                <td>38</td>
+                <td>19</td>
+                <td>9</td>
+                <td>10</td>
+                <td>71</td>
+                <td>41</td>
+                <td>+30</td>
+                <td>66</td>
+                <td>
+                  Qualification for the
+                  <a title="2016–17 UEFA Champions League">Champions League play-off round</a>
+                </td>
+              </tr>
+              <tr>
+                <th>5</th>
+                <td><a title="Manchester United F.C.">Manchester United</a></td>
+                <td>38</td>
+                <td>19</td>
+                <td>9</td>
+                <td>10</td>
+                <td>49</td>
+                <td>35</td>
+                <td>+14</td>
+                <td>66</td>
+                <td>
+                  Qualification for the
+                  <a title="2016–17 UEFA Europa League">Europa League group stage</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-content tabScroll">
+        <section id="accordion2" class="mb-6">
+          <div class="group">
+            <h3 class="button is-primary is-outlined">&nbsp;Section 1： Drag me to sort 【拖拽我 可以排序】</h3>
+            <div>
+              <p>
+                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a
+                nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+              </p>
+            </div>
+          </div>
+          <div class="group">
+            <h3 class="button is-primary">&nbsp;Section 2</h3>
+            <section>
+              <p>
+                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus
+                interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
+              </p>
+            </section>
+          </div>
+          <div class="group">
+            <h3>Section 3</h3>
+            <section>
+              <p>
+                Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus
+                pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+              </p>
+              <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+              </ul>
+            </section>
+          </div>
+          <div class="group">
+            <h3 class="button is-warning">Section 4</h3>
+            <div>
+              <p>
+                Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et
+                ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
+              </p>
+              <p>
+                Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                himenaeos.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr />
+        <article class="panel is-primary block mb-6 mt-6">
+          <p class="panel-heading block">Tabs</p>
+
+          <div id="tabsJQueryUI" class="is-centered is-boxed block">
+            <ul>
+              <li>
+                <a href="#tabs-1">
+                  <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+                  <span>Drag me 【拖拽我 可以排序】</span>
+                </a>
+              </li>
+              <li>
+                <a href="#tabs-2">
+                  <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+                  <span>Videos</span>
+                </a>
+              </li>
+            </ul>
+
+            <div id="tabs-1">Music Content</div>
+            <div id="tabs-2">Videos Content</div>
+          </div>
+
+          <div class="tabs block">
+            <ul>
+              <li><a>Music</a></li>
+              <li class="is-active"><a>Videos</a></li>
+              <li><a>Documents</a></li>
+              <li><a>Pictures</a></li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="tab-content">Music Content</div>
+            <div class="tab-content is-block">Videos Content</div>
+            <div class="tab-content">Documents Content</div>
+            <div class="tab-content">Pictures Content</div>
+          </div>
+
+          <div id="tabFrame" class="block" style="background-color: #efefef; width: 300px; height: 150px">
+            <input type="radio" name="tabRadio" id="tab_1" checked="checked" />
+            <input type="radio" name="tabRadio" id="tab_2" />
+            <div class="tabTitle textCenter" style="padding: 0px 30px">
+              <label for="tab_1" id="tabTitle_1">Tab1</label>
+              <label for="tab_2" id="tabTitle_2" style="margin: 0px 10px">Tab2</label>
+            </div>
+
+            <div id="tabContent" style="padding: 80px 30px">
+              <div class="tabContent_1">
+                <label>tab_1</label>
+              </div>
+              <div class="tabContent_2">
+                <label>tab_2</label>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="tab-content">
+        <div class="columns blk-btn-group is-multiline is-mobile is-vcentered has-text-centered is-variable is-1 ml-1 mt-2">
+          <div class="column is-narrow">
+            <button id="btnGridURL" class="button is-light blk-large-btn-square">
+              <img width="112" height="28" src="assets/sysIcon/bulma-logo.png" />
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridCalc" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/calc.png" />
+                </div>
+                <div>calc</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridDiskC" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/Folder.png" />
+                </div>
+                <div>Folder</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridRemoteDesktop" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/Remote Desktop.png" />
+                </div>
+                <div>Remote Desktop</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridChrome" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/Chrome.png" />
+                </div>
+                <div>chrome</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridFirefox" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/Firefox.ico" />
+                </div>
+                <div>Firefox</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridCmd" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/cmd.ico" />
+                </div>
+                <div>cmd</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridNotepad" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/notepad.png" />
+                </div>
+                <div>notepad</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridElectron" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/electron.png" />
+                </div>
+                <div>electron</div>
+              </div>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button id="btnGridRegedit" class="button is-light blk-large-btn-square">
+              <div>
+                <div>
+                  <img class="blk-48x48" src="assets/sysIcon/regedit.png" />
+                </div>
+                <div>regedit</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="column is-narrow">
+            <button id="btnGridGithub" class="button">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button class="button is-light" style="height: 128px; width: 128px">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button class="button is-light blk-large-btn-square">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button class="button is-light" style="height: 128px; width: 128px">
+              <img height="64" width="64" src="assets/electron.png" />
+              <div>electron</div>
+            </button>
+          </div>
+
+          <div class="column is-narrow">
+            <p class="box">is-narrow</p>
+          </div>
+
+          <div class="column">
+            <p class="notification is-primary">Auto width</p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content tabScroll">
+        <!--  is-mobile对tile无效，不知道是bug，还是设计原因，要自己找下改哪里，应该是有个is-8，至少这么宽？ -->
+        <div class="tile is-ancestor is-mobile">
+          <div class="tile is-vertical is-8">
+            <div class="tile">
+              <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                  <p class="title">Vertical...</p>
+                  <p class="subtitle">Top tile</p>
+                </article>
+                <article class="tile is-child notification is-warning">
+                  <p class="title">...tiles</p>
+                  <p class="subtitle">Bottom tile</p>
+                </article>
+              </div>
+              <div class="tile is-parent">
+                <article class="tile is-child notification is-info">
+                  <p class="title">Middle tile</p>
+                  <p class="subtitle">With an image</p>
+                  <figure class="image is-4by3">
+                    <img src="https://bulma.io/images/placeholders/640x480.png" />
+                  </figure>
+                </article>
+              </div>
+            </div>
+            <div class="tile is-parent">
+              <article class="tile is-child notification is-danger">
+                <p class="title">Wide tile</p>
+                <p class="subtitle">Aligned with the right tile</p>
+                <div class="content">
+                  <!-- Content -->
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+              <div class="content">
+                <p class="title">Tall tile</p>
+                <p class="subtitle">With even more content</p>
+                <div class="content">
+                  <!-- Content -->
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <hr class="mb-0" />
+        <section class="hero is-small has-text-centered">
+          <div class="hero-body">
+            <p class="title">Small hero</p>
+            <p class="subtitle">vCenter and hCenter</p>
+          </div>
+        </section>
+        <section class="container has-text-centered">
+          <div class="hero-body notification is-primary">
+            <p class="title">Container</p>
+            <p class="subtitle">vCenter and hCenter</p>
+          </div>
+        </section>
+
+        <section class="is-small is-primary" style="display: flex; align-items: center; justify-content: center; height: 50px; border: 1px solid">
+          <div class="">
+            <p>center: vanilla CSS（原生CSS）</p>
+          </div>
+        </section>
+        <section class="is-small is-primary is-flex is-align-items-center is-justify-content-center" style="height: 50px; border: 1px solid">
+          <div class="">
+            <p>center: bulma</p>
+          </div>
+        </section>
+        <nav class="level is-mobile">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Tweets</p>
+              <p class="title">3,456</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Following</p>
+              <p class="title">123</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Followers</p>
+              <p class="title">456K</p>
+            </div>
+          </div>
+        </nav>
+
+        <section class="section is-max-desktop block has-text-centered">
+          <div>
+            <h1 class="title">Hello Bulma!</h1>
+            这是<i>一个斜体</i> 这是一个换行<br />
+            <p>这是一个段落</p>
+            <p class="subtitle">CSS <strong>Bulma</strong>!</p>
+            <p>这是一个段落</p>
+          </div>
+        </section>
+
+        <div class="box">
+          <div class="columns is-mobile">
+            <div class="column">
+              <p class="notification is-primary">First column</p>
+            </div>
+            <div class="column">
+              <p class="notification is-primary">Second column</p>
+            </div>
+            <div class="column">
+              <p class="notification is-primary">Third column</p>
+            </div>
+            <div class="column">
+              <p class="notification is-primary">Fourth column</p>
+            </div>
+          </div>
+          <div class="columns is-mobile">
+            <div class="column is-one-fifth">
+              <p class="notification is-primary">1/5 width</p>
+            </div>
+            <div class="column is-2 is-centered">
+              <p class="notification is-primary">2/12 width</p>
+            </div>
+            <div class="column">
+              <p class="notification">Auto width</p>
+            </div>
+            <div class="column">
+              <p class="notification">Auto width</p>
+            </div>
+          </div>
+
+          <div class="columns is-mobile">
+            <div class="column is-4 is-offset-8">
+              <p class="notification is-primary">
+                <code class="html">is-4</code><br />
+                <code class="html">is-offset-8</code>
+              </p>
+            </div>
+          </div>
+          <div class="columns is-mobile">
+            <div class="column is-11 is-offset-1">
+              <p class="notification is-primary">
+                <code class="html">is-11</code><br />
+                <code class="html">is-offset-1</code>
+              </p>
+            </div>
+          </div>
+          <!--  is-centered 水平居中column -->
+          <div class="columns is-mobile is-centered">
+            <div class="column is-half">
+              <p class="notification is-primary">
+                <code class="html">is-half</code><br />
+                <code class="html">【is-centered】</code>
+              </p>
+            </div>
+          </div>
+
+          <!-- is-gapless 表示不留空隙 效果等于 is-variable is-0 
+               is-vcentered 垂直居中column-->
+          <div class="columns is-mobile is-gapless is-vcentered">
+            <div class="column is-narrow">
+              <div class="box" style="width: 200px">
+                <p class="title is-5">Narrow column</p>
+                <p class="subtitle">This column is only 200px wide.</p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="box">
+                <p class="title is-5">Flexible column【 is-vcentered is-gapless 】</p>
+                <p class="subtitle">This column will take up the remaining space available.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns is-variable is-1">
+            <div class="column">
+              <p class="notification is-info">First column : Nesting（嵌套）</p>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <p class="notification is-info">First nested column</p>
+                </div>
+                <div class="column">
+                  <p class="notification is-info">Second nested column</p>
+                </div>
+              </div>
+            </div>
+            <div class="column has-text-centered">
+              <p class="notification is-danger">Second column</p>
+              <div class="columns is-mobile">
+                <div class="column is-half">
+                  <p class="notification is-danger">50%</p>
+                </div>
+                <div class="column has-text-centered">
+                  <p class="notification is-danger">Auto</p>
+                </div>
+                <div class="column">
+                  <p class="notification is-danger">Auto</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns is-multiline is-mobile">
+            <div class="column is-one-quarter">
+              <p class="notification is-primary">
+                <code>【is-multiline】: </code>
+                <br />
+                <code class="html">auto change to multiline column</code>
+              </p>
+            </div>
+            <div class="column is-one-quarter">
+              <p class="notification is-primary"><code>is-one-quarter</code></p>
+            </div>
+            <div class="column">
+              <p class="notification is-primary"><code>1/4</code></p>
+            </div>
+            <div class="column">
+              <p class="notification is-primary"><code>1/4</code></p>
+            </div>
+            <div class="column is-half">
+              <p class="notification is-primary"><code>is-half</code></p>
+            </div>
+            <div class="column">
+              <p class="notification is-primary"><code>is-one-quarter</code></p>
+            </div>
+            <div class="column is-one-quarter">
+              <p class="notification is-primary"><code>is-one-quarter</code></p>
+            </div>
+            <div class="column is-one-quarter">
+              <p class="notification is-primary"><code>is-one-quarter</code></p>
+            </div>
+            <div class="column">
+              <p class="notification is-primary">Auto</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content tabScroll">
+        <audio controls>
+          <source src="assets\music.mp3" type="audio/mpeg" />
+          您的浏览器不支持 audio 元素。
+        </audio>
+        <video width="320" height="240" controls>
+          <source src="assets/formatTest/movie/movie.mov" />
+        </video>
+
+        <audio class="video-js vjs-matrix mt-2" controls preload="auto" width="300" height="100" poster="assets\electron.png" data-setup="{}">
+          <source src="assets/formatTest/music/music.mp3" />
+        </audio>
+        <video id="my-video" class="video-js mt-2" controls preload="auto" width="640" height="264" poster="assets\electron.png" data-setup="{}">
+          <source src="assets/formatTest/movie/movie.mov" />
+        </video>
+        
+        <div class="mt-6">
+          <!-- 加上sandbox就不能跳转到外站了 -->
+          <!-- <iframe src="https://www.electronjs.org/zh/" style="display: inline-flex; width: 1000px; height: 700px"  sandbox></iframe> -->
+          <iframe src="https://www.electronjs.org/zh/" style="display: inline-flex; width: 1000px; height: 700px" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script type="module" src="./renderer.js"></script> -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>

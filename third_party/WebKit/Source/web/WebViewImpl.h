@@ -57,7 +57,7 @@
 #include "web/ChromeClientImpl.h"
 #include "web/ContextMenuClientImpl.h"
 #include "web/EditorClientImpl.h"
-#include "web/MediaKeysClientImpl.h"
+//#include "web/MediaKeysClientImpl.h"
 #include "web/PageWidgetDelegate.h"
 #include "web/ResizeViewportAnchor.h"
 #include "web/SpellCheckerClientImpl.h"
@@ -229,10 +229,10 @@ public:
     void enableAutoResizeMode(const WebSize& minSize,
         const WebSize& maxSize) override;
     void disableAutoResizeMode() override;
-    void performMediaPlayerAction(const WebMediaPlayerAction& action,
-        const WebPoint& location) override;
-    void performPluginAction(const WebPluginAction&, const WebPoint&) override;
-    void audioStateChanged(bool isAudioPlaying) override;
+    //void performMediaPlayerAction(const WebMediaPlayerAction& action,
+    //    const WebPoint& location) override;
+    //void performPluginAction(const WebPluginAction&, const WebPoint&) override;
+    //void audioStateChanged(bool isAudioPlaying) override;
     WebHitTestResult hitTestResultAt(const WebPoint&) override;
     WebHitTestResult hitTestResultForTap(const WebPoint&,
         const WebSize&) override;
@@ -715,7 +715,7 @@ private:
     bool m_matchesHeuristicsForGpuRasterization;
     static const WebInputEvent* m_currentInputEvent;
 
-    MediaKeysClientImpl m_mediaKeysClientImpl;
+    //MediaKeysClientImpl m_mediaKeysClientImpl;
     std::unique_ptr<WebActiveGestureAnimation> m_gestureAnimation;
     WebPoint m_positionOnFlingStart;
     WebPoint m_globalPositionOnFlingStart;

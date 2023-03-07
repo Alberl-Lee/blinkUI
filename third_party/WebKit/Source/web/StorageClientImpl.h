@@ -16,11 +16,11 @@ class StorageClientImpl : public StorageClient {
 public:
     explicit StorageClientImpl(WebViewImpl*);
 
-    std::unique_ptr<StorageNamespace> createSessionStorageNamespace() override;
+    std::unique_ptr<StorageNamespace> createSessionStorageNamespace();
 #ifndef MINIBLINK_NO_PAGE_LOCALSTORAGE
-    std::unique_ptr<StorageNamespace> createLocalStorageNamespace() override;
+    //std::unique_ptr<StorageNamespace> createLocalStorageNamespace();
 #endif
-    bool canAccessStorage(LocalFrame*, StorageType) const override;
+    bool canAccessStorage(LocalFrame*, StorageType) const;
 
 private:
     WebViewImpl* m_webView;

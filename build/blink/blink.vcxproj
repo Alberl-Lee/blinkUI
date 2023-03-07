@@ -23,13 +23,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>TENCENT_FITSCREEN=1;ENABLE_WKE=1;ENABLE_MB=1;_HAS_CONSTEXPR=0;ANGLE_ENABLE_GLSL;USE_AURA;OS_WIN;BUILDING_CEF_SHARED;USING_CEF_SHARED;WIN32;_DEBUG;_WINDOWS;INSIDE_BLINK=1;BLINK_IMPLEMENTATION=1;ENABLE_ASSERT=1;ENABLE_WML=1;CARES_STATICLIB=1;CURL_STATICLIB=1;SK_SUPPORT_LEGACY_CREATESHADER_PTR=1;SK_SUPPORT_LEGACY_PICTURE_PTR=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TENCENT_FITSCREEN=1;ENABLE_WKE=1;ENABLE_MB=1;_HAS_CONSTEXPR=0;ANGLE_ENABLE_GLSL;USE_AURA;OS_WIN;BUILDING_CEF_SHARED;USING_CEF_SHARED;WIN32;_DEBUG;_WINDOWS;INSIDE_BLINK=1;BLINK_IMPLEMENTATION=1;ENABLE_ASSERT=1;ENABLE_WML=1;CARES_STATICLIB=1;CURL_STATICLIB=1;SK_SUPPORT_LEGACY_CREATESHADER_PTR=1;SK_SUPPORT_LEGACY_PICTURE_PTR=1;MINIBLINK_NO_PAGE_LOCALSTORAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -79,18 +79,18 @@
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(SolutionDir)..\out\Windows_$(Configuration)_$(Platform)\;$(SolutionDir)..\third_party\ffmpeg\lib\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Userenv.lib;Setupapi.lib;PowrProf.lib;Version.lib;Msimg32.lib;Imm32.lib;Dbghelp.lib;v8_7_5.lib;skia.lib;winmm.lib;Ws2_32.lib;Usp10.lib;Shlwapi.lib;wininet.lib;GDIPlus.lib;Crypt32.lib;Wldap32.lib;libxml.lib;zlib.lib;ots.lib;chromium.lib;libcurl.lib;libpng.lib;openssl.lib;harfbuzz.lib;version.lib;libjpeg.lib;nodejs.lib;DbgHelp.lib;ffmpeg.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Userenv.lib;Setupapi.lib;PowrProf.lib;Version.lib;Msimg32.lib;Imm32.lib;Dbghelp.lib;v8_7_5.lib;skia.lib;winmm.lib;Ws2_32.lib;Usp10.lib;Shlwapi.lib;wininet.lib;GDIPlus.lib;Crypt32.lib;Wldap32.lib;libxml.lib;zlib.lib;chromium.lib;libcurl.lib;libpng.lib;openssl.lib;harfbuzz.lib;version.lib;libjpeg.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)..\out\Windows_$(Configuration)_$(Platform)\miniblink$(TargetExt)</OutputFile>
       <ImportLibrary>
       </ImportLibrary>
       <IgnoreSpecificDefaultLibraries>LIBCMT.lib</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>$(SolutionDir)../mbvip/core/mtmb.def</ModuleDefinitionFile>
-      <DelayLoadDLLs>ffmpeg.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>NDEBUG;TENCENT_FITSCREEN=1;ENABLE_WKE=1;_HAS_CONSTEXPR=0;ANGLE_ENABLE_GLSL;USE_AURA;OS_WIN;BUILDING_CEF_SHARED;USING_CEF_SHARED;WIN32;_WINDOWS;INSIDE_BLINK=1;BLINK_IMPLEMENTATION=1;ENABLE_ASSERT=1;ENABLE_WML=1;CARES_STATICLIB=1;CURL_STATICLIB=1;SK_SUPPORT_LEGACY_CREATESHADER_PTR=1;SK_SUPPORT_LEGACY_PICTURE_PTR=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;TENCENT_FITSCREEN=1;ENABLE_WKE=1;_HAS_CONSTEXPR=0;ANGLE_ENABLE_GLSL;USE_AURA;OS_WIN;BUILDING_CEF_SHARED;USING_CEF_SHARED;WIN32;_WINDOWS;INSIDE_BLINK=1;BLINK_IMPLEMENTATION=1;ENABLE_ASSERT=1;ENABLE_WML=1;CARES_STATICLIB=1;CURL_STATICLIB=1;SK_SUPPORT_LEGACY_CREATESHADER_PTR=1;SK_SUPPORT_LEGACY_PICTURE_PTR=1;MINIBLINK_NO_PAGE_LOCALSTORAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -114,11 +114,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(SolutionDir)..\out\Windows_$(Configuration)_$(Platform)\;$(SolutionDir)..\third_party\ffmpeg\lib\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Userenv.lib;Setupapi.lib;PowrProf.lib;Version.lib;Msimg32.lib;Imm32.lib;Dbghelp.lib;v8_7_5.lib;skia.lib;winmm.lib;Ws2_32.lib;Usp10.lib;Shlwapi.lib;wininet.lib;GDIPlus.lib;Crypt32.lib;Wldap32.lib;libxml.lib;libjpeg.lib;libpng.lib;zlib.lib;ots.lib;chromium.lib;libcurl.lib;openssl.lib;harfbuzz.lib;ffmpeg.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Userenv.lib;Setupapi.lib;PowrProf.lib;Version.lib;Msimg32.lib;Imm32.lib;Dbghelp.lib;v8_7_5.lib;skia.lib;winmm.lib;Ws2_32.lib;Usp10.lib;Shlwapi.lib;wininet.lib;GDIPlus.lib;Crypt32.lib;Wldap32.lib;libxml.lib;libjpeg.lib;libpng.lib;zlib.lib;chromium.lib;libcurl.lib;openssl.lib;harfbuzz.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/FORCE:UNRESOLVED /NODEFAULTLIB:library %(AdditionalOptions)</AdditionalOptions>
       <OutputFile>$(SolutionDir)..\out\Windows_$(Configuration)_$(Platform)\miniblink$(TargetExt)</OutputFile>
       <ModuleDefinitionFile>$(SolutionDir)../mbvip/core/mtmb.def</ModuleDefinitionFile>
-      <DelayLoadDLLs>ffmpeg.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -140,8 +140,6 @@
     <ClCompile Include="..\..\content\devtools\DevToolsMgr.cpp" />
     <ClCompile Include="..\..\content\devtools\DevToolsProtocolDispatcher.cpp" />
     <ClCompile Include="..\..\content\LayerTreeWrap.cpp" />
-    <ClCompile Include="..\..\content\media\audio_device_factory.cc" />
-    <ClCompile Include="..\..\content\media\audio_renderer_mixer_manager.cc" />
     <ClCompile Include="..\..\content\OrigChromeMgr.cpp" />
     <ClCompile Include="..\..\content\RasterWorkerPool.cpp" />
     <ClCompile Include="..\..\content\RenderWidgetCompositor.cpp" />
@@ -1381,46 +1379,6 @@
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\animation\CompositorTransformKeyframe.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\animation\CompositorTransformOperations.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\animation\TimingFunction.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioBus.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioChannel.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDelayDSPKernel.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDestination.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernel.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernelProcessor.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioFIFO.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioProcessor.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioPullFIFO.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioResampler.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioResamplerKernel.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioUtilities.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Biquad.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Cone.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DirectConvolver.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Distance.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DownSampler.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressor.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressorKernel.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\EqualPowerPanner.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\FFTConvolver.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\FFTFrame.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\FFTFrameStub.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabase.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabaseLoader.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFElevation.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFKernel.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFPanner.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\IIRFilter.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\MultiChannelResampler.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Panner.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Reverb.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbAccumulationBuffer.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolver.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolverStage.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbInputBuffer.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\SincResampler.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\StereoPanner.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\UpSampler.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\VectorMath.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\blob\BlobData.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\blob\BlobRegistry.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\blob\BlobURL.cpp" />
@@ -1560,7 +1518,6 @@
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\UnicodeRangeSet.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\UTF16TextIterator.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\VDMXParser.cpp" />
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\WebFontDecoder.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\win\FontCacheSkiaWin.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\win\FontFallbackWin.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\win\FontPlatformDataWin.cpp" />
@@ -3864,7 +3821,6 @@
     <ClCompile Include="..\..\third_party\WebKit\Source\core\xmlhttprequest\XMLHttpRequestProgressEventThrottle.cpp" />
     <ClCompile Include="..\..\third_party\WebKit\Source\core\xmlhttprequest\XMLHttpRequestUpload.cpp" />
     <ClCompile Include="..\..\wke\wke.cpp" />
-    <ClCompile Include="..\..\wke\wke2.cpp" />
     <ClCompile Include="..\..\wke\wkeGlobalVar.cpp" />
     <ClCompile Include="..\..\wke\wkeJsBind.cpp" />
     <ClCompile Include="..\..\wke\wkeNetHook.cpp" />
@@ -3904,8 +3860,6 @@
     <ClInclude Include="..\..\content\gpu\GrcontextForWebgraphicscontext3d.h" />
     <ClInclude Include="..\..\content\gpu\WgContext3dCmdBufImpl.h" />
     <ClInclude Include="..\..\content\LayerTreeWrap.h" />
-    <ClInclude Include="..\..\content\media\audio_device_factory.h" />
-    <ClInclude Include="..\..\content\media\audio_renderer_mixer_manager.h" />
     <ClInclude Include="..\..\content\OrigChromeMgr.h" />
     <ClInclude Include="..\..\content\RasterWorkerPool.h" />
     <ClInclude Include="..\..\content\RenderWidgetCompositor.h" />
@@ -7543,52 +7497,6 @@
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\animation\TimingFunction.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\AsyncFileSystemCallbacks.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\AsyncMethodRunner.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioArray.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioBus.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioChannel.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDelayDSPKernel.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDestination.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDestinationConsumer.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernel.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernelProcessor.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioFIFO.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioFileReader.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioIOCallback.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioProcessor.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioPullFIFO.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioResampler.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioResamplerKernel.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioSourceProvider.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioSourceProviderClient.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioUtilities.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Biquad.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Cone.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DenormalDisabler.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DirectConvolver.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Distance.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DownSampler.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressor.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressorKernel.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\EqualPowerPanner.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\FFTConvolver.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\FFTFrame.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabase.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabaseLoader.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFElevation.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFKernel.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFPanner.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\IIRFilter.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\MultiChannelResampler.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Panner.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Reverb.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbAccumulationBuffer.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolver.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolverStage.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbInputBuffer.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\SincResampler.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\StereoPanner.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\UpSampler.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\VectorMath.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\blob\BlobData.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\blob\BlobRegistry.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\blob\BlobURL.h" />
@@ -7689,7 +7597,6 @@
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\UnicodeRangeSet.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\UTF16TextIterator.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\VDMXParser.h" />
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\WebFontDecoder.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\win\FontFallbackWin.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\geometry\DoublePoint.h" />
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\geometry\DoubleRect.h" />
@@ -8712,8 +8619,6 @@
     <ClInclude Include="..\..\public\web\WebWindowFeatures.h" />
     <ClInclude Include="..\..\public\web\WebWorkerContentSettingsClientProxy.h" />
     <ClInclude Include="..\..\public\web\win\WebFontRendering.h" />
-    <ClInclude Include="..\..\wke\wke.h" />
-    <ClInclude Include="..\..\wke\wke2.h" />
     <ClInclude Include="..\..\wke\wkedefine.h" />
     <ClInclude Include="..\..\wke\wkeGlobalVar.h" />
     <ClInclude Include="..\..\wke\wkeJsBind.h" />
@@ -8756,7 +8661,6 @@
     <None Include="..\..\third_party\WebKit\Source\modules\websockets\DEPS" />
     <None Include="..\..\third_party\WebKit\Source\platform\animation\DEPS" />
     <None Include="..\..\third_party\WebKit\Source\platform\animation\OWNERS" />
-    <None Include="..\..\third_party\WebKit\Source\platform\audio\OWNERS" />
     <None Include="..\..\third_party\WebKit\Source\platform\BUILD.gn" />
     <None Include="..\..\third_party\WebKit\Source\platform\ColorData.gperf" />
     <None Include="..\..\third_party\WebKit\Source\platform\DEPS" />
@@ -8806,6 +8710,7 @@
     <None Include="..\..\ui\gfx\geometry\OWNERS" />
     <None Include="..\..\ui\gl\BUILD.gn" />
     <None Include="..\..\ui\gl\DEPS" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\third_party\smhasher\src\CMakeLists.txt" />

@@ -144,6 +144,9 @@
     <ClCompile Include="..\..\third_party\libjpeg\jutils.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\third_party\libjpeg\iccjpeg.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\third_party\libjpeg\jconfig.h">
@@ -171,6 +174,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\third_party\libjpeg\jversion.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\third_party\libjpeg\iccjpeg.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

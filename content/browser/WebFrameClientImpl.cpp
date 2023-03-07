@@ -30,7 +30,7 @@
 #include "wke/wkeGlobalVar.h"
 //#include "node/nodeblink.h"
 
-#include "media/blink/url_index.h"
+//#include "media/blink/url_index.h"
 
 #if (defined ENABLE_WKE) && (ENABLE_WKE == 1)
 namespace wke {
@@ -243,21 +243,21 @@ blink::WebPlugin* WebFrameClientImpl::createPlugin(WebLocalFrame* frame, const W
 #endif
 }
 
-WebMediaPlayer* WebFrameClientImpl::createMediaPlayer(const WebMediaPlayerSource& source,
-    WebMediaPlayerClient* client,
-    WebMediaPlayerEncryptedMediaClient* encrypt,
-    WebContentDecryptionModule* module,
-    const WebString& sinkId)
-{
-#if defined(OS_WIN) 
-    if (!m_urlIndex.get() || m_urlIndex->frame() != m_frame)
-        m_urlIndex.reset(new media::UrlIndex(m_frame));
-
-    return OrigChromeMgr::createWebMediaPlayer(m_frame, source, client, encrypt, module, sinkId, m_urlIndex);
-#else
-    return nullptr;
-#endif
-}
+//WebMediaPlayer* WebFrameClientImpl::createMediaPlayer(const WebMediaPlayerSource& source,
+//    WebMediaPlayerClient* client,
+//    WebMediaPlayerEncryptedMediaClient* encrypt,
+//    WebContentDecryptionModule* module,
+//    const WebString& sinkId)
+//{
+//#if defined(OS_WIN) 
+//    //if (!m_urlIndex.get() || m_urlIndex->frame() != m_frame)
+//    //    m_urlIndex.reset(new media::UrlIndex(m_frame));
+//    return nullptr;
+//    //return OrigChromeMgr::createWebMediaPlayer(m_frame, source, client, encrypt, module, sinkId, m_urlIndex);
+//#else
+//    return nullptr;
+//#endif
+//}
 
 blink::WebApplicationCacheHost* WebFrameClientImpl::createApplicationCacheHost(WebApplicationCacheHostClient*) { return 0; }
 
@@ -270,20 +270,6 @@ blink::WebWorkerContentSettingsClientProxy* WebFrameClientImpl::createWorkerCont
 WebExternalPopupMenu* WebFrameClientImpl::createExternalPopupMenu(const WebPopupMenuInfo&, WebExternalPopupMenuClient*)
 {
     return 0;
-}
-
-WebCookieJar* WebFrameClientImpl::cookieJar()
-{
-    PassRefPtr<net::PageNetExtraData> extra = m_webPage->getPageNetExtraData();
-    if (extra && extra->getCookieJar())
-        return extra->getCookieJar();
-
-    net::WebURLLoaderManager* manager = net::WebURLLoaderManager::sharedInstance();
-    if (!manager)
-        return nullptr;
-
-    net::WebCookieJarImpl* result = manager->getShareCookieJar();
-    return result;
 }
 
 void WebFrameClientImpl::resetLoadState()
@@ -386,7 +372,7 @@ static wkeWebFrameHandle frameIdToWkeFrame(WebPage* webPage, WebLocalFrame* fram
 void WebFrameClientImpl::didCommitProvisionalLoad(WebLocalFrame* frame, const WebHistoryItem& history, WebHistoryCommitType type)
 {
     //if (!frame->parent())
-        m_webPage->didCommitProvisionalLoad(frame, history, type, false);
+        //m_webPage->didCommitProvisionalLoad(frame, history, type, false);
 
 #if (defined ENABLE_WKE) && (ENABLE_WKE == 1)
     wke::AutoDisableFreeV8TempObejct autoDisableFreeV8TempObejct;
@@ -394,8 +380,8 @@ void WebFrameClientImpl::didCommitProvisionalLoad(WebLocalFrame* frame, const We
     String url = history.urlString();
     wke::CString string(url);
 
-    if (m_webPage->wkeWebView() && !frame->parent())
-        m_webPage->wkeWebView()->onUrlChanged(&string);
+    //if (m_webPage->wkeWebView() && !frame->parent())
+    //    m_webPage->wkeWebView()->onUrlChanged(&string);
 
     if (handler.urlChangedCallback && m_webPage->getState() == pageInited)
         handler.urlChangedCallback(m_webPage->wkeWebView(), handler.urlChangedCallbackParam, &string);
@@ -415,7 +401,8 @@ void WebFrameClientImpl::didCommitProvisionalLoad(WebLocalFrame* frame, const We
 
 WebHistoryItem WebFrameClientImpl::historyItemForNewChildFrame()
 {
-    return m_webPage->historyItemForNewChildFrame(m_frame);
+    return nullptr;
+    //return m_webPage->historyItemForNewChildFrame(m_frame);
 }
 
 void WebFrameClientImpl::didCreateNewDocument(WebLocalFrame* frame)
@@ -509,7 +496,7 @@ void WebFrameClientImpl::didFinishLoad(WebLocalFrame* frame)
 
 void WebFrameClientImpl::didNavigateWithinPage(WebLocalFrame* frame, const WebHistoryItem& history, WebHistoryCommitType type, bool contentInitiated)
 {    
-    m_webPage->didCommitProvisionalLoad(frame, history, type, true);
+    //m_webPage->didCommitProvisionalLoad(frame, history, type, true);
 
 #if (defined ENABLE_WKE) && (ENABLE_WKE == 1)
     wke::AutoDisableFreeV8TempObejct autoDisableFreeV8TempObejct;
@@ -517,8 +504,8 @@ void WebFrameClientImpl::didNavigateWithinPage(WebLocalFrame* frame, const WebHi
     String url = history.urlString();
     wke::CString string(url);
 
-    if (m_webPage->wkeWebView() && !frame->parent())
-        m_webPage->wkeWebView()->onUrlChanged(&string);
+    //if (m_webPage->wkeWebView() && !frame->parent())
+    //    m_webPage->wkeWebView()->onUrlChanged(&string);
 
     if (handler.urlChangedCallback && m_webPage->getState() == pageInited)
         handler.urlChangedCallback(m_webPage->wkeWebView(), handler.urlChangedCallbackParam, &string);

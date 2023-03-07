@@ -422,33 +422,35 @@ static void fixSwfUpload(LocalFrame* frame)
     content::WebPageImpl* page = (content::WebPageImpl*)view->client();
     if (!page)
         return;
-    net::WebCookieJarImpl* cookieJar = page->getCookieJar();
-    if (!cookieJar)
-        return;
-    String cookie = cookieJar->getCookiesForSession(KURL(), doc->cookieURL(), true);
-    String host = url.protocol();
 
-    host.append("://");
-    host.append(url.host());
 
-    // ::InternetSetCookieA(sURL, NULL, "JSESSIONID=null;path=/;expires=Thu, 01-Jan-1970 00:00:01 GMT");
-    // ::InternetSetCookieA(sURL, "JSESSIONID", "1111111111;path=/;expires=Thu, 01-Jan-2022 00:00:01 GMT");
+    //net::WebCookieJarImpl* cookieJar = page->getCookieJar();
+    //if (!cookieJar)
+    //    return;
+    //String cookie = cookieJar->getCookiesForSession(KURL(), doc->cookieURL(), true);
+    //String host = url.protocol();
 
-    Vector<String> keys;
-    Vector<String> values;
-    parseCookieKeyValue(cookie.utf8().data(), &keys, &values);
-    for (size_t i = 0; i < keys.size(); ++i) {
-        String key = keys[i];
-        String value = values[i];
+    //host.append("://");
+    //host.append(url.host());
 
-        String temp = key;
-        temp.append("=null;path=/;expires=Thu, 01-Jan-1970 00:00:01 GMT");
-        ::InternetSetCookieA(host.utf8().data(), NULL, temp.utf8().data());
+    //// ::InternetSetCookieA(sURL, NULL, "JSESSIONID=null;path=/;expires=Thu, 01-Jan-1970 00:00:01 GMT");
+    //// ::InternetSetCookieA(sURL, "JSESSIONID", "1111111111;path=/;expires=Thu, 01-Jan-2022 00:00:01 GMT");
 
-        temp = value;
-        temp.append(";path=/;expires=Thu, 01-Jan-2022 00:00:01 GMT");
-        ::InternetSetCookieA(host.utf8().data(), key.utf8().data(), temp.utf8().data());
-    }
+    //Vector<String> keys;
+    //Vector<String> values;
+    //parseCookieKeyValue(cookie.utf8().data(), &keys, &values);
+    //for (size_t i = 0; i < keys.size(); ++i) {
+    //    String key = keys[i];
+    //    String value = values[i];
+
+    //    String temp = key;
+    //    temp.append("=null;path=/;expires=Thu, 01-Jan-1970 00:00:01 GMT");
+    //    ::InternetSetCookieA(host.utf8().data(), NULL, temp.utf8().data());
+
+    //    temp = value;
+    //    temp.append(";path=/;expires=Thu, 01-Jan-2022 00:00:01 GMT");
+    //    ::InternetSetCookieA(host.utf8().data(), key.utf8().data(), temp.utf8().data());
+    //}
 #endif
 }
 

@@ -1,0 +1,457 @@
+@charset "utf-8";
+
+// 改变bootstrap的默认值
+$input-color: #8f99a4;
+$input-bg: #2e2e2e;
+$form-select-border-width: 0;
+$form-select-focus-width: 0;
+$form-select-bg: transparent;
+$form-select-indicator-color: $input-color;
+
+$accordion-bg: #111111;
+$accordion-color: #c8c6cb;
+// $accordion-button-color: blue;
+$accordion-button-bg: #1d2537;
+$accordion-button-active-bg: #1d2537;
+$accordion-button-active-color: $accordion-color;
+// $accordion-button-focus-border-color: #ff0000;
+$accordion-button-focus-box-shadow: #c8c6cb; // 只要定义这个，就没有border了
+
+$accordion-border-width: 10;
+// $accordion-border-color: $accordion-bg;
+$accordion-border-color: red;
+
+// $accordion-body-padding-y:                 4rem;
+// $accordion-body-padding-x:                 4rem;
+
+// 改变bulma的默认值
+
+// $primary: pink;
+// $blue:   red;
+$link: #154b83; // focus border的颜色也都是这个
+
+$border: #0c0c0c;
+$border-hover: #154b83;
+// $input-focus-border-color
+
+// 在import之前改变primary等颜色，这样 is-primary的css颜色就会变成red
+@import "../thirdparty/bulma/bulma.sass";
+@import "../thirdparty/bootstrap/scss/bootstrap.scss";
+
+// -------- 常用css --------
+.hidden {
+  display: none;
+}
+
+// show hide不生效，要用removeClass("hiddenImportant")
+.hiddenImportant {
+  display: none !important;
+}
+
+// 隐藏，但是占位
+.hiddenVisibility {
+  visibility: hidden;
+}
+
+.red {
+  background: #d81b21;
+}
+
+.green {
+  background: green;
+}
+
+.blue {
+  background: blue;
+}
+
+.pink {
+  background: pink;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.red-text {
+  color: #d81b21;
+}
+
+// 垂直水平居中 子元素
+.childToCenter {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+// 垂直居中 子元素
+.childToVCenter {
+  display: flex !important;
+  align-items: center !important;
+}
+
+// 垂直居中 子元素，非flex布局
+.vCenter {
+  vertical-align: middle !important;
+}
+
+// -------- 最大化最小化按钮 --------
+html {
+  overflow: hidden; // 隐藏滚动条
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.fullheight {
+  height: 100%;
+}
+
+.scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// 自定义滚动条样式
+::-webkit-scrollbar {
+  width: 16px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $accordion-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1b1b1b;
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #333333;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #222222;
+}
+
+// bui是blinkUI的简写
+.bui-no-background {
+  @extend .button;
+
+  background: transparent;
+  border: none;
+  border-radius: 0px;
+
+  &:focus,
+  &.is-focused {
+    &:not(:active) {
+      box-shadow: none;
+    }
+  }
+
+  &.is-not-hovered {
+    background: transparent;
+    color: $button-color;
+  }
+
+  &.is-light {
+    // 覆盖.button的is-light设置，把背景变透明
+    background: transparent;
+    border: none;
+
+    // focus，但not :active时，不要阴影
+    &:focus,
+    &.is-focused {
+      &:not(:active) {
+        box-shadow: none;
+      }
+    }
+
+    // 覆盖.button的hover设置
+    &:hover {
+      background: transparent;
+      color: $button-color;
+    }
+
+    // class不包含nohover时的:hover状态，也就是默认状态。 class如果加了nohover，就会变成上面那个状态
+    &:not(.nohover):hover {
+      background-color: $button-background-color;
+      color: $button-hover-color;
+    }
+  }
+}
+
+.bui-btn-img {
+  @extend .bui-no-background;
+  @extend .p-0;
+}
+
+.bui-btn-titlebar {
+  @extend .bui-no-background;
+  @extend .is-light;
+  @extend .pt-2;
+}
+
+.bui-btn-min,
+.bui-btn-max,
+.bui-btn-close {
+  @extend .bui-btn-titlebar;
+}
+
+.bui-btn-restore {
+  @extend .bui-btn-titlebar;
+  @extend .hidden;
+}
+
+.grad-gray {
+  background-image: linear-gradient(whitesmoke, #b5b5b5);
+}
+
+.no-select {
+  -webkit-user-select: none; // 不允许选择文字
+}
+
+.dragable {
+  -webkit-app-region: drag;
+}
+
+.no-dragable {
+  -webkit-app-region: no-drag;
+}
+
+/*横条样式*/
+input[type="range"] {
+  // -webkit-appearance: none; /*清除系统默认样式*/
+  // width: 100%;
+  background: -webkit-linear-gradient(#005aae, #005aae) no-repeat, #ddd; /*设置左边颜色为#61bd12，右边颜色为#ddd*/
+  background-size: 75% 100%; /*设置左右宽度比例*/
+  height: 3px; /*横条的高度*/
+}
+/*拖动块的样式*/
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /*清除系统默认样式*/
+
+  height: 10px; /*拖动块高度*/
+  width: 10px; /*拖动块宽度*/
+  background: #999999; /*拖动块背景*/
+  border-radius: 50%;
+  // border: solid 1px yellow;
+}
+
+// -------- 其他 --------
+.pointer-cursor {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.pointer-none {
+  pointer-events: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tabs-no-border {
+  @extend .tabs;
+
+  ul {
+    border-bottom-width: 0;
+  }
+}
+
+// -------- 本项目的css，不通用的都放这块 --------
+.titlebar-bkg {
+  // 因为css路径是这个dist/css/main.css，所以要用../../
+  background: url("../../assets/skin/caption_bk.png") 100% 100% no-repeat, linear-gradient(#0e1a2f, #060606);
+  background-size: 100% 100%;
+}
+
+.xmp-btn-titlebar {
+  @extend .bui-no-background;
+  @extend .is-light;
+  @extend .pt-2;
+}
+
+.xmp-btn-titleText {
+  @extend .bui-no-background;
+  color: #8f99a4;
+
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    color: #8f99a4;
+  }
+
+  &:hover,
+  &.is-hovered {
+    color: #084dc8;
+  }
+}
+
+.bkg-color {
+  background-color: #070707;
+}
+
+.bkg-color-input {
+  background-color: #0e0e0e;
+}
+
+.bkg-color-playlist {
+  background-color: $accordion-bg;
+}
+
+.bkg-color-translucent {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.xmp-text-color {
+  color: #c8c6cb;
+}
+
+.xmp-gray-text-color {
+  color: #8f99a4;
+}
+
+// 改变所有的placeholder
+// ::placeholder {
+//   color: red !important;
+//   // font-size: 1.2em;
+//   // font-style: italic;
+// }
+
+// 只改变input的placeholder
+input::placeholder {
+  color: #4b4f51 !important;
+}
+
+.font-normal {
+  font-size: 0.88em;
+}
+
+.font-sm {
+  font-size: 0.78em;
+}
+
+.flex-column {
+  // width:100vw;
+  // height:100vh;
+  display: flex;
+  flex-flow: column nowrap; /* 纵向排列 */
+  // overflow:hidden;
+}
+
+.height-remain {
+  flex: 1; /* 吸收剩余空间 */
+}
+
+.flex-full {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+
+.center-bkg {
+  background: 
+    // 第1个url图显示在最上层，y坐标是78px，也可以改成30%，x坐标是50%，代表水平居中
+    url("../../assets/skin/bk_logo_text.png") 50% 78px no-repeat,
+    //
+    url("../../assets/skin/bk_logo_image.png") 100% 50% no-repeat,
+    url("../../assets/skin/bk_logo_light.png") 100% 100% no-repeat;
+  background-size: auto auto, auto auto, 100% 100%;
+}
+
+.btn-4img {
+  // background-image: url("../../assets/skin/btn_open.png"); //设置背景图片
+  // background-size: 355px 16px; // 设置背景图片的大小，相当于图片实际宽高等比例饿缩放的
+  background-repeat: no-repeat;
+  background-position: 0px 0px; // 设置背景图片的的偏移量，这个-50相当于背景整体向左偏移50，就可以显示图片的中心
+  background-color: transparent;
+}
+
+#btn_open {
+  background: url("../../assets/skin/btn_bk.png") 100% 100% no-repeat;
+  background-size: 100% 100%;
+  width: 158px;
+  height: 40px;
+}
+
+.bkimg-light {
+  // background-size: 355px 16px; // 设置背景图片的大小，相当于图片实际宽高等比例饿缩放的
+  // background-position: 0px 0px; // 设置背景图片的的偏移量，这个-50相当于背景整体向左偏移50，就可以显示图片的中心
+  // background-color: transparent;
+  background: url("../../assets/skin/light_top.png") 100% 100% no-repeat;
+  background-size: 100% 100%;
+}
+
+.btn-list {
+  background-image: url("../../assets/skin/treeview_header.png"); //设置背景图片
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  height: 34px;
+}
+
+.text-list-item {
+  @extend .font-sm;
+  @extend .xmp-gray-text-color;
+}
+
+.bstreeview {
+  background-color: transparent;
+  // border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 0px;
+  border-radius: 0;
+  border-style: none;
+}
+
+.bstreeview .list-group-item {
+  background-color: transparent;
+  color: #8f99a4;
+  border-radius: 0;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.bstreeview .list-group-item:hover {
+  background-color: #1b1b1b;
+}
+
+// .bstreeview .list-group-item:focus,
+// .bstreeview .list-group-item:active {
+//   background-color: #151c2c;
+// }
+
+.list-group-item.active {
+  // color: green;
+  border-color: transparent;
+  background-color: #151c2c;
+}
+
+option {
+  background-color: $input-bg;
+}
+
+.stickyRightBottom {
+  position: sticky;
+  right: 0px;
+  bottom: 0px;
+}
+
+.stickyLeftTop {
+  position: sticky;
+  left: 0px;
+  top: 0px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'" /> -->
+
+    <!-- 第三方CSS -->
+    <link rel="stylesheet" href="thirdparty/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="thirdparty/bulma-extensions/bulma-extensions.css" />
+    <link rel="stylesheet" href="thirdparty/animate.css" />
+
+    <!-- 本项目CSS -->
+    <link href="dist/css/main.css" rel="stylesheet" />
+
+    <!-- 第三方js -->
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script src="thirdparty/jquery/jquery.js"></script>
+    <script src="thirdparty/bulma-extensions/bulma-extensions.js"></script>
+
+    <script>
+      if (window.module) module = window.module;
+    </script>
+
+    <!-- 本项目js -->
+  </head>
+  <body>
+    <div class="level is-mobile dragable grad-gray">
+      <div class="level-left ml-2">
+        <img class="mr-1" height="24" width="24" src="assets/logo.png" />
+        <p>Electron demo - by 中国Alberl</p>
+      </div>
+      <div class="level-right no-dragable">
+        <button class="bui-btn-min" title="最小化">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+        <button class="bui-btn-restore" title="还原">
+          <i class="fa-regular fa-window-restore"></i>
+        </button>
+        <button class="bui-btn-max" title="最大化">
+          <i class="fa-regular fa-window-maximize"></i>
+        </button>
+        <button class="bui-btn-close" title="关闭">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+    <script src="./titlebar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "compounds": [
+    {
+      "name": "Electron: All",
+      "configurations": ["Debug Main Process", "Debug Renderer Process"],
+      "stopAll": true
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Debug Main Process",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "electron",
+      "windows": {
+        // "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd" // 使用本目录的electron
+        "runtimeExecutable": "electron.cmd" // 使用全局的electron
+      },
+      "runtimeArgs": ["--remote-debugging-port=9223"],
+      "args": ["."]
+    },
+    {
+      "name": "Debug Renderer Process",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9223,
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

@@ -183,13 +183,13 @@ Widget* EmptyFrameLoaderClient::createPlugin(HTMLPlugInElement*,
     return nullptr;
 }
 
-std::unique_ptr<WebMediaPlayer> EmptyFrameLoaderClient::createWebMediaPlayer(
-    HTMLMediaElement&,
-    const WebMediaPlayerSource&,
-    WebMediaPlayerClient*)
-{
-    return nullptr;
-}
+//std::unique_ptr<WebMediaPlayer> EmptyFrameLoaderClient::createWebMediaPlayer(
+//    HTMLMediaElement&,
+//    const WebMediaPlayerSource&,
+//    WebMediaPlayerClient*)
+//{
+//    return nullptr;
+//}
 
 WebRemotePlaybackClient* EmptyFrameLoaderClient::createWebRemotePlaybackClient(
     HTMLMediaElement&)

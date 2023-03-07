@@ -148,38 +148,38 @@ void CWebView::setTransparent(bool transparent)
     m_webPage->setTransparent(transparent);
 }
 
-void CWebView::loadPostURL(const utf8* inUrl, const char * poastData, int nLen )
-{
-    blink::KURL url(blink::ParsedURLString, inUrl);
-    if (!url.isValid())
-        url.setProtocol("http:");
-
-    if (!url.isValid())
-        return;
-
-    if (blink::protocolIsJavaScript(url)) {
-        //m_mainFrame->script()->executeIfJavaScriptURL(url);
-        return;
-    }
-
-    blink::WebURLRequest request(url);
-    request.setCachePolicy(blink::WebCachePolicy::UseProtocolCachePolicy);
-    request.setHTTPMethod(blink::WebString::fromUTF8("POST"));
-
-    blink::WebHTTPBody body;
-    body.initialize();
-    body.appendData(blink::WebData(poastData, nLen));
-    request.setHTTPBody(body);
-    m_webPage->loadRequest(content::WebPage::kMainFrameId, request);
-}
-
-void CWebView::loadPostURL(const WCHAR* inUrl,const char * poastData, int nLen)
-{
-#if defined(OS_WIN)
-    loadPostURL(String(inUrl).utf8().data(), poastData,nLen);
-#endif
-    DebugBreak();
-}
+//void CWebView::loadPostURL(const utf8* inUrl, const char * poastData, int nLen )
+//{
+//    blink::KURL url(blink::ParsedURLString, inUrl);
+//    if (!url.isValid())
+//        url.setProtocol("http:");
+//
+//    if (!url.isValid())
+//        return;
+//
+//    if (blink::protocolIsJavaScript(url)) {
+//        //m_mainFrame->script()->executeIfJavaScriptURL(url);
+//        return;
+//    }
+//
+//    blink::WebURLRequest request(url);
+//    request.setCachePolicy(blink::WebCachePolicy::UseProtocolCachePolicy);
+//    request.setHTTPMethod(blink::WebString::fromUTF8("POST"));
+//
+//    blink::WebHTTPBody body;
+//    body.initialize();
+//    body.appendData(blink::WebData(poastData, nLen));
+//    request.setHTTPBody(body);
+//    m_webPage->loadRequest(content::WebPage::kMainFrameId, request);
+//}
+//
+//void CWebView::loadPostURL(const WCHAR* inUrl,const char * poastData, int nLen)
+//{
+//#if defined(OS_WIN)
+//    loadPostURL(String(inUrl).utf8().data(), poastData,nLen);
+//#endif
+//    DebugBreak();
+//}
 
 static bool checkIsFileUrl(const utf8* inUrl)
 {
@@ -456,20 +456,20 @@ bool CWebView::isDocumentReady() const
     return frameClient->isDocumentReady();
 }
 
-void CWebView::setUserAgent(const utf8 * useragent)
-{
-    content::BlinkPlatformImpl* platform = (content::BlinkPlatformImpl*)blink::Platform::current();
-    platform->setUserAgent((char *)useragent);
-}
-
-void CWebView::setUserAgent(const WCHAR * useragent)
-{
-#if defined(OS_WIN)
-    setUserAgent(String(useragent).utf8().data());
-#else
-    DebugBreak();
-#endif
-}
+//void CWebView::setUserAgent(const utf8 * useragent)
+//{
+//    content::BlinkPlatformImpl* platform = (content::BlinkPlatformImpl*)blink::Platform::current();
+//    platform->setUserAgent((char *)useragent);
+//}
+//
+//void CWebView::setUserAgent(const WCHAR * useragent)
+//{
+//#if defined(OS_WIN)
+//    setUserAgent(String(useragent).utf8().data());
+//#else
+//    DebugBreak();
+//#endif
+//}
 
 void CWebView::stopLoading()
 {
@@ -481,52 +481,52 @@ void CWebView::reload()
     net::WebURLLoaderManager::sharedInstance()->cancelAllJobsOfWebview(m_id);
     m_webPage->mainFrame()->reload(blink::WebFrameLoadType::Reload);
 }
-
-void CWebView::goToOffset(int offset)
-{
-    m_webPage->goToOffset(offset);
-}
-
-void CWebView::goToIndex(int index)
-{
-    m_webPage->goToIndex(index);
-}
-
-const utf8* CWebView::title()
-{
-    content::WebFrameClientImpl* frameClient = m_webPage->webFrameClientImpl();
-    m_title = frameClient->title();
-
-    return m_title.string();
-}
-
-const WCHAR* CWebView::titleW()
-{
-#if defined(OS_WIN)
-    content::WebFrameClientImpl* frameClient = m_webPage->webFrameClientImpl();
-    m_title = frameClient->title();
-
-    return m_title.stringW();
-#else
-    DebugBreak();
-    return nullptr;
-#endif
-}
+//
+//void CWebView::goToOffset(int offset)
+//{
+//    m_webPage->goToOffset(offset);
+//}
+//
+//void CWebView::goToIndex(int index)
+//{
+//    m_webPage->goToIndex(index);
+//}
+//
+//const utf8* CWebView::title()
+//{
+//    content::WebFrameClientImpl* frameClient = m_webPage->webFrameClientImpl();
+//    m_title = frameClient->title();
+//
+//    return m_title.string();
+//}
+//
+//const WCHAR* CWebView::titleW()
+//{
+//#if defined(OS_WIN)
+//    content::WebFrameClientImpl* frameClient = m_webPage->webFrameClientImpl();
+//    m_title = frameClient->title();
+//
+//    return m_title.stringW();
+//#else
+//    DebugBreak();
+//    return nullptr;
+//#endif
+//}
 
 void CWebView::resize(int w, int h)
 {
     m_webPage->fireResizeEvent(m_webPage->getHWND(), WM_SIZE, 0, MAKELONG(w, h));
 }
 
-int CWebView::width() const 
-{ 
-    return m_webPage->viewportSize().width();
-}
-
-int CWebView::height() const 
-{ 
-    return m_webPage->viewportSize().height();
-}
+//int CWebView::width() const 
+//{ 
+//    return m_webPage->viewportSize().width();
+//}
+//
+//int CWebView::height() const 
+//{ 
+//    return m_webPage->viewportSize().height();
+//}
 
 int CWebView::contentsWidth() const
 {
@@ -602,216 +602,169 @@ void CWebView::setHandle(HWND wnd)
     m_webPage->setHWND(wnd);
 }
 
-void CWebView::setHandleOffset(int x, int y)
-{
-    blink::IntPoint offset(x, y);
-    m_webPage->setHwndRenderOffset(offset);
-}
-
-void CWebView::setDragDropEnable(bool b)
-{
-    m_webPage->setDragDropEnable(b);
-}
-
-void CWebView::setTouchSimulateEnabled(bool b)
-{
-    m_webPage->setTouchSimulateEnabled(b);
-}
-
-void CWebView::setSystemTouchEnabled(bool b)
-{
-    m_webPage->setSystemTouchEnabled(b);
-}
-
-void CWebView::setViewSettings(const wkeViewSettings* settings)
-{
-    if (!settings)
-        return;
-
-    m_settings = *settings;
-
-    if (m_webPage)
-        m_webPage->setBackgroundColor(m_settings.bgColor);
-}
-
-void CWebView::paint(void* bits, int pitch)
-{
-    if (m_webPage->needsCommit())
-        m_webPage->fireTimerEvent();
-    m_webPage->paintToBit(bits, pitch);
-}
-
-void CWebView::paint(void* bits, int bufWid, int bufHei, int xDst, int yDst, int w, int h, int xSrc, int ySrc, bool bCopyAlpha)
-{
-//     if (m_dirty)
-//         repaintIfNeeded();
-// 
-//     if(xSrc + w > m_width) w = m_width - xSrc;
-//     if(ySrc + h > m_height) h = m_height -ySrc;
-//     
-//     if(xDst + w > bufWid) w =bufWid - xDst;
-//     if(yDst + h > bufHei) h = bufHei - yDst;
-//     
-//     int pitchDst = bufWid*4;
-//     int pitchSrc = m_width*4;
-//     
-//     unsigned char* src = (unsigned char*)m_pixels; 
-//     unsigned char* dst = (unsigned char*)bits; 
-//     src += pitchSrc*ySrc + xSrc*4;
-//     dst += yDst*pitchDst + xDst*4;
-//     
-//     if(bCopyAlpha) {
-//         for(int j = 0; j< h; j++) {
-//             memcpy(dst,src,w*4);
-//             dst += pitchDst;
-//             src += pitchSrc;
-//         }
-//     } else {
-//         for(int j = 0; j< h; j++) {
-//             for(int i=0;i<w;i++) {
-//                 memcpy(dst,src,3);
-//                 dst += 4;
-//                 src += 4;
-//             }
-//             dst += (bufWid - w)*4;
-//             src += (m_width - w)*4;
-//         }
-//     }
-}
-
-bool CWebView::canGoBack() const
-{
-    //return page()->backForwardList()->backItem() && !page()->defersLoading();
-    return m_webPage->canGoBack();
-}
-
-bool CWebView::goBack()
-{
-    //return page()->goBack();
-    m_webPage->goBack();
-    return true;
-}
-
-bool CWebView::canGoForward() const
-{
-    //return page()->backForwardList()->forwardItem() && !page()->defersLoading();
-    return m_webPage->canGoForward();
-}
-
-bool CWebView::goForward()
-{
-    //return page()->goForward();
-    m_webPage->goForward();
-    return true;
-}
-
-void CWebView::navigateAtIndex(int index)
-{
-    m_webPage->goToIndex(index);
-}
-
-int CWebView::getNavigateIndex() const
-{
-    return m_webPage->getNavigateIndex();
-}
-
-void CWebView::editorSelectAll()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("SelectAll");
-}
-
-void CWebView::editorUnSelect()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Unselect");
-}
-
-void CWebView::editorCopy()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Copy");
-}
-
-void CWebView::editorCut()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Cut");
-}
-
-void CWebView::editorPaste()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Paste");
-}
-
-void CWebView::editorDelete()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Delete");
-}
-
-void CWebView::editorUndo()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Undo");
-}
-
-void CWebView::editorRedo()
-{
-    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Redo");
-}
-
-void CWebView::setCookieEnabled(bool enable)
-{
-    if (!m_webPage || !m_webPage->webViewImpl())
-        return;
-
-    blink::WebSettingsImpl* settings = m_webPage->webViewImpl()->settingsImpl();
-    if (!settings)
-        return;
-
-    settings->setCookieEnabled(enable);
-    m_isCokieEnabled = enable;
-}
-
-const WCHAR* CWebView::cookieW()
-{
-#if defined(OS_WIN)
-    cookie();
-    return m_cookie.stringW();
-#else
-    DebugBreak();
-    return nullptr;
-#endif
-}
-
-const utf8* CWebView::cookie()
-{
-    if (!m_webPage->mainFrame())
-        return "";
-    blink::WebDocument webDocument = m_webPage->mainFrame()->document();
-    if (webDocument.isNull())
-        return "";
-
-    net::WebCookieJarImpl* cookieJar = getCookieJar();
-    if (!cookieJar)
-        return "";
-
-    const blink::Document* doc = webDocument.constUnwrap<blink::Document>();
-    m_cookie = cookieJar->getCookiesForSession(KURL(), doc->cookieURL(), true);
-
-    return m_cookie.string();
-}
-
-bool CWebView::isCookieEnabled() const
-{
-    return m_isCokieEnabled;
-}
-
-void CWebView::setMediaVolume(float volume)
-{
-    //page()->setMediaVolume(volume);
-}
-
-float CWebView::mediaVolume() const
-{
-    //return page()->mediaVolume();
-    return 0;
-}
+//void CWebView::setHandleOffset(int x, int y)
+//{
+//    blink::IntPoint offset(x, y);
+//    m_webPage->setHwndRenderOffset(offset);
+//}
+//
+//void CWebView::setDragDropEnable(bool b)
+//{
+//    m_webPage->setDragDropEnable(b);
+//}
+//
+//void CWebView::setTouchSimulateEnabled(bool b)
+//{
+//    m_webPage->setTouchSimulateEnabled(b);
+//}
+//
+//void CWebView::setSystemTouchEnabled(bool b)
+//{
+//    m_webPage->setSystemTouchEnabled(b);
+//}
+//
+//void CWebView::setViewSettings(const wkeViewSettings* settings)
+//{
+//    if (!settings)
+//        return;
+//
+//    m_settings = *settings;
+//
+//    if (m_webPage)
+//        m_webPage->setBackgroundColor(m_settings.bgColor);
+//}
+//
+//void CWebView::paint(void* bits, int pitch)
+//{
+//    if (m_webPage->needsCommit())
+//        m_webPage->fireTimerEvent();
+//    m_webPage->paintToBit(bits, pitch);
+//}
+//
+//void CWebView::paint(void* bits, int bufWid, int bufHei, int xDst, int yDst, int w, int h, int xSrc, int ySrc, bool bCopyAlpha)
+//{
+////     if (m_dirty)
+////         repaintIfNeeded();
+//// 
+////     if(xSrc + w > m_width) w = m_width - xSrc;
+////     if(ySrc + h > m_height) h = m_height -ySrc;
+////     
+////     if(xDst + w > bufWid) w =bufWid - xDst;
+////     if(yDst + h > bufHei) h = bufHei - yDst;
+////     
+////     int pitchDst = bufWid*4;
+////     int pitchSrc = m_width*4;
+////     
+////     unsigned char* src = (unsigned char*)m_pixels; 
+////     unsigned char* dst = (unsigned char*)bits; 
+////     src += pitchSrc*ySrc + xSrc*4;
+////     dst += yDst*pitchDst + xDst*4;
+////     
+////     if(bCopyAlpha) {
+////         for(int j = 0; j< h; j++) {
+////             memcpy(dst,src,w*4);
+////             dst += pitchDst;
+////             src += pitchSrc;
+////         }
+////     } else {
+////         for(int j = 0; j< h; j++) {
+////             for(int i=0;i<w;i++) {
+////                 memcpy(dst,src,3);
+////                 dst += 4;
+////                 src += 4;
+////             }
+////             dst += (bufWid - w)*4;
+////             src += (m_width - w)*4;
+////         }
+////     }
+//}
+//
+//bool CWebView::canGoBack() const
+//{
+//    //return page()->backForwardList()->backItem() && !page()->defersLoading();
+//    return m_webPage->canGoBack();
+//}
+//
+//bool CWebView::goBack()
+//{
+//    //return page()->goBack();
+//    m_webPage->goBack();
+//    return true;
+//}
+//
+//bool CWebView::canGoForward() const
+//{
+//    //return page()->backForwardList()->forwardItem() && !page()->defersLoading();
+//    return m_webPage->canGoForward();
+//}
+//
+//bool CWebView::goForward()
+//{
+//    //return page()->goForward();
+//    m_webPage->goForward();
+//    return true;
+//}
+//
+//void CWebView::navigateAtIndex(int index)
+//{
+//    m_webPage->goToIndex(index);
+//}
+//
+//int CWebView::getNavigateIndex() const
+//{
+//    return m_webPage->getNavigateIndex();
+//}
+//
+//void CWebView::editorSelectAll()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("SelectAll");
+//}
+//
+//void CWebView::editorUnSelect()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Unselect");
+//}
+//
+//void CWebView::editorCopy()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Copy");
+//}
+//
+//void CWebView::editorCut()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Cut");
+//}
+//
+//void CWebView::editorPaste()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Paste");
+//}
+//
+//void CWebView::editorDelete()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Delete");
+//}
+//
+//void CWebView::editorUndo()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Undo");
+//}
+//
+//void CWebView::editorRedo()
+//{
+//    ((blink::WebLocalFrame*)(m_webPage->mainFrame()))->executeCommand("Redo");
+//}
+//
+//void CWebView::setMediaVolume(float volume)
+//{
+//    //page()->setMediaVolume(volume);
+//}
+//
+//float CWebView::mediaVolume() const
+//{
+//    //return page()->mediaVolume();
+//    return 0;
+//}
 
 bool CWebView::fireMouseEvent(unsigned int message, int x, int y, unsigned int flags)
 {
@@ -1116,13 +1069,13 @@ jsExecState CWebView::globalExecByFrame(wkeWebFrameHandle frameId)
         return nullptr;
     return wke::createTempExecStateByV8Context(webFrame->mainWorldScriptContext());
 }
-
-void CWebView::sleep()
-{
-    m_awake = false;
-//     page()->setCanStartMedia(false);
-//     page()->willMoveOffscreen();
-}
+//
+//void CWebView::sleep()
+//{
+//    m_awake = false;
+////     page()->setCanStartMedia(false);
+////     page()->willMoveOffscreen();
+//}
 
 void CWebView::wake()
 {
@@ -1131,11 +1084,11 @@ void CWebView::wake()
 //     page()->setCanStartMedia(true);
 }
 
-bool CWebView::isAwake() const
-{
-    return m_awake;
-}
-
+//bool CWebView::isAwake() const
+//{
+//    return m_awake;
+//}
+//
 void CWebView::setZoomFactor(float factor)
 {
     //m_mainFrame->setPageZoomFactor(factor);
@@ -1155,40 +1108,40 @@ float CWebView::zoomFactor() const
     return m_zoomFactor;
 }
 
-void CWebView::setEditable(bool editable)
-{
-//     if (page()->isEditable() != editable) {
-//         page()->setEditable(editable);
-//         page()->setTabKeyCyclesThroughElements(!editable);
-//         if (editable)
-//             m_mainFrame->editor()->applyEditingStyleToBodyElement();
-//     }
-}
-
-void CWebView::onTitleChanged(wkeTitleChangedCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().titleChangedCallback = callback;
-    m_webPage->wkeHandler().titleChangedCallbackParam = callbackParam;
-}
-
-void CWebView::onMouseOverUrlChanged(wkeTitleChangedCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().mouseOverUrlChangedCallback = callback;
-    m_webPage->wkeHandler().mouseOverUrlChangedCallbackParam = callbackParam;
-}
-
-void CWebView::onURLChanged(wkeURLChangedCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().urlChangedCallback = callback;
-    m_webPage->wkeHandler().urlChangedCallbackParam = callbackParam;
-}
-
-void CWebView::onURLChanged2(wkeURLChangedCallback2 callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().urlChangedCallback2 = callback;
-    m_webPage->wkeHandler().urlChangedCallback2Param = callbackParam;
-}
-
+//void CWebView::setEditable(bool editable)
+//{
+////     if (page()->isEditable() != editable) {
+////         page()->setEditable(editable);
+////         page()->setTabKeyCyclesThroughElements(!editable);
+////         if (editable)
+////             m_mainFrame->editor()->applyEditingStyleToBodyElement();
+////     }
+//}
+//
+//void CWebView::onTitleChanged(wkeTitleChangedCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().titleChangedCallback = callback;
+//    m_webPage->wkeHandler().titleChangedCallbackParam = callbackParam;
+//}
+//
+//void CWebView::onMouseOverUrlChanged(wkeTitleChangedCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().mouseOverUrlChangedCallback = callback;
+//    m_webPage->wkeHandler().mouseOverUrlChangedCallbackParam = callbackParam;
+//}
+//
+//void CWebView::onURLChanged(wkeURLChangedCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().urlChangedCallback = callback;
+//    m_webPage->wkeHandler().urlChangedCallbackParam = callbackParam;
+//}
+//
+//void CWebView::onURLChanged2(wkeURLChangedCallback2 callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().urlChangedCallback2 = callback;
+//    m_webPage->wkeHandler().urlChangedCallback2Param = callbackParam;
+//}
+//
 void CWebView::onPaintUpdated(wkePaintUpdatedCallback callback, void* callbackParam)
 {
     m_webPage->wkeHandler().paintUpdatedCallback = callback;
@@ -1377,12 +1330,12 @@ void CWebView::_initMemoryDC()
     //m_hdc = adoptPtr(::CreateCompatibleDC(0));
 }
 
-void CWebView::onNavigation(wkeNavigationCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().navigationCallback = callback;
-    m_webPage->wkeHandler().navigationCallbackParam = callbackParam;
-}
-
+//void CWebView::onNavigation(wkeNavigationCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().navigationCallback = callback;
+//    m_webPage->wkeHandler().navigationCallbackParam = callbackParam;
+//}
+//
 void CWebView::onCreateView(wkeCreateViewCallback callback, void* callbackParam)
 {
     m_webPage->wkeHandler().createViewCallback = callback;
@@ -1401,18 +1354,18 @@ void CWebView::onDownload(wkeDownloadCallback callback, void* callbackParam)
     m_webPage->wkeHandler().downloadCallbackParam = callbackParam;
 }
 
-void CWebView::onDownload2(wkeDownload2Callback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().download2Callback = callback;
-    m_webPage->wkeHandler().download2CallbackParam = callbackParam;
-}
-
-void CWebView::onNetResponse(wkeNetResponseCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().netResponseCallback = callback;
-    m_webPage->wkeHandler().netResponseCallbackParam = callbackParam;
-}
-
+//void CWebView::onDownload2(wkeDownload2Callback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().download2Callback = callback;
+//    m_webPage->wkeHandler().download2CallbackParam = callbackParam;
+//}
+//
+//void CWebView::onNetResponse(wkeNetResponseCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().netResponseCallback = callback;
+//    m_webPage->wkeHandler().netResponseCallbackParam = callbackParam;
+//}
+//
 void CWebView::onConsole(wkeConsoleCallback callback, void* callbackParam)
 {
     m_webPage->wkeHandler().consoleCallback = callback;
@@ -1437,48 +1390,48 @@ void CWebView::onDocumentReady2(wkeDocumentReady2Callback callback, void* callba
     m_webPage->wkeHandler().documentReady2CallbackParam = callbackParam;
 }
 
-void CWebView::onLoadUrlBegin(wkeLoadUrlBeginCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().loadUrlBeginCallback = callback;
-    m_webPage->wkeHandler().loadUrlBeginCallbackParam = callbackParam;
-}
-
-void CWebView::onLoadUrlEnd(wkeLoadUrlEndCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().loadUrlEndCallback = callback;
-    m_webPage->wkeHandler().loadUrlEndCallbackParam = callbackParam;
-}
-
-void CWebView::onLoadUrlFail(wkeLoadUrlFailCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().loadUrlFailCallback = callback;
-    m_webPage->wkeHandler().loadUrlFailCallbackParam = callbackParam;
-}
-
+//void CWebView::onLoadUrlBegin(wkeLoadUrlBeginCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().loadUrlBeginCallback = callback;
+//    m_webPage->wkeHandler().loadUrlBeginCallbackParam = callbackParam;
+//}
+//
+//void CWebView::onLoadUrlEnd(wkeLoadUrlEndCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().loadUrlEndCallback = callback;
+//    m_webPage->wkeHandler().loadUrlEndCallbackParam = callbackParam;
+//}
+//
+//void CWebView::onLoadUrlFail(wkeLoadUrlFailCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().loadUrlFailCallback = callback;
+//    m_webPage->wkeHandler().loadUrlFailCallbackParam = callbackParam;
+//}
+//
 void CWebView::onDidCreateScriptContext(wkeDidCreateScriptContextCallback callback, void* callbackParam)
 {
     m_webPage->wkeHandler().didCreateScriptContextCallback = callback;
     m_webPage->wkeHandler().didCreateScriptContextCallbackParam = callbackParam;
 }
 
-void CWebView::onWillReleaseScriptContext(wkeWillReleaseScriptContextCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().willReleaseScriptContextCallback = callback;
-    m_webPage->wkeHandler().willReleaseScriptContextCallbackParam = callbackParam;
-}
-
-void CWebView::onOtherLoad(wkeOnOtherLoadCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().otherLoadCallback = callback;
-    m_webPage->wkeHandler().otherLoadCallbackParam = callbackParam;
-}
-
-void CWebView::onContextMenuItemClick(wkeOnContextMenuItemClickCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().contextMenuItemClickCallback = callback;
-    m_webPage->wkeHandler().contextMenuItemClickCallbackParam = callbackParam;
-}
-
+//void CWebView::onWillReleaseScriptContext(wkeWillReleaseScriptContextCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().willReleaseScriptContextCallback = callback;
+//    m_webPage->wkeHandler().willReleaseScriptContextCallbackParam = callbackParam;
+//}
+//
+//void CWebView::onOtherLoad(wkeOnOtherLoadCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().otherLoadCallback = callback;
+//    m_webPage->wkeHandler().otherLoadCallbackParam = callbackParam;
+//}
+//
+//void CWebView::onContextMenuItemClick(wkeOnContextMenuItemClickCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().contextMenuItemClickCallback = callback;
+//    m_webPage->wkeHandler().contextMenuItemClickCallbackParam = callbackParam;
+//}
+//
 void CWebView::onDraggableRegionsChanged(wkeDraggableRegionsChangedCallback callback, void* callbackParam)
 {
     m_webPage->wkeHandler().draggableRegionsChangedCallback = callback;
@@ -1491,21 +1444,21 @@ void CWebView::onStartDragging(wkeStartDraggingCallback callback, void* callback
     m_webPage->wkeHandler().startDraggingCallbackParam = callbackParam;
 }
 
-void CWebView::onPrint(wkeOnPrintCallback callback, void* callbackParam)
-{
-    m_webPage->wkeHandler().printCallback = callback;
-    m_webPage->wkeHandler().printCallbackParam = callbackParam;
-}
-
-void CWebView::setClientHandler(const wkeClientHandler* handler)
-{
-    m_webPage->wkeSetClientHandler((void*)handler);
-}
-
-const wkeClientHandler* CWebView::getClientHandler() const
-{
-    return (const wkeClientHandler *)m_webPage->wkeClientHandler();
-}
+//void CWebView::onPrint(wkeOnPrintCallback callback, void* callbackParam)
+//{
+//    m_webPage->wkeHandler().printCallback = callback;
+//    m_webPage->wkeHandler().printCallbackParam = callbackParam;
+//}
+//
+//void CWebView::setClientHandler(const wkeClientHandler* handler)
+//{
+//    m_webPage->wkeSetClientHandler((void*)handler);
+//}
+//
+//const wkeClientHandler* CWebView::getClientHandler() const
+//{
+//    return (const wkeClientHandler *)m_webPage->wkeClientHandler();
+//}
 
 CWebViewHandler* CWebView::getWkeHandler() const
 {
@@ -1515,23 +1468,23 @@ CWebViewHandler* CWebView::getWkeHandler() const
     return &m_webPage->wkeHandler();
 }
 
-void CWebView::setUserKeyValue(const char* key, void* value)
-{
-    if (!key)
-        return;
-    m_userKeyValues[key] = value;
-}
-
-void* CWebView::getUserKeyValue(const char* key)
-{
-    if (!key)
-        return nullptr;
-    std::map<std::string, void*>::const_iterator it = m_userKeyValues.find(key);
-    if (m_userKeyValues.end() == it)
-        return nullptr;
-    return it->second;
-}
-
+//void CWebView::setUserKeyValue(const char* key, void* value)
+//{
+//    if (!key)
+//        return;
+//    m_userKeyValues[key] = value;
+//}
+//
+//void* CWebView::getUserKeyValue(const char* key)
+//{
+//    if (!key)
+//        return nullptr;
+//    std::map<std::string, void*>::const_iterator it = m_userKeyValues.find(key);
+//    if (m_userKeyValues.end() == it)
+//        return nullptr;
+//    return it->second;
+//}
+//
 int CWebView::getCursorInfoType()
 {
     return m_webPage->getCursorInfoType();
@@ -1542,50 +1495,50 @@ void CWebView::setCursorInfoType(int type)
     m_webPage->setCursorInfoType(type);
 }
 
-void CWebView::setDragFiles(const POINT* clintPos, const POINT* screenPos, wkeString files[], int filesCount)
-{
-    DebugBreak();
-//     blink::WebPoint clientPoint(clintPos->x, clintPos->y);
-//     blink::WebPoint screenPoint(screenPos->x, screenPos->y);
-// 
-//     blink::WebDragData webDragData;
-//     webDragData.initialize();
-// 
-//     for (int i = 0; i < filesCount; ++i) {
-//         WTF::String file = WTF::String::fromUTF8(files[i]->string());
-//         file.insert("file:///", 0);
-//     
-//         blink::WebDragData::Item it;
-//         it.storageType = blink::WebDragData::Item::StorageTypeFileSystemFile;
-//         it.fileSystemURL = blink::KURL(blink::ParsedURLString, file);
-//         webDragData.addItem(it);
-//     }
-// 
-//     blink::WebViewImpl* webView = m_webPage->webViewImpl();
-//     webView->dragTargetDragEnter(webDragData, clientPoint, screenPoint, blink::WebDragOperationEvery, 0);
-//     webView->dragTargetDragOver(clientPoint, screenPoint, blink::WebDragOperationEvery, 0);
-//     webView->dragTargetDrop(clientPoint, screenPoint, 0);
-}
-
-void CWebView::setNetInterface(const char* netInterface)
-{
-    m_netInterface = netInterface;
-}
-
-void CWebView::setProxyInfo(const String& host, unsigned long port, net::ProxyType type, const String& username, const String& password)
-{
-    m_proxyType = type;
-
-    if (!host.length()) {
-        m_proxy = emptyString();
-    } else {
-        String userPass;
-        if (username.length() || password.length())
-            userPass = username + ":" + password + "@";
-
-        m_proxy = String("http://") + userPass + host + ":" + String::number(port);
-    }
-}
+//void CWebView::setDragFiles(const POINT* clintPos, const POINT* screenPos, wkeString files[], int filesCount)
+//{
+//    DebugBreak();
+////     blink::WebPoint clientPoint(clintPos->x, clintPos->y);
+////     blink::WebPoint screenPoint(screenPos->x, screenPos->y);
+//// 
+////     blink::WebDragData webDragData;
+////     webDragData.initialize();
+//// 
+////     for (int i = 0; i < filesCount; ++i) {
+////         WTF::String file = WTF::String::fromUTF8(files[i]->string());
+////         file.insert("file:///", 0);
+////     
+////         blink::WebDragData::Item it;
+////         it.storageType = blink::WebDragData::Item::StorageTypeFileSystemFile;
+////         it.fileSystemURL = blink::KURL(blink::ParsedURLString, file);
+////         webDragData.addItem(it);
+////     }
+//// 
+////     blink::WebViewImpl* webView = m_webPage->webViewImpl();
+////     webView->dragTargetDragEnter(webDragData, clientPoint, screenPoint, blink::WebDragOperationEvery, 0);
+////     webView->dragTargetDragOver(clientPoint, screenPoint, blink::WebDragOperationEvery, 0);
+////     webView->dragTargetDrop(clientPoint, screenPoint, 0);
+//}
+//
+//void CWebView::setNetInterface(const char* netInterface)
+//{
+//    m_netInterface = netInterface;
+//}
+//
+//void CWebView::setProxyInfo(const String& host, unsigned long port, net::ProxyType type, const String& username, const String& password)
+//{
+//    m_proxyType = type;
+//
+//    if (!host.length()) {
+//        m_proxy = emptyString();
+//    } else {
+//        String userPass;
+//        if (username.length() || password.length())
+//            userPass = username + ":" + password + "@";
+//
+//        m_proxy = String("http://") + userPass + host + ":" + String::number(port);
+//    }
+//}
 
 class ShowDevToolsTaskObserver : public blink::WebThread::TaskObserver {
 public:
@@ -1713,7 +1666,7 @@ public:
         wkeOnPaintUpdated(devToolsWebView, onPaintUpdated, (void*)wrapInfo);
         wkeSetWindowTitle(devToolsWebView, "Miniblink Devtools");
         wkeSetZoomFactor(devToolsWebView, m_parent->zoomFactor());
-        wkeSetDragDropEnable(devToolsWebView, false);
+        //wkeSetDragDropEnable(devToolsWebView, false);
         blink::Platform::current()->currentThread()->removeTaskObserver(this);
 
         if (m_callback)
@@ -1739,55 +1692,12 @@ void CWebView::showDevTools(const utf8* url, wkeOnShowDevtoolsCallback callback,
     blink::Platform::current()->currentThread()->addTaskObserver(new ShowDevToolsTaskObserver(this, url, callback, param));
 }
 
-net::WebCookieJarImpl* CWebView::getCookieJar()
-{
-    if (!m_webPage)
-        return nullptr;
-
-    return m_webPage->getCookieJar();
-}
-
-CURLSH* CWebView::getCurlShareHandle()
-{
-    CURLSH* curlsh = nullptr;
-    if (m_webPage && m_webPage->getPageNetExtraData()) {
-        curlsh = m_webPage->getPageNetExtraData()->getCurlShareHandle();
-        if (curlsh)
-            return curlsh;
-    }
-
-    curlsh = net::WebURLLoaderManager::sharedInstance()->getCurlShareHandle();
-    return curlsh;
-}
-
-std::string CWebView::getCookieJarPath()
-{
-    std::string cookiesData;
-    if (m_webPage && m_webPage->getPageNetExtraData() && m_webPage->getPageNetExtraData()->getCookieJar()) {
-        cookiesData = m_webPage->getPageNetExtraData()->getCookieJarFullPath();
-        return cookiesData;
-    }
-
-    net::WebURLLoaderManager* manager = net::WebURLLoaderManager::sharedInstance();
-    if (!manager)
-        return "";
-
-    cookiesData = manager->getShareCookieJar()->getCookieJarFullPath();
-    return cookiesData;
-}
-
-void CWebView::setCookieJarFullPath(const utf8* path)
-{
-    if (m_webPage)
-        m_webPage->setCookieJarFullPath(path);
-}
-
-void CWebView::setLocalStorageFullPath(const utf8* path)
-{
-    if (m_webPage)
-        m_webPage->setLocalStorageFullPath(path);
-}
-
+//void CWebView::setLocalStorageFullPath(const utf8* path)
+//{
+//    if (m_webPage)
+//        m_webPage->setLocalStorageFullPath(path);
+//}
+//
 } // namespace wke
 
 #endif

@@ -33,6 +33,8 @@
 
 #include <locale.h>
 
+#include "build/build_config.h"
+
 
 /* hb_options_t */
 

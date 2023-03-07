@@ -61,7 +61,7 @@
 #include "core/frame/SmartClip.h"
 #include "core/frame/UseCounter.h"
 #include "core/frame/VisualViewport.h"
-#include "core/html/HTMLMediaElement.h"
+//#include "core/html/HTMLMediaElement.h"
 #include "core/html/HTMLPlugInElement.h"
 #include "core/html/HTMLTextAreaElement.h"
 #include "core/input/EventHandler.h"
@@ -140,7 +140,7 @@
 #include "public/web/WebHitTestResult.h"
 #include "public/web/WebInputElement.h"
 #include "public/web/WebMeaningfulLayout.h"
-#include "public/web/WebMediaPlayerAction.h"
+//#include "public/web/WebMediaPlayerAction.h"
 #include "public/web/WebNode.h"
 #include "public/web/WebPlugin.h"
 #include "public/web/WebPluginAction.h"
@@ -3432,69 +3432,69 @@ void WebViewImpl::resetScrollAndScaleState()
     pageScaleConstraintsSet().setNeedsReset(true);
 }
 
-void WebViewImpl::performMediaPlayerAction(const WebMediaPlayerAction& action,
-    const WebPoint& location)
-{
-    HitTestResult result = hitTestResultForViewportPos(location);
-    Node* node = result.innerNode();
-    if (!isHTMLVideoElement(*node) && !isHTMLAudioElement(*node))
-        return;
+//void WebViewImpl::performMediaPlayerAction(const WebMediaPlayerAction& action,
+//    const WebPoint& location)
+//{
+//    HitTestResult result = hitTestResultForViewportPos(location);
+//    Node* node = result.innerNode();
+//    if (!isHTMLVideoElement(*node) && !isHTMLAudioElement(*node))
+//        return;
+//
+//    HTMLMediaElement* mediaElement = toHTMLMediaElement(node);
+//    switch (action.type) {
+//    case WebMediaPlayerAction::Play:
+//        if (action.enable)
+//            mediaElement->play();
+//        else
+//            mediaElement->pause();
+//        break;
+//    case WebMediaPlayerAction::Mute:
+//        mediaElement->setMuted(action.enable);
+//        break;
+//    case WebMediaPlayerAction::Loop:
+//        mediaElement->setLoop(action.enable);
+//        break;
+//    case WebMediaPlayerAction::Controls:
+//        mediaElement->setBooleanAttribute(HTMLNames::controlsAttr, action.enable);
+//        break;
+//    default:
+//        NOTREACHED();
+//    }
+//}
 
-    HTMLMediaElement* mediaElement = toHTMLMediaElement(node);
-    switch (action.type) {
-    case WebMediaPlayerAction::Play:
-        if (action.enable)
-            mediaElement->play();
-        else
-            mediaElement->pause();
-        break;
-    case WebMediaPlayerAction::Mute:
-        mediaElement->setMuted(action.enable);
-        break;
-    case WebMediaPlayerAction::Loop:
-        mediaElement->setLoop(action.enable);
-        break;
-    case WebMediaPlayerAction::Controls:
-        mediaElement->setBooleanAttribute(HTMLNames::controlsAttr, action.enable);
-        break;
-    default:
-        NOTREACHED();
-    }
-}
+//void WebViewImpl::performPluginAction(const WebPluginAction& action,
+//    const WebPoint& location)
+//{
+//    // FIXME: Location is probably in viewport coordinates
+//    HitTestResult result = hitTestResultForRootFramePos(location);
+//    Node* node = result.innerNode();
+//    if (!isHTMLObjectElement(*node) && !isHTMLEmbedElement(*node))
+//        return;
+//
+//    LayoutObject* object = node->layoutObject();
+//    if (object && object->isLayoutPart()) {
+//        Widget* widget = toLayoutPart(object)->widget();
+//        if (widget && widget->isPluginContainer()) {
+//            WebPluginContainerImpl* plugin = toWebPluginContainerImpl(widget);
+//            switch (action.type) {
+//            case WebPluginAction::Rotate90Clockwise:
+//                plugin->plugin()->rotateView(WebPlugin::RotationType90Clockwise);
+//                break;
+//            case WebPluginAction::Rotate90Counterclockwise:
+//                plugin->plugin()->rotateView(
+//                    WebPlugin::RotationType90Counterclockwise);
+//                break;
+//            default:
+//                NOTREACHED();
+//            }
+//        }
+//    }
+//}
 
-void WebViewImpl::performPluginAction(const WebPluginAction& action,
-    const WebPoint& location)
-{
-    // FIXME: Location is probably in viewport coordinates
-    HitTestResult result = hitTestResultForRootFramePos(location);
-    Node* node = result.innerNode();
-    if (!isHTMLObjectElement(*node) && !isHTMLEmbedElement(*node))
-        return;
-
-    LayoutObject* object = node->layoutObject();
-    if (object && object->isLayoutPart()) {
-        Widget* widget = toLayoutPart(object)->widget();
-        if (widget && widget->isPluginContainer()) {
-            WebPluginContainerImpl* plugin = toWebPluginContainerImpl(widget);
-            switch (action.type) {
-            case WebPluginAction::Rotate90Clockwise:
-                plugin->plugin()->rotateView(WebPlugin::RotationType90Clockwise);
-                break;
-            case WebPluginAction::Rotate90Counterclockwise:
-                plugin->plugin()->rotateView(
-                    WebPlugin::RotationType90Counterclockwise);
-                break;
-            default:
-                NOTREACHED();
-            }
-        }
-    }
-}
-
-void WebViewImpl::audioStateChanged(bool isAudioPlaying)
-{
-    m_scheduler->audioStateChanged(isAudioPlaying);
-}
+//void WebViewImpl::audioStateChanged(bool isAudioPlaying)
+//{
+//    m_scheduler->audioStateChanged(isAudioPlaying);
+//}
 
 WebHitTestResult WebViewImpl::hitTestResultAt(const WebPoint& point)
 {

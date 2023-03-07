@@ -735,96 +735,96 @@ namespace wke {
 
 class IWebView {
 public:
-    virtual void destroy() = 0;
+ //   virtual void destroy() = 0;
 
-    virtual const char* name() const = 0;
-    virtual void setName(const char* name) = 0;
+ //   virtual const char* name() const = 0;
+ //   virtual void setName(const char* name) = 0;
 
-    virtual bool isTransparent() const = 0;
-    virtual void setTransparent(bool transparent) = 0;
+ //   virtual bool isTransparent() const = 0;
+ //   virtual void setTransparent(bool transparent) = 0;
 
-    virtual void loadURL(const utf8* url) = 0;
-    virtual void loadURL(const WCHAR* url) = 0;
+ //   virtual void loadURL(const utf8* url) = 0;
+ //   virtual void loadURL(const WCHAR* url) = 0;
 
-    virtual void loadHTML(const utf8* html) = 0;
-    virtual void loadHTML(const WCHAR* html) = 0;
+ //   virtual void loadHTML(const utf8* html) = 0;
+ //   virtual void loadHTML(const WCHAR* html) = 0;
 
-    virtual void loadFile(const utf8* filename) = 0;
-    virtual void loadFile(const WCHAR* filename) = 0;
+ //   virtual void loadFile(const utf8* filename) = 0;
+ //   virtual void loadFile(const WCHAR* filename) = 0;
 
-    virtual const utf8* url() const = 0;
+ //   virtual const utf8* url() const = 0;
 
-    virtual bool isLoading() const = 0;        /*document load sucessed*/
-    virtual bool isLoadingFailed() const = 0;    /*document load failed*/
-    virtual bool isLoadingSucceeded() const = 0;  /*document load complete*/
-    virtual bool isDocumentReady() const = 0; /*document ready*/
-    virtual void stopLoading() = 0;
-    virtual void reload() = 0;
+ //   virtual bool isLoading() const = 0;        /*document load sucessed*/
+ //   virtual bool isLoadingFailed() const = 0;    /*document load failed*/
+ //   virtual bool isLoadingSucceeded() const = 0;  /*document load complete*/
+ //   virtual bool isDocumentReady() const = 0; /*document ready*/
+ //   virtual void stopLoading() = 0;
+ //   virtual void reload() = 0;
 
-    virtual const utf8* title() = 0;
-    virtual const WCHAR* titleW() = 0;
+ //   virtual const utf8* title() = 0;
+ //   virtual const WCHAR* titleW() = 0;
 
-    virtual void resize(int w, int h) = 0;
-    virtual int width() const = 0;   /*viewport width*/
-    virtual int height() const = 0;  /*viewport height*/
+ //   virtual void resize(int w, int h) = 0;
+ //   virtual int width() const = 0;   /*viewport width*/
+ //   virtual int height() const = 0;  /*viewport height*/
 
-    virtual int contentsWidth() const = 0;  /*contents width*/
-    virtual int contentsHeight() const = 0; /*contents height*/
+ //   virtual int contentsWidth() const = 0;  /*contents width*/
+ //   virtual int contentsHeight() const = 0; /*contents height*/
 
-    virtual void setDirty(bool dirty) = 0;
-    virtual bool isDirty() const = 0;
-    virtual void addDirtyArea(int x, int y, int w, int h) = 0;
+ //   virtual void setDirty(bool dirty) = 0;
+ //   virtual bool isDirty() const = 0;
+ //   virtual void addDirtyArea(int x, int y, int w, int h) = 0;
 
-    virtual void layoutIfNeeded() = 0;
-    virtual void paint(void* bits, int pitch) = 0;
+ //   virtual void layoutIfNeeded() = 0;
+ //   virtual void paint(void* bits, int pitch) = 0;
 
-    virtual bool canGoBack() const = 0;
-    virtual bool goBack() = 0;
-    virtual bool canGoForward() const = 0;
-    virtual bool goForward() = 0;
+ //   virtual bool canGoBack() const = 0;
+ //   virtual bool goBack() = 0;
+ //   virtual bool canGoForward() const = 0;
+ //   virtual bool goForward() = 0;
 
-    virtual void editorSelectAll() = 0;
-    virtual void editorUnSelect() = 0;
-    virtual void editorCopy() = 0;
-    virtual void editorCut() = 0;
-    virtual void editorPaste() = 0;
-    virtual void editorDelete() = 0;
-    virtual void editorUndo() = 0;
-    virtual void editorRedo() = 0;
+ //   virtual void editorSelectAll() = 0;
+ //   virtual void editorUnSelect() = 0;
+ //   virtual void editorCopy() = 0;
+ //   virtual void editorCut() = 0;
+ //   virtual void editorPaste() = 0;
+ //   virtual void editorDelete() = 0;
+ //   virtual void editorUndo() = 0;
+ //   virtual void editorRedo() = 0;
 
-    virtual void setCookieEnabled(bool enable) = 0;
-    virtual bool isCookieEnabled() const = 0;
+ //   //virtual void setCookieEnabled(bool enable) = 0;
+ //   //virtual bool isCookieEnabled() const = 0;
 
-    virtual void setMediaVolume(float volume) = 0;
-    virtual float mediaVolume() const = 0;
+	//virtual void setMediaVolume(float volume) = 0;
+	//virtual float mediaVolume() const = 0;
 
-    virtual bool fireMouseEvent(unsigned int message, int x, int y, unsigned int flags) = 0;
-    virtual bool fireContextMenuEvent(int x, int y, unsigned int flags) = 0;
-    virtual bool fireMouseWheelEvent(int x, int y, int delta, unsigned int flags) = 0;
-    virtual bool fireKeyUpEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) = 0;
-    virtual bool fireKeyDownEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) = 0;
-    virtual bool fireKeyPressEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) = 0;
+ //   virtual bool fireMouseEvent(unsigned int message, int x, int y, unsigned int flags) = 0;
+ //   virtual bool fireContextMenuEvent(int x, int y, unsigned int flags) = 0;
+ //   virtual bool fireMouseWheelEvent(int x, int y, int delta, unsigned int flags) = 0;
+ //   virtual bool fireKeyUpEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) = 0;
+ //   virtual bool fireKeyDownEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) = 0;
+ //   virtual bool fireKeyPressEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) = 0;
 
-    virtual void setFocus() = 0;
-    virtual void killFocus() = 0;
+ //   virtual void setFocus() = 0;
+ //   virtual void killFocus() = 0;
 
-    virtual wkeRect getCaret() = 0;
+ //   virtual wkeRect getCaret() = 0;
 
-    virtual jsValue runJS(const utf8* script) = 0;
-    virtual jsValue runJS(const WCHAR* script) = 0;
-    virtual jsExecState globalExec() = 0;
+ //   virtual jsValue runJS(const utf8* script) = 0;
+ //   virtual jsValue runJS(const WCHAR* script) = 0;
+ //   virtual jsExecState globalExec() = 0;
 
-    virtual void sleep() = 0; //moveOffscreen
-    virtual void wake() = 0; //moveOnscreen
-    virtual bool isAwake() const = 0;
+ //   virtual void sleep() = 0; //moveOffscreen
+ //   virtual void wake() = 0; //moveOnscreen
+ //   virtual bool isAwake() const = 0;
 
-    virtual void setZoomFactor(float factor) = 0;
-    virtual float zoomFactor() const = 0;
+ //   virtual void setZoomFactor(float factor) = 0;
+ //   virtual float zoomFactor() const = 0;
 
-    virtual void setEditable(bool editable) = 0;
+ //   virtual void setEditable(bool editable) = 0;
 
-    virtual void setClientHandler(const wkeClientHandler* handler) = 0;
-    virtual const wkeClientHandler* getClientHandler() const = 0;
+ //   virtual void setClientHandler(const wkeClientHandler* handler) = 0;
+ //   virtual const wkeClientHandler* getClientHandler() const = 0;
 };
 
 }

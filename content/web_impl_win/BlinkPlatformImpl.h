@@ -198,7 +198,7 @@ private:
 
     blink::WebScrollbarBehavior* m_webScrollbarBehavior;
 #ifdef MINIBLINK_NO_PAGE_LOCALSTORAGE
-    DOMStorageMap* m_localStorageStorageMap;
+    net::DOMStorageMap* m_localStorageStorageMap;
 #endif
 //  DOMStorageMap* m_sessionStorageStorageMap;
     int64 m_storageNamespaceIdCount;

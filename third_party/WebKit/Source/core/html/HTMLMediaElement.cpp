@@ -1200,33 +1200,34 @@ void HTMLMediaElement::startPlayerLoad(const KURL& playerProvidedUrl)
         return;
     }
 
-    m_webMediaPlayer =
-        frame->loader().client()->createWebMediaPlayer(*this, source, this);
-    if (!m_webMediaPlayer) {
-        mediaLoadingFailed(WebMediaPlayer::NetworkStateFormatError);
-        return;
-    }
 
-    if (layoutObject())
-        layoutObject()->setShouldDoFullPaintInvalidation();
-    // Make sure if we create/re-create the WebMediaPlayer that we update our
-    // wrapper.
-    m_audioSourceProvider.wrap(m_webMediaPlayer->getAudioSourceProvider());
-    m_webMediaPlayer->setVolume(effectiveMediaVolume());
+    //m_webMediaPlayer =
+    //    frame->loader().client()->createWebMediaPlayer(*this, source, this);
+    //if (!m_webMediaPlayer) {
+	mediaLoadingFailed(WebMediaPlayer::NetworkStateFormatError);
+	return;
+    //}
 
-    m_webMediaPlayer->setPoster(posterImageURL());
+    //if (layoutObject())
+    //    layoutObject()->setShouldDoFullPaintInvalidation();
+    //// Make sure if we create/re-create the WebMediaPlayer that we update our
+    //// wrapper.
+    //m_audioSourceProvider.wrap(m_webMediaPlayer->getAudioSourceProvider());
+    //m_webMediaPlayer->setVolume(effectiveMediaVolume());
 
-    m_webMediaPlayer->setPreload(effectivePreloadType());
+    //m_webMediaPlayer->setPoster(posterImageURL());
 
-    m_webMediaPlayer->requestRemotePlaybackDisabled(
-        fastHasAttribute(disableremoteplaybackAttr));
+    //m_webMediaPlayer->setPreload(effectivePreloadType());
 
-    m_webMediaPlayer->load(loadType(), source, corsMode());
+    //m_webMediaPlayer->requestRemotePlaybackDisabled(
+    //    fastHasAttribute(disableremoteplaybackAttr));
 
-    if (isFullscreen())
-        m_webMediaPlayer->enteredFullscreen();
+    //m_webMediaPlayer->load(loadType(), source, corsMode());
 
-    m_webMediaPlayer->becameDominantVisibleContent(m_mostlyFillingViewport);
+    //if (isFullscreen())
+    //    m_webMediaPlayer->enteredFullscreen();
+
+    //m_webMediaPlayer->becameDominantVisibleContent(m_mostlyFillingViewport);
 }
 
 void HTMLMediaElement::setPlayerPreload()

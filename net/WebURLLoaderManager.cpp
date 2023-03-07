@@ -76,7 +76,7 @@
 #include "net/CurlCacheManager.h"
 #include "net/DownloadFileBlobCache.h"
 #include "net/cookies/WebCookieJarCurlImpl.h"
-#include "net/cookies/CookieJarMgr.h"
+//#include "net/cookies/CookieJarMgr.h"
 #include "third_party/WebKit/Source/platform/CrossThreadFunctional.h"
 #include "third_party/WebKit/Source/wtf/Threading.h"
 #include "third_party/WebKit/Source/wtf/Vector.h"
@@ -183,7 +183,6 @@ WebURLLoaderManager::WebURLLoaderManager(const char* cookieJarFullPath)
     curl_global_init(CURL_GLOBAL_ALL);
     //m_curlMultiHandle = curl_multi_init(); // 初始化curl批处理句柄
 
-    initCookieSession(cookieJarFullPath);    
 }
 
 WebURLLoaderManager::~WebURLLoaderManager()
@@ -233,34 +232,6 @@ void WebURLLoaderManager::shutdown()
     m_threads.clear();
 }
 
-void WebURLLoaderManager::initCookieSession(const char* cookieJarFullPath)
-{
-    // Curl saves both persistent cookies, and session cookies to the cookie file.
-    // The session cookies should be deleted before starting a new session.
-
-    //初始化共享curl句柄,用于共享cookies和dns等缓存
-    m_shareCookieJar = CookieJarMgr::getInst()->createOrGet(cookieJarFullPath);
-
-    CURL* handle = curl_easy_init();
-    curl_easy_setopt(handle, CURLOPT_SHARE, m_shareCookieJar->getCurlShareHandle());
-
-    std::string cookieJarPathString = m_shareCookieJar->getCookieJarFullPath();
-    setCookiePath(handle, cookieJarPathString);
-
-    curl_easy_setopt(handle, CURLOPT_COOKIESESSION, 1);
-    curl_easy_cleanup(handle);
-}
-
-CURLSH* WebURLLoaderManager::getCurlShareHandle() const
-{
-    return m_shareCookieJar->getCurlShareHandle();
-}
-
-WebCookieJarImpl* WebURLLoaderManager::getShareCookieJar() const
-{
-    return m_shareCookieJar;
-}
-
 WebURLLoaderManager* WebURLLoaderManager::m_sharedInstance = nullptr;
 
 WebURLLoaderManager* WebURLLoaderManager::sharedInstance()
@@ -272,20 +243,6 @@ WebURLLoaderManager* WebURLLoaderManager::sharedInstance()
     if (m_sharedInstance->isShutdown())
         return nullptr;
     return m_sharedInstance;
-}
-
-void WebURLLoaderManager::setCookieJarFullPath(const char* path)
-{
-    if (!m_sharedInstance) {
-        m_sharedInstance = new WebURLLoaderManager(path);
-    } else {
-        WTF::RecursiveMutex* mutex = sharedResourceMutex(CURL_LOCK_DATA_COOKIE);
-        WTF::Locker<WTF::RecursiveMutex> locker(*mutex);
-
-        WebCookieJarImpl* cookieJar = CookieJarMgr::getInst()->createOrGet(path);
-        m_sharedInstance->m_shareCookieJar = cookieJar;
-    }
-    ASSERT(m_sharedInstance->m_shareCookieJar);
 }
 
 // https://rbt.guorenpcic.com/api/grecar/print/transcriptPrintNew?policyNo=6191515000518004167&loginComCode=151515HH&userCode=W1500227 pdf没有mime，强行设置
@@ -1668,8 +1625,8 @@ InitializeHandleInfo* WebURLLoaderManager::preInitializeHandleOnMainThread(WebUR
     if (0 != wkeNetInterface.length()) {
         info->wkeNetInterface = wkeNetInterface.utf8().data();
     }
-    RefPtr<net::PageNetExtraData> pageNetExtraData = page->getPageNetExtraData();
-    info->pageNetExtraData = pageNetExtraData;
+    //RefPtr<net::PageNetExtraData> pageNetExtraData = page->getPageNetExtraData();
+    //info->pageNetExtraData = pageNetExtraData;
 #endif
 
     return info;
@@ -1719,8 +1676,7 @@ void WebURLLoaderManager::initializeHandleOnIoThread(int jobId, InitializeHandle
     if (info->pageNetExtraData && info->pageNetExtraData->getCurlShareHandle()) {
         curl_easy_setopt(job->m_handle, CURLOPT_SHARE, info->pageNetExtraData->getCurlShareHandle());
         job->m_pageNetExtraData = info->pageNetExtraData;
-    } else
-        curl_easy_setopt(job->m_handle, CURLOPT_SHARE, m_shareCookieJar->getCurlShareHandle());
+    } 
     curl_easy_setopt(job->m_handle, CURLOPT_DNS_CACHE_TIMEOUT, 60 * 5); // 5 minutes
     curl_easy_setopt(job->m_handle, CURLOPT_PROTOCOLS, kAllowedProtocols);
     curl_easy_setopt(job->m_handle, CURLOPT_REDIR_PROTOCOLS, kAllowedProtocols);
@@ -1742,15 +1698,6 @@ void WebURLLoaderManager::initializeHandleOnIoThread(int jobId, InitializeHandle
 
     WTF::RecursiveMutex* mutex = sharedResourceMutex(CURL_LOCK_DATA_COOKIE);
     WTF::Locker<WTF::RecursiveMutex> locker(*mutex);
-
-    std::string cookieJarFullPath;
-    if (job->m_pageNetExtraData) {
-        cookieJarFullPath = job->m_pageNetExtraData->getCookieJarFullPath();
-    } else {
-        cookieJarFullPath = m_shareCookieJar->getCookieJarFullPath();
-    }
-    
-    setCookiePath(job->m_handle, cookieJarFullPath);
    
     if ("GET" == info->method) {
         curl_easy_setopt(job->m_handle, CURLOPT_HTTPGET, TRUE);

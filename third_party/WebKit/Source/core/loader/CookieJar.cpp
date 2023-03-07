@@ -44,7 +44,9 @@ static WebCookieJar* toCookieJar(const Document* document)
 {
     if (!document || !document->frame())
         return 0;
-    return document->frame()->loader().client()->cookieJar();
+
+    return 0;
+    //return document->frame()->loader().client()->cookieJar();
 }
 
 String cookies(const Document* document, const KURL& url)

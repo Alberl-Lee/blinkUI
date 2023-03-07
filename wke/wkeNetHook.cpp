@@ -5,7 +5,7 @@
 #include <config.h>
 
 #include "wke/wkeNetHook.h"
-#include "wke/wke.h"
+#include "wke/wkedefine.h"
 #include "wke/wkeString.h"
 #include "wke/wkeUtil.h"
 #include "wke/wkeGlobalVar.h"

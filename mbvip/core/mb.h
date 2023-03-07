@@ -601,7 +601,8 @@ typedef struct _mbPostBodyElements {
 typedef enum _mbWindowType {
     MB_WINDOW_TYPE_POPUP,
     MB_WINDOW_TYPE_TRANSPARENT,
-    MB_WINDOW_TYPE_CONTROL
+    MB_WINDOW_TYPE_CONTROL,
+    MB_WINDOW_TYPE_NO_TITLEBAR,
 } mbWindowType;
 
 typedef enum _mbWindowInfo {
@@ -795,8 +796,8 @@ typedef mbStringPtr(MB_CALL_TYPE *mbImageBufferToDataURLCallback)(mbWebView webV
 #if defined(WIN32)
 #define MB_GET_PTR_ITERATOR(name) \
     name = (FN_##name)GetProcAddress(g_hMiniblinkMod, #name); \
-    if (!name) \
-        MessageBoxA(((HWND)0), "mb api not found", #name, 0);
+    //if (!name) \
+    //    MessageBoxA(((HWND)0), "mb api not found", #name, 0);
 #else
 #define MB_GET_PTR_ITERATOR(name) \
     name = (FN_##name)dlsym(g_hMiniblinkMod, #name); \

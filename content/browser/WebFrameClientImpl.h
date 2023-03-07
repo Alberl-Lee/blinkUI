@@ -16,9 +16,9 @@ class BrowserImpl;
 
 struct NodeBindingInMbCore;
 
-namespace media {
-class UrlIndex;
-}
+//namespace media {
+//class UrlIndex;
+//}
 
 using namespace blink;
 
@@ -52,11 +52,11 @@ public:
 
     // May return null.
     // WebContentDecryptionModule* may be null if one has not yet been set.
-    virtual WebMediaPlayer* createMediaPlayer(const WebMediaPlayerSource&,
-        WebMediaPlayerClient*,
-        WebMediaPlayerEncryptedMediaClient*,
-        WebContentDecryptionModule*,
-        const WebString& sinkId) override;
+    //virtual WebMediaPlayer* createMediaPlayer(const WebMediaPlayerSource&,
+    //    WebMediaPlayerClient*,
+    //    WebMediaPlayerEncryptedMediaClient*,
+    //    WebContentDecryptionModule*,
+    //    const WebString& sinkId) override;
 
     // May return null.
     virtual WebApplicationCacheHost* createApplicationCacheHost(WebApplicationCacheHostClient*) override;
@@ -189,9 +189,7 @@ public:
 
     // Services ------------------------------------------------------------
 
-    // A frame specific cookie jar.  May return null, in which case
-    // WebKitPlatformSupport::cookieJar() will be called to access cookies.
-    virtual WebCookieJar* cookieJar() override;
+    //virtual WebCookieJar* cookieJar() override;
 
     // Dialogs -------------------------------------------------------------
 
@@ -277,7 +275,7 @@ private:
 
     WebLocalFrame* m_frame;
 
-    linked_ptr<media::UrlIndex> m_urlIndex;
+    //linked_ptr<media::UrlIndex> m_urlIndex;
 #if ENABLE_NODEJS
     WTF::HashMap<WebFrame*, NodeBindingInMbCore*> m_nodebindings;
 #endif

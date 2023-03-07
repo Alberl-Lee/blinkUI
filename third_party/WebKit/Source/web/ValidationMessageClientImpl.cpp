@@ -84,9 +84,9 @@ void ValidationMessageClientImpl::showValidationMessage(
     const double secondPerCharacter = 0.05;
     const double statusCheckInterval = 0.1;
 
-    m_webView.client()->showValidationMessage(
-        anchorInViewport, m_message, toWebTextDirection(messageDir), subMessage,
-        toWebTextDirection(subMessageDir));
+    //m_webView.client()->showValidationMessage(
+    //    anchorInViewport, m_message, toWebTextDirection(messageDir), subMessage,
+    //    toWebTextDirection(subMessageDir));
 
     m_finishTime = monotonicallyIncreasingTime() + std::max(minimumSecondToShowValidationMessage, (message.length() + subMessage.length()) * secondPerCharacter);
     // FIXME: We should invoke checkAnchorStatus actively when layout, scroll,
@@ -102,7 +102,7 @@ void ValidationMessageClientImpl::hideValidationMessage(const Element& anchor)
     m_currentAnchor = nullptr;
     m_message = String();
     m_finishTime = 0;
-    m_webView.client()->hideValidationMessage();
+    //m_webView.client()->hideValidationMessage();
 }
 
 bool ValidationMessageClientImpl::isValidationMessageVisible(
@@ -137,7 +137,7 @@ void ValidationMessageClientImpl::checkAnchorStatus(TimerBase*)
         return;
     m_lastAnchorRectInScreen = newAnchorRectInViewportInScreen;
     m_lastPageScaleFactor = m_webView.pageScaleFactor();
-    m_webView.client()->moveValidationMessage(newAnchorRectInViewport);
+    //m_webView.client()->moveValidationMessage(newAnchorRectInViewport);
 }
 
 void ValidationMessageClientImpl::willBeDestroyed()

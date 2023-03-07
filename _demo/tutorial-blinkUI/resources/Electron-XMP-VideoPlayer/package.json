@@ -1,0 +1,14 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "css-build": "node-sass   _sass/ --output dist/css/",
+    "css-watch": "npm run css-build -- --watch ",
+    "electron": "electron .",
+    "start": "npm-run-all --parallel css-watch electron"
+  },
+  "devDependencies": {
+    "electron": "^22.0.2"
+  }
+}

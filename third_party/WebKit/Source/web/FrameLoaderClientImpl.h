@@ -150,10 +150,10 @@ public:
         const WTF::String&,
         bool loadManually,
         DetachedPluginPolicy) override;
-    std::unique_ptr<WebMediaPlayer> createWebMediaPlayer(
-        HTMLMediaElement&,
-        const WebMediaPlayerSource&,
-        WebMediaPlayerClient*) override;
+    //std::unique_ptr<WebMediaPlayer> createWebMediaPlayer(
+    //    HTMLMediaElement&,
+    //    const WebMediaPlayerSource&,
+    //    WebMediaPlayerClient*) override;
     WebRemotePlaybackClient* createWebRemotePlaybackClient(
         HTMLMediaElement&) override;
     ObjectContentType getObjectContentType(
@@ -175,7 +175,7 @@ public:
     void didNotAllowScript() override;
     void didNotAllowPlugins() override;
 
-    WebCookieJar* cookieJar() const override;
+	//WebCookieJar* cookieJar() const override;
     void frameFocused() const override;
     void didChangeName(const String& name, const String& uniqueName) override;
     void didEnforceInsecureRequestPolicy(WebInsecureRequestPolicy) override;

@@ -1,2 +1,0 @@
-G:\mycode\mb\third_party\freetype\src\objs\Win32\Debug\freetype.dll
-G:\mycode\mb\third_party\freetype\src\objs\Win32\Debug\freetype.pdb

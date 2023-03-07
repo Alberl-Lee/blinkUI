@@ -102,7 +102,7 @@ public:
     bool create_low_res_tiling() const;
     bool RequiresHighResToDraw() const;
     bool SmoothnessTakesPriority() const;
-    VideoFrameControllerClient* GetVideoFrameControllerClient() const;
+    //VideoFrameControllerClient* GetVideoFrameControllerClient() const;
     MutatorHost* mutator_host() const
     {
         return layer_tree_host_impl_->mutator_host();

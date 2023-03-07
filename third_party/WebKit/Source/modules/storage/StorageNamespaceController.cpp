@@ -31,12 +31,12 @@ DEFINE_TRACE(StorageNamespaceController)
 
 #ifndef MINIBLINK_NO_PAGE_LOCALSTORAGE
 
-StorageNamespace* StorageNamespaceController::localStorage()
-{
-    if (!m_localStorage)
-        m_localStorage = m_client->createLocalStorageNamespace();
-    return m_localStorage.get();
-}
+//StorageNamespace* StorageNamespaceController::localStorage()
+//{
+    //if (!m_localStorage)
+    //    m_localStorage = m_client->createLocalStorageNamespace();
+    //return m_localStorage.get();
+//}
 
 #endif
 

@@ -51,10 +51,10 @@ StorageClientImpl::createSessionStorageNamespace()
 
 #ifndef MINIBLINK_NO_PAGE_LOCALSTORAGE
 
-std::unique_ptr<StorageNamespace> StorageClientImpl::createLocalStorageNamespace()
-{
-    return wrapUnique(new StorageNamespace(wrapUnique(m_webView->client()->createLocalStorageNamespace())));
-}
+//std::unique_ptr<StorageNamespace> StorageClientImpl::createLocalStorageNamespace()
+//{
+    //return wrapUnique(new StorageNamespace(wrapUnique(m_webView->client()->createLocalStorageNamespace())));
+//}
 
 #endif
 

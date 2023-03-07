@@ -2,7 +2,7 @@
 #ifndef content_browser_OrigChromeMgr_h
 #define content_browser_OrigChromeMgr_h
 
-#include "media/audio/audio_manager.h"
+//#include "media/audio/audio_manager.h"
 //#include "third_party/WebKit/public/platform/WebGraphicsContext3D.h"
 #include "third_party/WebKit/public/platform/WebThread.h"
 #include "third_party/WebKit/public/platform/WebTraceLocation.h"
@@ -22,20 +22,20 @@ namespace blink {
 class WebCompositorSupport;
 //class WebTraceLocation;
 class WebLocalFrame;
-class WebMediaPlayer;
-class WebMediaPlayerClient;
+//class WebMediaPlayer;
+//class WebMediaPlayerClient;
 class WebURL;
-class WebMediaPlayerSource;
-class WebMediaPlayerEncryptedMediaClient;
+//class WebMediaPlayerSource;
+//class WebMediaPlayerEncryptedMediaClient;
 class WebContentDecryptionModule;
 class WebString;
 }
 
-namespace media {
-class AudioManager;
-class AudioHardwareConfig;
-class UrlIndex;
-}
+//namespace media {
+//class AudioManager;
+//class AudioHardwareConfig;
+//class UrlIndex;
+//}
 
 typedef void(__stdcall* OrigTaskType)();
 
@@ -45,8 +45,8 @@ class RasterWorkerPool;
 class WebSharedBitmapManager;
 class ChildGpuMemoryBufferManager;
 class TaskObserverAdapter;
-class MediaPermissionDispatcherImpl;
-class AudioRendererMixerManager;
+//class MediaPermissionDispatcherImpl;
+//class AudioRendererMixerManager;
 
 enum GLImplType {
     kGLImplTypeNone,
@@ -80,15 +80,15 @@ public:
 
     //static blink::WebMediaPlayer* createWebMediaPlayer(blink::WebLocalFrame* frame, const blink::WebURL& url, blink::WebMediaPlayerClient* client);
 
-    static blink::WebMediaPlayer* createWebMediaPlayer(
-        blink::WebLocalFrame* frame,
-        const blink::WebMediaPlayerSource& source,
-        blink::WebMediaPlayerClient*,
-        blink::WebMediaPlayerEncryptedMediaClient*,
-        blink::WebContentDecryptionModule*,
-        const blink::WebString& sinkId,
-        linked_ptr<media::UrlIndex> urlIndex
-    );
+    //static blink::WebMediaPlayer* createWebMediaPlayer(
+    //    blink::WebLocalFrame* frame,
+    //    const blink::WebMediaPlayerSource& source,
+    //    blink::WebMediaPlayerClient*,
+    //    blink::WebMediaPlayerEncryptedMediaClient*,
+    //    blink::WebContentDecryptionModule*,
+    //    const blink::WebString& sinkId,
+    //    linked_ptr<media::UrlIndex> urlIndex
+    //);
 
     static void runUntilIdle();
     static void runUntilIdleWithoutMsgPeek();
@@ -112,21 +112,21 @@ public:
     WebSharedBitmapManager* getSharedBitmapManager() { return m_sharedBitmapManager; }
     ChildGpuMemoryBufferManager* getChildGpuMemoryBufferManager() { return m_childGpuMemoryBufferManager; }
 
-    MediaPermissionDispatcherImpl* getMediaPermission();
+    //MediaPermissionDispatcherImpl* getMediaPermission();
 
-    base::Thread* getMediaThread() const { return m_mediaThread; }
+    //base::Thread* getMediaThread() const { return m_mediaThread; }
 
-    base::Thread* getMediaIoThread() const { return m_mediaIoThread; }
+    //base::Thread* getMediaIoThread() const { return m_mediaIoThread; }
 
-    media::AudioManager* getAudioManager() const { return m_audioManager.get(); }
+    //media::AudioManager* getAudioManager() const { return m_audioManager.get(); }
 
-    base::Thread* getOrCreateCompositorThread();
+    //base::Thread* getOrCreateCompositorThread();
 
 private:
     OrigChromeMgr();
 
-    void createMediaThreadIfNeeded();
-    AudioRendererMixerManager* getAudioRendererMixerManager();
+    //void createMediaThreadIfNeeded();
+    //AudioRendererMixerManager* getAudioRendererMixerManager();
 
     static OrigChromeMgr* m_inst;
     base::MessageLoop* m_uiLoop;
@@ -142,15 +142,15 @@ private:
     typedef std::map<blink::WebThread::TaskObserver*, TaskObserverAdapter*> TaskObserverMap;
     TaskObserverMap m_taskObserverMap;
 
-    MediaPermissionDispatcherImpl* m_mediaPermissionDispatcherImpl;
-    media::ScopedAudioManagerPtr m_audioManager;
-    media::AudioHardwareConfig* m_audioHardwareConfig;
-    AudioRendererMixerManager* m_audioRendererMixerManager;
-    void* m_hFfmpeg;
+    //MediaPermissionDispatcherImpl* m_mediaPermissionDispatcherImpl;
+    //media::ScopedAudioManagerPtr m_audioManager;
+    //media::AudioHardwareConfig* m_audioHardwareConfig;
+    //AudioRendererMixerManager* m_audioRendererMixerManager;
+    //void* m_hFfmpeg;
 
-    base::Thread* m_mediaThread;
-    base::Thread* m_mediaIoThread;
-    base::Thread* m_compositorThread;
+    //base::Thread* m_mediaThread;
+    //base::Thread* m_mediaIoThread;
+    //base::Thread* m_compositorThread;
 };
 
 }

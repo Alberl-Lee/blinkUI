@@ -17,13 +17,13 @@ public:
     bool createWindow(const wkeWindowCreateInfo* info);
     bool createWindow(HWND parent, wkeWindowType type, int x, int y, int width, int height);
     
-    virtual void destroy() override;
+    virtual void destroy() ;
 
     void show(bool b);
     void enable(bool b);
     void move(int x, int y, int width, int height);
     void moveToCenter();
-    virtual void resize(int width, int height) override;
+    virtual void resize(int width, int height) ;
 
     void setTitle(const WCHAR* text);
     void setTitle(const utf8* text);
@@ -31,7 +31,7 @@ public:
     void onClosing(wkeWindowClosingCallback callback, void* param);
     void onDestroy(wkeWindowDestroyCallback callback, void* param);
     
-    virtual void setTransparent(bool transparent) override;
+    virtual void setTransparent(bool transparent) ;
 
 protected:
     virtual void onPaintUpdated(wkePaintUpdatedCallback callback, void* callbackParam) override;

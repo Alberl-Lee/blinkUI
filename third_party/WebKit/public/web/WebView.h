@@ -62,7 +62,7 @@ class WebViewScheduler;
 struct WebActiveWheelFlingParameters;
 struct WebDeviceEmulationParams;
 struct WebFloatPoint;
-struct WebMediaPlayerAction;
+//struct WebMediaPlayerAction;
 struct WebPluginAction;
 struct WebPoint;
 struct WebWindowFeatures;
@@ -353,17 +353,17 @@ public:
 
     // Performs the specified media player action on the node at the given
     // location.
-    virtual void performMediaPlayerAction(const WebMediaPlayerAction&,
-        const WebPoint& location)
-        = 0;
+    //virtual void performMediaPlayerAction(const WebMediaPlayerAction&,
+    //    const WebPoint& location)
+    //    = 0;
 
     // Performs the specified plugin action on the node at the given location.
-    virtual void performPluginAction(const WebPluginAction&,
-        const WebPoint& location)
-        = 0;
+    //virtual void performPluginAction(const WebPluginAction&,
+    //    const WebPoint& location)
+    //    = 0;
 
     // Notifies WebView when audio is started or stopped.
-    virtual void audioStateChanged(bool isAudioPlaying) = 0;
+    //virtual void audioStateChanged(bool isAudioPlaying) = 0;
 
     // Data exchange -------------------------------------------------------
 

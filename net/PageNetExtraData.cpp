@@ -2,7 +2,7 @@
 #include "net/PageNetExtraData.h"
 #include "net/WebURLLoaderManagerUtil.h"
 #include "net/cookies/WebCookieJarCurlImpl.h"
-#include "net/cookies/CookieJarMgr.h"
+//#include "net/cookies/CookieJarMgr.h"
 #include "net/StorageMgr.h"
 #include "net/WebStorageNamespaceImpl.h"
 #include "net/DefaultFullPath.h"
@@ -22,19 +22,6 @@ PageNetExtraData::~PageNetExtraData()
         delete m_cookieJar;
 }
 
-void PageNetExtraData::setCookieJarFullPath(const std::string& fullPathUtf8)
-{
-    WTF::RecursiveMutex* mutex = sharedResourceMutex(CURL_LOCK_DATA_COOKIE);
-    WTF::Locker<WTF::RecursiveMutex> locker(*mutex);
-
-    if (m_cookieJar) {
-        OutputDebugStringA("PageNetExtraData::setCookieJarPath has been set");
-        return;
-    }
-
-    WebCookieJarImpl* cookieJar = CookieJarMgr::getInst()->createOrGet(fullPathUtf8);
-    m_cookieJar = cookieJar;
-}
 
 CURLSH* PageNetExtraData::getCurlShareHandle()
 {

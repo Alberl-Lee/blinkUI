@@ -2,7 +2,7 @@
 #ifndef wke_wkeGlobalVar_h
 #define wke_wkeGlobalVar_h
 
-#include "wke.h"
+#include "wkedefine.h"
 #include "third_party/WebKit/Source/wtf/OwnPtr.h"
 #include "third_party/WebKit/Source/wtf/Vector.h"
 #include "third_party/WebKit/Source/wtf/text/WTFString.h"

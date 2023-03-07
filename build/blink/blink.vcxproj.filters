@@ -1180,17 +1180,8 @@
     <Filter Include="third_party\WebKit\public\platform\exported">
       <UniqueIdentifier>{6af9c04b-196a-47ce-9786-d98177cf2b3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="third_party\WebKit\Source\platform\audio">
-      <UniqueIdentifier>{83875e2e-2d74-4bf4-91f7-34f9689166f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="third_party\WebKit\Source\platform\audio\ffmpeg">
-      <UniqueIdentifier>{017474ab-2954-44cc-867d-15586f950423}</UniqueIdentifier>
-    </Filter>
     <Filter Include="third_party\WebKit\Source\modules\audio_output_devices">
       <UniqueIdentifier>{d2ef0818-3491-492f-8b49-9730491a31b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="content\media">
-      <UniqueIdentifier>{a769b014-7f89-4218-8cf0-dbc4987c3a88}</UniqueIdentifier>
     </Filter>
     <Filter Include="third_party\WebKit\Source\modules\mediasource">
       <UniqueIdentifier>{51d8a34e-8e7d-4293-9055-7f4c4f31b515}</UniqueIdentifier>
@@ -11028,9 +11019,6 @@
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\GlyphPageTreeNode.cpp">
       <Filter>third_party\WebKit\Source\platform\fonts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\fonts\WebFontDecoder.cpp">
-      <Filter>third_party\WebKit\Source\platform\fonts</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\image-decoders\bmp\BMPImageReader.cpp">
       <Filter>third_party\WebKit\Source\platform\image-decoders\bmp</Filter>
     </ClCompile>
@@ -11269,9 +11257,6 @@
       <Filter>wke</Filter>
     </ClCompile>
     <ClCompile Include="..\..\wke\wke.cpp">
-      <Filter>wke</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\wke\wke2.cpp">
       <Filter>wke</Filter>
     </ClCompile>
     <ClCompile Include="..\..\wke\wkeGlobalVar.cpp">
@@ -12096,126 +12081,6 @@
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\mediastream\MediaStreamComponent.cpp">
       <Filter>third_party\WebKit\Source\platform\mediastream</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioChannel.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDelayDSPKernel.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDestination.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernel.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernelProcessor.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioFIFO.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioProcessor.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioPullFIFO.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioResampler.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioResamplerKernel.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioUtilities.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Biquad.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Cone.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DirectConvolver.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Distance.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DownSampler.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressor.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressorKernel.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\EqualPowerPanner.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\FFTConvolver.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\FFTFrame.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\FFTFrameStub.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabase.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabaseLoader.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFElevation.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFKernel.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\HRTFPanner.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\IIRFilter.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\MultiChannelResampler.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Panner.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\Reverb.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbAccumulationBuffer.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolver.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolverStage.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\ReverbInputBuffer.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\SincResampler.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\StereoPanner.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\UpSampler.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\VectorMath.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\third_party\WebKit\Source\platform\audio\AudioBus.cpp">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\third_party\WebKit\Source\platform\exported\WebAudioDevice.cpp">
       <Filter>third_party\WebKit\Source\platform\exported</Filter>
     </ClCompile>
@@ -12242,12 +12107,6 @@
     </ClCompile>
     <ClCompile Include="..\..\third_party\WebKit\Source\modules\audio_output_devices\HTMLMediaElementAudioOutputDevice.cpp">
       <Filter>third_party\WebKit\Source\modules\audio_output_devices</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\content\media\audio_renderer_mixer_manager.cc">
-      <Filter>content\media</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\content\media\audio_device_factory.cc">
-      <Filter>content\media</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gen\blink\bindings\modules\v8\V8MediaSource.cpp">
       <Filter>gen\blink\bindings\modules\v8</Filter>
@@ -21086,9 +20945,6 @@
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\VDMXParser.h">
       <Filter>third_party\WebKit\Source\platform\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\WebFontDecoder.h">
-      <Filter>third_party\WebKit\Source\platform\fonts</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\fonts\skia\SkiaTextMetrics.h">
       <Filter>third_party\WebKit\Source\platform\fonts\skia</Filter>
     </ClInclude>
@@ -26006,12 +25862,6 @@
     <ClInclude Include="..\..\wke\wkeWebWindow.h">
       <Filter>wke</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\wke\wke.h">
-      <Filter>wke</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\wke\wke2.h">
-      <Filter>wke</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\wke\wkedefine.h">
       <Filter>wke</Filter>
     </ClInclude>
@@ -26687,144 +26537,6 @@
     <ClInclude Include="..\..\third_party\WebKit\Source\platform\mediastream\MediaStreamCenter.h">
       <Filter>third_party\WebKit\Source\platform\mediastream</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioChannel.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDelayDSPKernel.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDestination.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDestinationConsumer.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernel.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioDSPKernelProcessor.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioFIFO.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioFileReader.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioIOCallback.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioProcessor.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioPullFIFO.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioResampler.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioResamplerKernel.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioSourceProvider.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioSourceProviderClient.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioUtilities.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Biquad.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Cone.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DenormalDisabler.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DirectConvolver.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Distance.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DownSampler.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressor.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\DynamicsCompressorKernel.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\EqualPowerPanner.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\FFTConvolver.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\FFTFrame.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabase.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFDatabaseLoader.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFElevation.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFKernel.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\HRTFPanner.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\IIRFilter.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\MultiChannelResampler.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Panner.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\Reverb.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbAccumulationBuffer.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolver.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbConvolverStage.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\ReverbInputBuffer.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\SincResampler.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\StereoPanner.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\UpSampler.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\VectorMath.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioArray.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\third_party\WebKit\Source\platform\audio\AudioBus.h">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\third_party\WebKit\Source\modules\audio_output_devices\HTMLMediaElementAudioOutputDevice.h">
       <Filter>third_party\WebKit\Source\modules\audio_output_devices</Filter>
     </ClInclude>
@@ -26833,12 +26545,6 @@
     </ClInclude>
     <ClInclude Include="..\..\third_party\WebKit\Source\modules\audio_output_devices\AudioOutputDeviceClient.h">
       <Filter>third_party\WebKit\Source\modules\audio_output_devices</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\content\media\audio_device_factory.h">
-      <Filter>content\media</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\content\media\audio_renderer_mixer_manager.h">
-      <Filter>content\media</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gen\blink\bindings\modules\v8\V8MediaSource.h">
       <Filter>gen\blink\bindings\modules\v8</Filter>
@@ -27210,12 +26916,10 @@
     <None Include="..\..\third_party\WebKit\Source\modules\websockets\DEPS">
       <Filter>third_party\WebKit\Source\modules\websockets</Filter>
     </None>
-    <None Include="..\..\third_party\WebKit\Source\platform\audio\OWNERS">
-      <Filter>third_party\WebKit\Source\platform\audio</Filter>
-    </None>
     <None Include="..\..\mbvip\core\mtmb.def">
       <Filter>mbvip\core</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\third_party\smhasher\src\CMakeLists.txt">

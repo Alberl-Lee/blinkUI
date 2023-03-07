@@ -12,8 +12,8 @@
 #include "third_party/WebKit/Source/platform/geometry/IntRect.h"
 #include "third_party/WebKit/Source/wtf/ThreadingPrimitives.h"
 #include "third_party/WebKit/public/web/WebViewClient.h"
-#include "third_party/WebKit/public/web/WebHistoryCommitType.h"
-#include "third_party/WebKit/public/web/WebHistoryItem.h"
+//#include "third_party/WebKit/public/web/WebHistoryCommitType.h"
+//#include "third_party/WebKit/public/web/WebHistoryItem.h"
 #include "third_party/WebKit/public/platform/WebURLRequest.h"
 #include "third_party/WebKit/public/platform/WebThread.h"
 #include "third_party/WebKit/public/platform/WebCursorInfo.h"
@@ -22,7 +22,7 @@
 #include "mc/trees/LayerTreeHostClient.h"
 #endif
 #include "skia/ext/platform_canvas.h"
-#include "net/PageNetExtraData.h"
+#include "net/PageNetExtraData.h" // 虽然本文件没用它，但其他引用了本文件的需要它
 #include "net/StorageDef.h"
 #include <windows.h>
 
@@ -33,15 +33,15 @@ class LayerTreeHost;
 namespace blink {
 struct Referrer;
 class WebViewImpl;
-class WebHistoryItem;
+//class WebHistoryItem;
 class IntRect;
 class WebThread;
 enum class WebCachePolicy;
-struct WebFileChooserParams;
+//struct WebFileChooserParams;
 }
 
 namespace net {
-class PageNetExtraData;
+//class PageNetExtraData;
 }
 
 namespace wke {
@@ -53,7 +53,7 @@ namespace content {
 class WebFrameClientImpl;
 class WebPage;
 class PlatformEventHandler;
-class PageNavController;
+//class PageNavController;
 class PopupMenuWin;
 class ToolTip;
 class DevToolsClient;
@@ -118,7 +118,7 @@ public:
     virtual blink::WebWidget* createPopupMenu(blink::WebPopupType) override;
     virtual blink::WebStorageNamespace* createSessionStorageNamespace() override;
 #ifndef MINIBLINK_NO_PAGE_LOCALSTORAGE
-    virtual blink::WebStorageNamespace* createLocalStorageNamespace() override;
+    //virtual blink::WebStorageNamespace* createLocalStorageNamespace() override;
 #endif
     virtual blink::WebString acceptLanguages() override;
     void setScreenInfo(const blink::WebScreenInfo& info);
@@ -127,20 +127,20 @@ public:
     virtual void setToolTipText(const blink::WebString&, blink::WebTextDirection hint) override;
     virtual void draggableRegionsChanged() override;
     virtual void onMouseDown(const blink::WebNode& mouseDownNode) override;
-    virtual void printPage(blink::WebLocalFrame* frame) override;
+    //virtual void printPage(blink::WebLocalFrame* frame) override;
     virtual blink::WebRect windowRect() override;
 
     // Editing --------------------------------------------------------
     //virtual bool handleCurrentKeyboardEvent() override;
 
     // Called when a drag-n-drop operation should begin.
-    virtual void startDragging(
-        blink::WebReferrerPolicy policy,
-        const blink::WebDragData& data,
-        blink::WebDragOperationsMask mask,
-        const blink::WebImage& image,
-        const blink::WebPoint& dragImageOffset
-    ) override;
+    //virtual void startDragging(
+    //    blink::WebReferrerPolicy policy,
+    //    const blink::WebDragData& data,
+    //    blink::WebDragOperationsMask mask,
+    //    const blink::WebImage& image,
+    //    const blink::WebPoint& dragImageOffset
+    //) override;
 
     // Return a compositing view used for this widget. This is owned by the
     // WebWidgetClient.
@@ -160,13 +160,15 @@ public:
     void didStartProvisionalLoad();
 
     // PopupMenuWinClient --------------------------------------------------------
+    // Dropdown等弹窗靠这个
     virtual void onPopupMenuCreate(HWND hWnd) override;
     virtual void onPopupMenuHide() override;
 
     // Dialogs -------------------------------------------------------------
-    virtual void showValidationMessage(const blink::WebRect& anchorInViewport, const blink::WebString& mainText, blink::WebTextDirection mainTextDir, const blink::WebString& supplementalText, blink::WebTextDirection supplementalTextDir) override;
-    virtual void hideValidationMessage() override;
-    virtual void moveValidationMessage(const blink::WebRect& anchorInViewport) override;
+    // 应该是input的校验提示信息?
+    //virtual void showValidationMessage(const blink::WebRect& anchorInViewport, const blink::WebString& mainText, blink::WebTextDirection mainTextDir, const blink::WebString& supplementalText, blink::WebTextDirection supplementalTextDir) override;
+    //virtual void hideValidationMessage() override;
+    //virtual void moveValidationMessage(const blink::WebRect& anchorInViewport) override;
     
     void testPaint();
 
@@ -221,7 +223,7 @@ public:
     //cc::LayerTreeHost* layerTreeHost() { return m_layerTreeHost; }
     void setDrawMinInterval(double drawMinInterval);
 
-    void loadHistoryItem(int64 frameId, const blink::WebHistoryItem& item, blink::WebHistoryLoadType type, blink::WebCachePolicy policy);
+    //void loadHistoryItem(int64 frameId, const blink::WebHistoryItem& item, blink::WebHistoryLoadType type, blink::WebCachePolicy policy);
     void loadURL(int64 frameId, const wchar_t* url, const blink::Referrer& referrer, const wchar_t* extraHeaders);
     void loadRequest(int64 frameId, const blink::WebURLRequest& request);
     void loadHTMLString(int64 frameId, const blink::WebData& html, const blink::WebURL& baseURL, const blink::WebURL& unreachableURL, bool replace);
@@ -230,13 +232,13 @@ public:
     void setHWND(HWND hWnd);
 
     // Session history -----------------------------------------------------
-    void didCommitProvisionalLoad(blink::WebLocalFrame* frame, const blink::WebHistoryItem& history, blink::WebHistoryCommitType type, bool isSameDocument);
-    blink::WebHistoryItem historyItemForNewChildFrame(blink::WebFrame* frame);
-    virtual void navigateBackForwardSoon(int offset) override;
-    virtual int historyBackListCount() override;
-    virtual int historyForwardListCount() override;
-    void navigateToIndex(int index);
-    int getNavigateIndex() const;
+    //void didCommitProvisionalLoad(blink::WebLocalFrame* frame, const blink::WebHistoryItem& history, blink::WebHistoryCommitType type, bool isSameDocument);
+    //blink::WebHistoryItem historyItemForNewChildFrame(blink::WebFrame* frame);
+    //virtual void navigateBackForwardSoon(int offset) override;
+    //virtual int historyBackListCount() override;
+    //virtual int historyForwardListCount() override;
+    //void navigateToIndex(int index);
+    //int getNavigateIndex() const;
 
     static WebPageImpl* getSelfForCurrentContext();
 
@@ -252,12 +254,12 @@ public:
         const blink::WebString& name,
         blink::WebNavigationPolicy policy,
         bool suppressOpener);
-    blink::WebView* createCefView(blink::WebLocalFrame* creator,
-        const blink::WebURLRequest& request,
-        const blink::WebWindowFeatures& features,
-        const blink::WebString& name,
-        blink::WebNavigationPolicy policy,
-        bool suppressOpener);
+    //blink::WebView* createCefView(blink::WebLocalFrame* creator,
+    //    const blink::WebURLRequest& request,
+    //    const blink::WebWindowFeatures& features,
+    //    const blink::WebString& name,
+    //    blink::WebNavigationPolicy policy,
+    //    bool suppressOpener);
 
     //virtual bool runFileChooser(const blink::WebFileChooserParams& params, blink::WebFileChooserCompletion* completion) override;
 
@@ -291,19 +293,19 @@ public:
     void setHwndRenderOffset(const blink::IntPoint& offset);
     blink::IntPoint getHwndRenderOffset() const;
 
-    void setCookieJarFullPath(const char* path);
-    void setLocalStorageFullPath(const char* path);
+    //void setCookieJarFullPath(const char* path);
+    //void setLocalStorageFullPath(const char* path);
 
-    net::WebCookieJarImpl* getCookieJar();
+    //net::WebCookieJarImpl* getCookieJar();
 
-    RefPtr<net::PageNetExtraData> m_pageNetExtraData;
+    //RefPtr<net::PageNetExtraData> m_pageNetExtraData;
 
     static int64_t m_firstFrameId;
 
     blink::WebThread::TaskObserver* m_createDevToolsAgentTaskObserver;
 
     ToolTip* m_toolTip;
-    ToolTip* m_validationMessageTip;
+    //ToolTip* m_validationMessageTip;
 
     blink::IntRect m_winodwRect;
 
@@ -366,7 +368,7 @@ public:
     bool m_disablePaint;
     int m_firstDrawCount;
 
-    blink::Persistent<PageNavController> m_navigationController;
+    //blink::Persistent<PageNavController> m_navigationController;
 #if defined(OS_WIN)
     blink::Persistent<PopupMenuWin> m_popup;
 #endif
@@ -378,14 +380,14 @@ public:
     void didExitDebugLoop();
     bool m_isEnterDebugLoop;
 
-    DragHandle* m_dragHandle;
+    //DragHandle* m_dragHandle;
 
     blink::WebScreenInfo* m_screenInfo;
 
     bool m_enableMouseKeyMessage;
     bool m_enableDragDrop;
     bool m_enableTouchSimulate;
-    net::DOMStorageMap* m_sessionStorageStorageMap;
+    net::DOMStorageMap* m_sessionStorageStorageMap; // 网站存储的，不能去掉，否则网页打不开。但本地页面能打开
 
     blink::IntRect m_caretPos;
 

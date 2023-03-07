@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'" /> -->
+
+    <!-- 第三方CSS -->
+    <link rel="stylesheet" href="thirdparty/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="thirdparty/bulma-extensions/bulma-extensions.css" />
+    <link rel="stylesheet" href="thirdparty/animate.css" />
+    <link rel="stylesheet" href="thirdparty/bootstrap/extensions/bstreeview.css" />
+
+    <!-- 本项目CSS -->
+    <link href="dist/css/main.css" rel="stylesheet" />
+
+    <!-- 第三方js -->
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script src="thirdparty/jquery/jquery.js"></script>
+    <script src="thirdparty/bulma-extensions/bulma-extensions.js"></script>
+
+    <script>
+      if (window.module) module = window.module;
+    </script>
+
+    <!-- 本项目js -->
+  </head>
+  <body class="bkg-color flex-column">
+    <div class="hidden-when-fullscreen level is-mobile dragable titlebar-bkg mb-0">
+      <div class="level-left ml-2">
+        <img class="mr-1" height="24" width="24" src="assets/logo.png" />
+        <div class="tabs-no-border no-dragable">
+          <ul class="m-0">
+            <li class="is-active"><button class="xmp-btn-titleText">播放</button></li>
+            <li><button class="xmp-btn-titleText">片库</button></li>
+            <li><button class="xmp-btn-titleText">找片</button></li>
+            <li><button class="xmp-btn-titleText">我的</button></li>
+            <li><button class="xmp-btn-titleText">云播</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="level-right no-dragable">
+        <button class="bui-btn-min has-text-grey-light" title="最小化">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+        <button class="bui-btn-restore has-text-grey-light" title="还原">
+          <i class="fa-regular fa-window-restore"></i>
+        </button>
+        <button class="bui-btn-max has-text-grey-light" title="最大化">
+          <i class="fa-regular fa-window-maximize"></i>
+        </button>
+        <button class="bui-btn-close has-text-grey-light" title="关闭">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="tab-contents height-remain flex-full">
+      <div id="flexTab" class="tab-content is-block is-flex-grow-1 is-flex">
+        <div class="columns is-gapless is-mobile is-flex-grow-1">
+          <div id="playlist" class="hidden-when-play column is-narrow bkg-color-playlist" style="width: 325px">
+            <div class="mr-1 ml-1" style="height: 30px">
+              <div class="field is-horizontal is-mobile">
+                <span id="btnFont" class="is-small bui-btn-img">
+                  <span class="btn-4img"> </span>
+                </span>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control has-icons-right">
+                      <input class="input is-small bkg-color-input xmp-gray-text-color" type="text" placeholder="请输入搜索关键词" />
+
+                      <span class="icon is-small is-right has-text-grey">
+                        <i class="fas fa-search pointer-cursor"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="accordionExample" class="accordion accordion-flush p-1 scroll">
+              <div class="accordion-item">
+                <h5 class="accordion-header" id="headingOne">
+                  <button class="accordion-button btn-list" data-bs-target="#collapseOne" data-bs-toggle="collapse" type="button">
+                    <strong class="xmp-gray-text-color has-text-weight-semibold font-normal">播放列表 </strong>
+                  </button>
+                </h5>
+                <div id="collapseOne" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-list-item p-2">
+                    <div class="level is-mobile mb-2">
+                      <div class="level-left">
+                        <div class="level-item">
+                          <select class="form-select form-select-sm">
+                            <option selected>本地</option>
+                            <option>在线</option>
+                            <option>全部</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="level-right">
+                        <div class="level-item">
+                          <span id="btnPlayMode" title="播放模式" class="is-small bui-btn-img">
+                            <span class="btn-4img"> </span>
+                          </span>
+                          <span id="btnAdd" class="is-small bui-btn-img">
+                            <span class="btn-4img"> </span>
+                          </span>
+                          <span id="btnDelete" class="is-small bui-btn-img">
+                            <span class="btn-4img"> </span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="treePlaylist"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item mt-1">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button btn-list collapsed" data-bs-target="#collapseTwo" data-bs-toggle="collapse" type="button">
+                    <strong class="xmp-gray-text-color has-text-weight-semibold">在线媒体 </strong>
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-list-item p-2">
+                    <div id="treeMedia"></div>
+                    <div id="treeMedia2"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item mt-1">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button btn-list collapsed" data-bs-target="#collapseThree" data-bs-toggle="collapse" type="button">
+                    <span class="xmp-gray-text-color has-text-weight-semibold">娱乐中心 </span>
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-list-item p-2">
+                    <div id="treeLiveCenter"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-flex is-flex-direction-column">
+            <div class="hidden-when-play bkg-color-playlist" style="height: 30px">
+              <div class="field is-horizontal is-mobile">
+                <div class="field-body">
+                  <div class="field">
+                    <input class="input is-small bkg-color-input xmp-gray-text-color" type="text" placeholder="请输入播放地址" />
+                  </div>
+                </div>
+
+                <span id="btn_refresh" class="is-small bui-btn-img ml-1 mr-1">
+                  <span class="btn-4img"> </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="hiddenImportant-when-play is-flex-grow-1 is-flex is-justify-content-center">
+              <div class="is-align-self-center center-bkg is-flex is-justify-content-center" style="width: 336px; height: 260px">
+                <div class="is-align-self-flex-end">
+                  <div class="field has-addons">
+                    <button id="btn_open" class="bui-btn-img">
+                      <span class="btn-4img"> </span>
+                    </button>
+                    <label id="btn_open2" for="fileOpen" class="bui-btn-img">
+                      <span class="btn-4img"> </span>
+                    </label>
+                  </div>
+
+                  <label class="file-label">
+                    <input id="fileOpen" class="file-input" type="file" accept=".mp4,.mov,.webm" multiple />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="hiddenImportant showImportant-when-play is-flex-grow-1 is-align-self-center mt-2 is-flex">
+              <div class="is-align-self-center pt-2">
+                <video id="video"></video>
+                <!-- <video id="video"  controls="true" src="_movie_test.mp4" height="300" autoplay="autoplay"></video> -->
+                <!-- <video id="video" src="_movie_test.webm"></video> -->
+                <!-- <video id="video" src="_movie_test.mp4"   ></video> -->
+              </div>
+            </div>
+
+            <div id="playPanel" style="height: 68px" class="stickyRightBottom flex-column childToCenter p-1">
+              <input id="sliderProgress" class="hiddenVisibility visible-when-play mb-1" type="range" style="width: 100%" min="0" max="1000" value="0" />
+
+              <div class="level is-mobile is-align-self-stretch" style="height: 50px">
+                <div class="level-left">
+                  <div class="level-item">
+                    <span id="btnPlaylistShow" title="显示播放列表" class="hidden show-when-play is-small bui-btn-img">
+                      <span class="btn-4img"> </span>
+                    </span>
+                    <span id="btnPlaylistHide" title="隐藏播放列表" class="hidden-when-play is-small bui-btn-img">
+                      <span class="btn-4img"> </span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="level-item ml-6">
+                  <span id="btnStop" title="停止" class="hidden show-when-play is-small bui-btn-img">
+                    <span class="btn-4img"> </span>
+                  </span>
+                  <span id="btnPrevious" title="上一个" class="is-small bui-btn-img">
+                    <span class="btn-4img"> </span>
+                  </span>
+                  <span id="btnPlay" title="播放" class="hidden-when-play is-small bui-btn-img">
+                    <span class="btn-4img"> </span>
+                  </span>
+                  <span id="btnPause" title="暂停" class="hidden show-when-play is-small bui-btn-img">
+                    <span class="btn-4img"> </span>
+                  </span>
+                  <span id="btnNext" title="下一个" class="is-small bui-btn-img">
+                    <span class="btn-4img"> </span>
+                  </span>
+                  <span id="btnVolumeZero" title="静音" class="is-small bui-btn-img">
+                    <span class="btn-4img"> </span>
+                  </span>
+                  <span id="btnVolume" title="取消静音" class="hidden is-small bui-btn-img">
+                    <span class="btn-4img"> </span>
+                  </span>
+
+                  <input id="sliderVolume" type="range" class="mb-1" style="width: 85px" min="0" max="100" value="50" />
+                </div>
+
+                <div class="level-right">
+                  <div class="level-item">
+                    <label id="btnOpenMini" for="fileOpen" title="打开文件" class="is-small bui-btn-img">
+                      <span class="btn-4img"> </span>
+                    </label>
+                    <span id="btnScreenFull" title="全屏" class="hidden is-small bui-btn-img">
+                      <span class="btn-4img"> </span>
+                    </span>
+                    <span id="btnScreenNormal" title="退出全屏" class="hidden is-small bui-btn-img">
+                      <span class="btn-4img"> </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content is-flex-grow-1" title="很多视频网站禁止了electron访问，所以换成非视频网站">
+        <iframe src="https://blog.csdn.net/qq316293804/article/details/14162539" frameborder="0" style="width: 100%; height: 100%"></iframe>
+      </div>
+      <div class="tab-content is-flex-grow-1" title="迅雷的视频网站下线了，所以换成其他网站">
+        <iframe src="https://animate.style/" frameborder="0" style="width: 100%; height: 100%"></iframe>
+      </div>
+      <div class="tab-content is-flex-grow-1" title="很多视频网站禁止了electron访问，所以换成非视频网站">
+        <iframe src="https://www.electronjs.org/zh/" frameborder="0" style="width: 100%; height: 100%"></iframe>
+      </div>
+      <div class="tab-content is-flex-grow-1" title="很多视频网站禁止了electron访问，所以换成非视频网站">
+        <iframe src="https://bulma.io/" frameborder="0" style="width: 100%; height: 100%"></iframe>
+      </div>
+    </div>
+
+    <div id="modalDialog" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <p class="modal-value">Modal text</p>
+        </div>
+      </div>
+      <button class="modal-close is-large"></button>
+    </div>
+
+    <script src="thirdparty/bootstrap/js/bootstrap.min.js"></script>
+    <script src="thirdparty/bootstrap/extensions/bstreeview.js"></script>
+
+    <script src="titlebar.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

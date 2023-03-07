@@ -1157,7 +1157,7 @@ blink::WebStorageNamespace* BlinkPlatformImpl::createLocalStorageNamespace()
 #else
     if (!m_localStorageStorageMap)
         m_localStorageStorageMap = new net::DOMStorageMap();
-    return new blink::WebStorageNamespaceImpl("", blink::kLocalStorageNamespaceId, m_localStorageStorageMap, true);
+    return new net::WebStorageNamespaceImpl("", net::kLocalStorageNamespaceId, m_localStorageStorageMap, true);
 #endif
 }
 

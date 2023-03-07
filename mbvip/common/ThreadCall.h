@@ -76,7 +76,7 @@ public:
     static void callBlinkThreadSync(const TraceLocation& caller, std::function<void(void)>&& closure);
     static void callUiThreadSync(const TraceLocation& caller, std::function<void(void)>&& closure);
     static void callUiThreadAsync(const TraceLocation& caller, std::function<void(void)>&& closure);
-    static void callMediaThreadAsync(const TraceLocation& caller, std::function<void(void)>&& closure);
+    //static void callMediaThreadAsync(const TraceLocation& caller, std::function<void(void)>&& closure);
 
     static void setThreadIdle(mbThreadCallback callback, void* param1, void* param2);
     static void setBlinkThreadInited(mbThreadCallback callback, void* param1, void* param2);
@@ -109,14 +109,14 @@ private:
 
     static void setConfigOfSetting(const mbSettings* settings);
     static void createBlinkThread(const mbSettings* settings);
-    static void createMediaThread();
+    //static void createMediaThread();
     static void callSyncAndWait(TaskAsyncData* asyncData);
     static void threadCallbackWrap(void* data);
     static void asynThreadCallbackWrap(void* data);
 
     static DWORD m_blinkThreadId;
     static DWORD m_uiThreadId;
-    static DWORD m_mediaThreadId;
+    //static DWORD m_mediaThreadId;
 
     enum CompositorTpye {
         kCompositorTpyeMC,
@@ -133,7 +133,7 @@ private:
     static void postThreadMessage(DWORD idThread, UINT Msg, TaskAsyncData* asyncData);
 
     static unsigned int CALLBACK blinkThread(void* created);
-    static unsigned int CALLBACK mediaThread(void* param);
+    //static unsigned int CALLBACK mediaThread(void* param);
 
     struct TaskItem {
         TaskItem(DWORD idThread, UINT msg, TaskAsyncData* asyncData) {

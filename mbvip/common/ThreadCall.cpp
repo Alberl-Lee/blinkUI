@@ -49,7 +49,7 @@ namespace common {
 
 DWORD ThreadCall::m_blinkThreadId = 0;
 DWORD ThreadCall::m_uiThreadId = 0;
-DWORD ThreadCall::m_mediaThreadId = 0;
+//DWORD ThreadCall::m_mediaThreadId = 0;
 
 ThreadCallballInfo ThreadCall::s_blinkThreadInitedInfo;
 ThreadCallballInfo ThreadCall::s_blinkThreadIdleInfo;
@@ -79,7 +79,7 @@ void ThreadCall::init(const mbSettings* settings)
     m_uiThreadId = ::GetCurrentThreadId();
     createBlinkThread(settings);
 
-    createMediaThread();
+    //createMediaThread();
     initializeOffScreenTimerWindow();
 }
 
@@ -153,12 +153,12 @@ void ThreadCall::callBlinkThreadSync(const TraceLocation& caller, std::function<
     callSyncAndWait(asyncData);
 }
 
-void ThreadCall::callMediaThreadAsync(const TraceLocation& caller, std::function<void(void)>&& closure)
-{
-    std::function<void(void)>* closureDummy = new std::function<void(void)>(std::move(closure));
-    TaskAsyncData* asyncData = cretaeAsyncData(caller, m_mediaThreadId, closureDummy, m_mediaThreadId);
-    callAsync(asyncData, asynThreadCallbackWrap, asyncData);
-}
+//void ThreadCall::callMediaThreadAsync(const TraceLocation& caller, std::function<void(void)>&& closure)
+//{
+//    std::function<void(void)>* closureDummy = new std::function<void(void)>(std::move(closure));
+//    TaskAsyncData* asyncData = cretaeAsyncData(caller, m_mediaThreadId, closureDummy, m_mediaThreadId);
+//    callAsync(asyncData, asynThreadCallbackWrap, asyncData);
+//}
 
 void ThreadCall::setThreadIdle(mbThreadCallback callback, void* param1, void* param2)
 {
@@ -217,8 +217,8 @@ ThreadCall::TaskQueueType ThreadCall::getWhichTypeByThreadId(DWORD idThread)
         return kBlinkTaskQueue;
     if (m_uiThreadId == idThread)
         return kUiTaskQueue;
-    if (m_mediaThreadId == idThread)
-        return kMediaTaskQueue;
+    //if (m_mediaThreadId == idThread)
+    //    return kMediaTaskQueue;
     return kMaxTaskQueue;
 }
 
@@ -817,20 +817,20 @@ void ThreadCall::createBlinkThread(const mbSettings* settings)
         wkeSetDebugConfig(nullptr, "initOrigChromeUiThread", nullptr);
 }
 
-unsigned int ThreadCall::mediaThread(void* param)
-{
+//unsigned int ThreadCall::mediaThread(void* param)
+//{
 //     setThreadName("mbMediaThread");
 //     m_mediaThreadId = ::GetCurrentThreadId();
 //     blinkMessageLoop(nullptr, nullptr, nullptr);
-    return 0;
-}
+//    return 0;
+//}
 
-void ThreadCall::createMediaThread()
-{
+//void ThreadCall::createMediaThread()
+//{
 //     unsigned threadIdentifier = 0;
 //     HANDLE threadHandle = reinterpret_cast<HANDLE>(_beginthreadex(0, 0, mediaThread, nullptr, 0, &threadIdentifier));
 //     ::CloseHandle(threadHandle);
-}
+//}
 
 typedef struct tagTHREADNAME_INFO {
     DWORD dwType; // must be 0x1000

@@ -138,69 +138,69 @@ public:
     virtual ~CWebView();
 
     virtual bool create();
-    virtual void destroy() override;
+    virtual void destroy() ;
 
     static void shutdown();
 
     bool isValid();
     void setWillDestroy();
 
-    const utf8* name() const override;
+    const utf8* name() const ;
     const WCHAR* nameW() const;
 
-    void setName(const utf8* name) override;
+    void setName(const utf8* name) ;
     void setName(const WCHAR* name);
 
-    virtual bool isTransparent() const override;
-    virtual void setTransparent(bool transparent) override;
+	virtual bool isTransparent() const ;
+	virtual void setTransparent(bool transparent) ;
 
-    void loadURL(const utf8* inUrl) override;
-    void loadURL(const WCHAR* url) override;
+	void loadURL(const utf8* inUrl);
+	void loadURL(const WCHAR* url);
     
     void loadPostURL(const utf8* inUrl,const char * poastData,int nLen);
     void loadPostURL(const WCHAR * inUrl,const char * poastData,int nLen);
 
-    void loadHTML(const utf8* html) override;
+    void loadHTML(const utf8* html) ;
     void loadHtmlWithBaseUrl(const utf8* html, const utf8* baseUrl);
-    void loadHTML(const WCHAR* html) override;
+    void loadHTML(const WCHAR* html) ;
 
-    void loadFile(const utf8* filename) override;
-    void loadFile(const WCHAR* filename) override;
+	void loadFile(const utf8* filename);
+	void loadFile(const WCHAR* filename);
 
-    const utf8* url() const override;
+    const utf8* url() const ;
 
     void setUserAgent(const utf8 * useragent);
     void setUserAgent(const WCHAR * useragent);
     
-    virtual bool isLoading() const override;
-    virtual bool isLoadingSucceeded() const override;
-    virtual bool isLoadingFailed() const override;
+    virtual bool isLoading() const ;
+    virtual bool isLoadingSucceeded() const ;
+    virtual bool isLoadingFailed() const ;
     bool isLoadingCompleted() const;
-    virtual bool isDocumentReady() const override;
-    virtual void stopLoading() override;
-    virtual void reload() override;
+    virtual bool isDocumentReady() const ;
+    virtual void stopLoading() ;
+    virtual void reload() ;
     void goToOffset(int offset);
     void goToIndex(int index);
 
-    const utf8* title() override;
-    const WCHAR* titleW() override;
+    const utf8* title() ;
+    const WCHAR* titleW() ;
     
-    virtual void resize(int w, int h) override;
-    int width() const override;
-    int height() const override;
+    virtual void resize(int w, int h) ;
+    int width() const ;
+    int height() const ;
 
     int contentWidth() const;
     int contentHeight() const;
 
-    virtual int contentsWidth() const override;
-    virtual int contentsHeight() const override;
-    
-    void setDirty(bool dirty) override;
-    bool isDirty() const override;
-    void addDirtyArea(int x, int y, int w, int h) override;
+	virtual int contentsWidth() const;
+	virtual int contentsHeight() const;
 
-    void layoutIfNeeded() override;
-    void paint(void* bits, int pitch) override;
+	void setDirty(bool dirty);
+	bool isDirty() const;
+	void addDirtyArea(int x, int y, int w, int h);
+
+    void layoutIfNeeded() ;
+    void paint(void* bits, int pitch) ;
     void paint(void* bits, int bufWid, int bufHei, int xDst, int yDst, int w, int h, int xSrc, int ySrc, bool fKeepAlpha);
     void repaintIfNeeded();
     HDC viewDC();
@@ -212,65 +212,63 @@ public:
     void setTouchSimulateEnabled(bool b);
     void setSystemTouchEnabled(bool b);
     void setViewSettings(const wkeViewSettings*);
-    bool canGoBack() const override;
-    bool goBack() override;
-    bool canGoForward() const override;
-    bool goForward() override;
+    //bool canGoBack() const ;
+    //bool goBack() ;
+    //bool canGoForward() const ;
+    //bool goForward() ;
     void navigateAtIndex(int index);
     int getNavigateIndex() const;
 
-    void editorSelectAll() override;
-    void editorUnSelect() override;
-    void editorCopy() override;
-    void editorCut() override;
-    void editorPaste() override;
-    void editorDelete() override;
-    void editorUndo() override;
-    void editorRedo() override;
+    //void editorSelectAll() ;
+    //void editorUnSelect() ;
+    //void editorCopy() ;
+    //void editorCut() ;
+    //void editorPaste() ;
+    //void editorDelete() ;
+    //void editorUndo() ;
+    //void editorRedo() ;
 
     const WCHAR* cookieW();
     const utf8* cookie();
 
-    void setCookieEnabled(bool enable) override;
-    bool isCookieEnabled() const override;
-    
-    void setMediaVolume(float volume) override;
-    float mediaVolume() const override;
+    //void setMediaVolume(float volume) ;
+    //float mediaVolume() const ;
    
-    virtual bool fireMouseEvent(unsigned int message, int x, int y, unsigned int flags) override;
-    virtual bool fireContextMenuEvent(int x, int y, unsigned int flags) override;
-    virtual bool fireMouseWheelEvent(int x, int y, int delta, unsigned int flags) override;
-    virtual bool fireKeyUpEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) override;
-    virtual bool fireKeyDownEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey) override;
-    virtual bool fireKeyPressEvent(unsigned int charCode, unsigned int flags, bool systemKey) override;
+	virtual bool fireMouseEvent(unsigned int message, int x, int y, unsigned int flags);
+	virtual bool fireContextMenuEvent(int x, int y, unsigned int flags);
+	virtual bool fireMouseWheelEvent(int x, int y, int delta, unsigned int flags);
+	virtual bool fireKeyUpEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey);
+	virtual bool fireKeyDownEvent(unsigned int virtualKeyCode, unsigned int flags, bool systemKey);
+	virtual bool fireKeyPressEvent(unsigned int charCode, unsigned int flags, bool systemKey);
+	
     bool fireWindowsMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT* result);
     bool fireMouseWheelEventOnUiThread(int x, int y, int delta, unsigned int flags);
 
-    virtual void setFocus() override;
-    virtual void killFocus() override;
-    
-    virtual wkeRect getCaret() override;
+	virtual void setFocus();
+	virtual void killFocus();
+
+	virtual wkeRect getCaret();
     wkeRect caretRect();
 
     static int64_t wkeWebFrameHandleToFrameId(content::WebPage* page, wkeWebFrameHandle frameId);
     static wkeWebFrameHandle frameIdTowkeWebFrameHandle(content::WebPage* page, int64_t frameId);
 
-    jsValue runJS(const WCHAR* script) override;
-    jsValue runJS(const utf8* script) override;
+	jsValue runJS(const WCHAR* script);
+	jsValue runJS(const utf8* script);
     jsValue runJsInFrame(wkeWebFrameHandle frameId, const utf8* script, bool isInClosure);
-    jsExecState globalExec() override;
+    jsExecState globalExec() ;
     jsExecState globalExecByFrame(wkeWebFrameHandle frameId);
-    
-    void sleep() override;
-    void wake() override;
-    bool isAwake() const override;
 
-    //virtual void awaken() override;
+	void sleep();
+	void wake();
+	bool isAwake() const;
 
-    void setZoomFactor(float factor) override;
-    float zoomFactor() const override;
+    //virtual void awaken() ;
 
-    void setEditable(bool editable) override;
+    void setZoomFactor(float factor) ;
+    float zoomFactor() const ;
+
+    //void setEditable(bool editable) ;
     
     void onURLChanged(wkeURLChangedCallback callback, void* callbackParam);
     void onURLChanged2(wkeURLChangedCallback2 callback, void* callbackParam);
@@ -310,8 +308,8 @@ public:
     void onContextMenuItemClick(wkeOnContextMenuItemClickCallback callback, void* callbackParam);
     void onDraggableRegionsChanged(wkeDraggableRegionsChangedCallback callback, void* param);
 
-    void setClientHandler(const wkeClientHandler* handler) override;
-    const wkeClientHandler* getClientHandler() const override;
+    //void setClientHandler(const wkeClientHandler* handler) ;
+    //const wkeClientHandler* getClientHandler() const ;
 
     CWebViewHandler* getWkeHandler() const;
 

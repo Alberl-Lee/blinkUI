@@ -207,11 +207,11 @@ public:
         DetachedPluginPolicy)
         = 0;
 
-    virtual std::unique_ptr<WebMediaPlayer> createWebMediaPlayer(
-        HTMLMediaElement&,
-        const WebMediaPlayerSource&,
-        WebMediaPlayerClient*)
-        = 0;
+    //virtual std::unique_ptr<WebMediaPlayer> createWebMediaPlayer(
+    //    HTMLMediaElement&,
+    //    const WebMediaPlayerSource&,
+    //    WebMediaPlayerClient*)
+    //    = 0;
     virtual WebRemotePlaybackClient* createWebRemotePlaybackClient(
         HTMLMediaElement&)
         = 0;
@@ -278,7 +278,7 @@ public:
     // This callback is similar, but for plugins.
     virtual void didNotAllowPlugins() { }
 
-    virtual WebCookieJar* cookieJar() const = 0;
+    //virtual WebCookieJar* cookieJar() const = 0;
 
     virtual void didChangeName(const String& name, const String& uniqueName) { }
 
